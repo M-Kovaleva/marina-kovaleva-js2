@@ -11,7 +11,7 @@ export default class Register extends AbstractView {
       <div class="container">
         <h1>Register Page</h1>
         <p><a href="/" data-link>← Back to Home</a></p>
-        <p><a href="/Login" data-link>Already have an account? Login</a></p>
+        <p><a href="/login" data-link>Already have an account? Login</a></p>
       </div>
     `;
   }

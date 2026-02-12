@@ -65,3 +65,4 @@ export const router = async () => {
   const app = document.querySelector('#app');
   app.innerHTML = await view.getHtml();
 };
+
