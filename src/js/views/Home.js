@@ -15,7 +15,7 @@ export default class Home extends AbstractView {
             <li><a href="/login" data-link>Go to Login</a></li>
             <li><a href="/register" data-link>Go to Register</a></li>
             <li><a href="/post/123" data-link>View Post</a></li>
-            <li><a href="/profile/_name" data-link>View Profile: _name</a></li>
+            <li><a href="/profile/_name" data-link>View Profile</a></li>
           </ul>
         </div>
       </div>

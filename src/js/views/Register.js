@@ -11,7 +11,7 @@ export default class Register extends AbstractView {
       <div class="auth-container">
         <div class="auth-card">
           <h1>Create account</h1>
-          <form id="register-form" class="auth-form">
+          <form id="register-form" class="auth-form" novalidate>
             <!-- Username -->
             <div class="form-group">
               <label for="register-name">Username</label>
