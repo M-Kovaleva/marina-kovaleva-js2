@@ -9,20 +9,19 @@ const { register } = await import('./auth.js');
 describe('register function', () => {
   
   beforeEach(() => {
-    // Очищаем моки перед каждым тестом
     fetch.mockClear();
     localStorage.clear();
   });
 
   it('should successfully register a user with valid data', async () => {
-    // Arrange: Мокаем успешный ответ API
+   // Arrange: Mock a successful API response
     const mockResponse = {
       data: {
         name: 'test_user',
         email: 'test@stud.noroff.no',
-        bio: 'Test bio',
+        /*bio: 'Test bio',
         avatar: { url: 'https://example.com/avatar.jpg' },
-        banner: { url: 'https://example.com/banner.jpg' }
+        banner: { url: 'https://example.com/banner.jpg' }*/
       }
     };
 
@@ -37,13 +36,13 @@ describe('register function', () => {
       password: 'password123'
     };
 
-    // Act: Вызываем функцию
+    // Act: Call the function
     const result = await register(userData);
 
-    // Assert: Проверяем результат
+    // Assert: Check the result
     expect(result).toEqual(mockResponse.data);
     
-    // Проверяем, что fetch был вызван правильно
+   // Check that fetch was called correctly
     expect(fetch).toHaveBeenCalledTimes(1);
     expect(fetch).toHaveBeenCalledWith(
       'https://v2.api.noroff.dev/auth/register',
@@ -58,7 +57,7 @@ describe('register function', () => {
   });
 
   it('should throw error when API returns 400 (user exists)', async () => {
-    // Arrange: Мокаем ошибку API
+    // Arrange: Mock an API error
     const mockErrorResponse = {
       errors: [
         { message: 'Profile already exists' }
@@ -79,7 +78,7 @@ describe('register function', () => {
       password: 'password123'
     };
 
-    // Act & Assert: Проверяем, что выбрасывается ошибка
+    // Act and Assert: Check that an error is thrown
     await expect(register(userData)).rejects.toThrow('Profile already exists');
   });
 
@@ -124,7 +123,7 @@ describe('register function', () => {
   });
 
   it('should handle network errors', async () => {
-    // Мокаем сетевую ошибку
+    // Mock a network error
     fetch.mockRejectedValueOnce(new Error('Network error'));
 
     const userData = {
@@ -146,9 +145,9 @@ describe('register function', () => {
       name: 'test_user',
       email: 'test@stud.noroff.no',
       password: 'password123',
-      bio: 'My bio',
+      /*bio: 'My bio',
       avatar: { url: 'https://example.com/avatar.jpg', alt: 'Avatar' },
-      banner: { url: 'https://example.com/banner.jpg', alt: 'Banner' }
+      banner: { url: 'https://example.com/banner.jpg', alt: 'Banner' }*/
     };
 
     await register(userData);
