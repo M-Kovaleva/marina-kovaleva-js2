@@ -1,4 +1,5 @@
 export function getHeaders(includeContentType = true) {
+  //Создаем пустой объект
   const headers = {};
 
   // Get stored credentials

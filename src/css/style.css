@@ -124,9 +124,6 @@ a:hover {
   }
 }
 
-/* ================================================
-   CARDS
-   ================================================ */
 .card {
   background: var(--color-white);
   border-radius: var(--radius-lg);
@@ -140,9 +137,7 @@ a:hover {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
-/* ================================================
-   BUTTONS
-   ================================================ */
+/*BUTTONS*/
 .btn-primary {
   background: var(--color-text-primary);
   color: var(--color-white);
@@ -188,9 +183,7 @@ a:hover {
   opacity: 0.9;
 }
 
-/* ================================================
-   INPUT FIELDS
-   ================================================ */
+/*INPUT FIELDS*/
 .input-field {
   padding: var(--space-md) var(--space-base);
   border: 2px solid var(--color-border-medium);
@@ -207,9 +200,7 @@ a:hover {
   box-shadow: 0 0 0 3px rgba(231, 229, 228, 0.2);
 }
 
-/* ================================================
-   AVATARS
-   ================================================ */
+/*AVATARS
 .avatar {
   width: 40px;
   height: 40px;
@@ -232,11 +223,9 @@ a:hover {
   width: 32px;
   height: 32px;
   font-size: var(--font-size-small);
-}
+}*/
 
-/* ================================================
-   TEST LINKS SECTION (for development)
-   ================================================ */
+/*TEST LINKS SECTION (for development)*/
 .test-links {
   margin-top: var(--space-xl);
   padding: var(--space-xl);
@@ -305,9 +294,6 @@ a:hover {
 .mb-lg { margin-bottom: var(--space-lg); }
 .mb-xl { margin-bottom: var(--space-xl); }
 
-/* ================================================
-   RESPONSIVE UTILITIES
-   ================================================ */
 @media (max-width: 768px) {
   :root {
     --font-size-page-title: 28px;

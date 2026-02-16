@@ -1,0 +1,94 @@
+/* Register Form Handler. Handles registration form submission and validation. Improved version with FormData*/
+import { completeRegistration } from '../api/auth.js';
+import { navigateTo } from '../router/router.js';
+import {
+  validateEmail,
+  validateUsername,
+  validatePassword,
+  showError,
+  clearAllErrors
+} from '../utils/validation.js';
+
+/* Setup register form event listeners*/
+export function setupRegisterForm() {
+  const form = document.getElementById('register-form');
+  
+  if (!form) return;
+
+  form.addEventListener('submit', handleRegisterSubmit);
+}
+/**
+ * Handle register form submission
+ * @param {Event} event - Form submit event
+ */
+async function handleRegisterSubmit(event) {
+  event.preventDefault();
+  
+  // Get form data using FormData API
+  const formData = new FormData(event.target);
+  const formFields = Object.fromEntries(formData);
+  
+  // Extract and clean values
+  const email = formFields.email?.trim() || '';
+  const password = formFields.password || '';
+  const name = formFields.name?.trim() || '';
+  // Get UI elements
+  const submitButton = document.getElementById('register-submit');
+  const loadingSpinner = document.getElementById('register-loading');
+  const successMessage = document.getElementById('register-success');
+  const errorMessage = document.getElementById('register-error');
+  const errorText = document.getElementById('register-error-text');
+  
+  // Clear previous errors
+  clearAllErrors();
+  errorMessage.style.display = 'none';
+  
+  // Validate fields
+  const validations = [
+  { field: 'register-name', validator: () => validateUsername(name) },
+  { field: 'register-email', validator: () => validateEmail(email) },
+  { field: 'register-password', validator: () => validatePassword(password) }
+  ];
+  
+  let isValid = true;
+  
+  for (const { field, validator } of validations) {
+    const result = validator();
+    if (!result.valid) {
+      showError(field, result.message);
+      isValid = false;
+    }
+  }
+  
+  // Stop if validation failed
+  if (!isValid) return;
+  
+  // Build user data object
+  const userData = { name, email, password };
+  
+  // Show loading state
+  submitButton.disabled = true;
+  submitButton.style.display = 'none';
+  loadingSpinner.style.display = 'block';
+  
+  try {
+    // Call API
+    await completeRegistration(userData);
+    
+    // Show success message
+    loadingSpinner.style.display = 'none';
+    successMessage.style.display = 'block';
+    
+    // Redirect to login
+    setTimeout(() => navigateTo('/login'), 3000);
+    
+  } catch (error) {
+    // Show error message
+    loadingSpinner.style.display = 'none';
+    submitButton.style.display = 'block';
+    submitButton.disabled = false;
+    
+    errorText.textContent = error.message || 'Registration failed. Please try again.';
+    errorMessage.style.display = 'block';
+  }
+}

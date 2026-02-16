@@ -124,9 +124,7 @@
   background: var(--color-button-hover);
 }
 
-/* ================================================
-   LOADING SPINNER
-   ================================================ */
+/*LOADING */
 .loading-spinner {
   text-align: center;
   padding: var(--space-section);
@@ -152,9 +150,7 @@
   font-size: var(--font-size-body);
 }
 
-/* ================================================
-   SUCCESS MESSAGE
-   ================================================ */
+/*SUCCESS MESSAGE*/
 .success-message {
   background: #f0fdf4;
   border: 1px solid #86efac;
@@ -169,9 +165,7 @@
   font-size: var(--font-size-body);
 }
 
-/* ================================================
-   ERROR MESSAGE
-   ================================================ */
+/*ERROR MESSAGE*/
 .error-message {
   background: #fef2f2;
   border: 1px solid #fecaca;
@@ -187,9 +181,7 @@
   font-weight: 500;
 }
 
-/* ================================================
-   AUTH LINK
-   ================================================ */
+/*AUTH LINK*/
 .auth-link {
   text-align: center;
   margin-top: var(--space-xl);
@@ -209,18 +201,13 @@
   text-decoration: underline;
 }
 
-/* ================================================
-   CHARACTER COUNTER
-   ================================================ */
+/*CHARACTER COUNTER
 #bio-count {
   font-weight: 600;
   color: var(--color-accent);
   transition: color 0.2s;
-}
+}*/
 
-/* ================================================
-   RESPONSIVE DESIGN
-   ================================================ */
 @media (max-width: 600px) {
   .auth-container {
     padding: var(--space-base);

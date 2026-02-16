@@ -1,10 +1,9 @@
-/*Validate email format (must be @stud.noroff.no)*/
+/*Validate email format (should be @stud.noroff.no)*/
 export function validateEmail(email) {
   if (!email) {
     return { valid: false, message: 'Email is required' };
   }
-
-  // Must be @stud.noroff.no email
+  // Should be @stud.noroff.no email
   const pattern = /^[a-zA-Z0-9._%+-]+@stud\.noroff\.no$/;
   if (!pattern.test(email)) {
     return { 
@@ -21,7 +20,6 @@ export function validateUsername(username) {
   if (!username) {
     return { valid: false, message: 'Username is required' };
   }
-
   // Only letters, numbers, and underscores
   const pattern = /^[a-zA-Z0-9_]+$/;
   if (!pattern.test(username)) {
@@ -39,7 +37,6 @@ export function validatePassword(password) {
   if (!password) {
     return { valid: false, message: 'Password is required' };
   }
-
   if (password.length < 8) {
     return { 
       valid: false, 

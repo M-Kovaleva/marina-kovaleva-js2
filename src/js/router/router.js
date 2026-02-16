@@ -4,6 +4,7 @@ import Register from '../views/Register.js';
 import Post from '../views/Post.js';
 import Profile from '../views/Profile.js';
 import NotFound from '../views/NotFound.js';
+import { setupRegisterForm } from '../auth/registerHandler.js';
 
 const pathToRegex = (path) =>
   new RegExp('^' + path.replace(/\//g, '\\/').replace(/:\w+/g, '(.+)') + '$');
@@ -64,5 +65,9 @@ export const router = async () => {
   const view = new match.route.view(params);
   const app = document.querySelector('#app');
   app.innerHTML = await view.getHtml();
+  // Initialize form after render
+  if (match.route.path === '/register') {
+    setupRegisterForm()
+  }
 };
 
