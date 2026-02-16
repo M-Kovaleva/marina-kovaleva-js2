@@ -77,6 +77,7 @@ export default class Register extends AbstractView {
             </div>
           </form>
           <p><a href="/" data-link>← Back to Home</a></p>
+          
           <!-- Link to Login -->
           <p class="auth-link">
             Already have an account? 
