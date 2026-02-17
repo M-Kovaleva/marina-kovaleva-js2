@@ -23,8 +23,8 @@ describe('storage.js - localStorage management', () => {
         accessToken: 'test-token-123',
         name: 'test_user',
         email: 'test@stud.noroff.no',
-        /*avatar: { url: 'https://example.com/avatar.jpg' },
-        bio: 'Test bio'*/
+        avatar: { url: 'https://example.com/avatar.jpg' },
+        bio: 'Test bio'
       };
 
       saveAuth(userData);
@@ -32,8 +32,8 @@ describe('storage.js - localStorage management', () => {
       expect(localStorage.getItem('accessToken')).toBe('test-token-123');
       expect(localStorage.getItem('userName')).toBe('test_user');
       expect(localStorage.getItem('userEmail')).toBe('test@stud.noroff.no');
-      /*expect(localStorage.getItem('userAvatar')).toBe('https://example.com/avatar.jpg');
-      expect(localStorage.getItem('userBio')).toBe('Test bio');*/
+      expect(localStorage.getItem('userAvatar')).toBe('https://example.com/avatar.jpg');
+      expect(localStorage.getItem('userBio')).toBe('Test bio');
     });
 
     it('should handle missing optional fields', () => {
@@ -47,7 +47,7 @@ describe('storage.js - localStorage management', () => {
 
       expect(localStorage.getItem('accessToken')).toBe('test-token');
       expect(localStorage.getItem('userName')).toBe('test_user');
-     /* expect(localStorage.getItem('userAvatar')).toBeNull();*/
+      expect(localStorage.getItem('userAvatar')).toBeNull();
     });
   });
 
@@ -88,16 +88,16 @@ describe('storage.js - localStorage management', () => {
       localStorage.setItem('accessToken', 'token');
       localStorage.setItem('userName', 'john_doe');
       localStorage.setItem('userEmail', 'john@stud.noroff.no');
-      /*localStorage.setItem('userAvatar', 'https://example.com/avatar.jpg');
-      localStorage.setItem('userBio', 'My bio');*/
+      localStorage.setItem('userAvatar', 'https://example.com/avatar.jpg');
+      localStorage.setItem('userBio', 'My bio');
 
       const userData = getCurrentUserData();
 
       expect(userData).toEqual({
         name: 'john_doe',
         email: 'john@stud.noroff.no',
-        /*avatar: 'https://example.com/avatar.jpg',
-        bio: 'My bio'*/
+        avatar: 'https://example.com/avatar.jpg',
+        bio: 'My bio'
       });
     });
 
@@ -125,8 +125,8 @@ describe('storage.js - localStorage management', () => {
       localStorage.setItem('apiKey', 'key');
       localStorage.setItem('userName', 'user');
       localStorage.setItem('userEmail', 'email');
-      /*localStorage.setItem('userAvatar', 'avatar');
-      localStorage.setItem('userBio', 'bio');*/
+      localStorage.setItem('userAvatar', 'avatar');
+      localStorage.setItem('userBio', 'bio');
 
       // Act: Clean up
       clearAuth();
@@ -136,8 +136,8 @@ describe('storage.js - localStorage management', () => {
       expect(localStorage.getItem('apiKey')).toBeNull();
       expect(localStorage.getItem('userName')).toBeNull();
       expect(localStorage.getItem('userEmail')).toBeNull();
-      /*expect(localStorage.getItem('userAvatar')).toBeNull();
-      expect(localStorage.getItem('userBio')).toBeNull();*/
+      expect(localStorage.getItem('userAvatar')).toBeNull();
+      expect(localStorage.getItem('userBio')).toBeNull();
     });
   });
 
