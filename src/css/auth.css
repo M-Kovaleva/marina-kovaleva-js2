@@ -55,7 +55,7 @@
 .form-group input,
 .form-group textarea {
   padding: var(--space-md) var(--space-base);
-  border: 2px solid var(--color-border-medium);
+  border: 2px solid var(--color-border);
   border-radius: var(--radius-sm);
   font-size: var(--font-size-body);
   font-family: var(--font-family);
@@ -66,7 +66,7 @@
 .form-group input:focus,
 .form-group textarea:focus {
   outline: none;
-  border-color: var(--color-border-medium);
+  border-color: var(--color-border);
   box-shadow: 0 0 0 3px rgba(231, 229, 228, 0.15);
 }
 
@@ -133,7 +133,7 @@
   width: 40px;
   height: 40px;
   margin: 0 auto var(--space-base);
-  border: 3px solid var(--color-border-light);
+  border: 3px solid var(--color-border);
   border-top: 3px solid var(--color-accent);
   border-radius: 50%;
   animation: spin 1s linear infinite;
