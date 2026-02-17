@@ -18,10 +18,7 @@ export default class Home extends AbstractView {
         placeholder="Search posts..."
         class="input-field"
       />
-
-      <button type="submit" class="btn-accent">
-        Search
-      </button>
+      <button type="submit" class="btn-accent">Search</button>
     </form>
 
     <!-- POSTS -->
@@ -35,42 +32,17 @@ export default class Home extends AbstractView {
         <div class="feed-post-content">
           Post text goes here...
         </div>
+
+        <a href="/post/1" data-link class="feed-post-link">Read more ></a>
       </div>
 
       <div class="feed-pagination">
-        <button class="btn-secondary" id="prev-page-btn">
-          Previous
-        </button>
-
-        <button class="btn-secondary" id="next-page-btn">
-          Next
-        </button>
+        <button class="btn-secondary" id="prev-page-btn">Previous</button>
+        <button class="btn-secondary" id="next-page-btn">Next</button>
       </div>
     </section>
 
   </section>
-
-  <!-- MODAL -->
-  <div id="post-modal" class="feed-modal hidden">
-
-    <div class="feed-modal-backdrop"></div>
-
-    <div class="feed-modal-panel">
-
-      <div class="feed-modal-header">
-        <button id="follow-user-btn" class="feed-primary-btn">
-          Follow user
-        </button>
-
-        <button id="modal-close" class="feed-secondary-btn">
-          Close
-        </button>
-      </div>
-
-      <div id="post-modal-content" class="feed-modal-content"></div>
-
-    </div>
-  </div>
 `;
   }
 }
