@@ -59,7 +59,7 @@ export default class Login extends AbstractView {
             Don't have an account? 
             <a href="/register" data-link>Create one here</a>
           </p>
-          <p><a href="/" data-link>← Back to Home</a></p>
+          <p><a href="/" data-link>< Back to Home</a></p>
         </div>
       </div>
     `;

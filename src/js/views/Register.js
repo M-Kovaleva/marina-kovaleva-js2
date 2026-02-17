@@ -76,7 +76,7 @@ export default class Register extends AbstractView {
               <p id="register-error-text"></p>
             </div>
           </form>
-          <p><a href="/" data-link>← Back to Home</a></p>
+          <p><a href="/" data-link>< Back to Home</a></p>
           <!-- Link to Login -->
           <p class="auth-link">
             Already have an account? 

@@ -11,7 +11,7 @@ export default class Profile extends AbstractView {
     return `
       <div class="container">
         <h1>Profile: @${this.username}</h1>
-        <p><a href="/" data-link>← Back to Home</a></p>
+        <p><a href="/" data-link>< Back to Home</a></p>
       </div>
     `;
   }

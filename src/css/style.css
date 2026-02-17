@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap');
 @import './auth.css';
-
 /*Variables*/
 :root {
   /* Colors */
@@ -100,7 +99,6 @@ small {
 a {
   color: var(--color-accent);
   text-decoration: none;
-  transition: all 0.2s;
 }
 
 a:hover {
@@ -130,7 +128,6 @@ a:hover {
   padding: var(--space-xl);
   border: 1px solid var(--color-border-medium);
   margin-bottom: var(--space-base);
-  transition: all 0.2s;
 }
 
 .card:hover {
@@ -190,7 +187,6 @@ a:hover {
   border-radius: var(--radius-sm);
   font-size: var(--font-size-body);
   font-family: var(--font-family);
-  transition: all 0.2s;
   width: 100%;
 }
 
