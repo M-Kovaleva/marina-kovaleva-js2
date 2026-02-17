@@ -24,11 +24,6 @@ export function getHeaders(includeContentType = true) {
   return headers;
 }
 
-export function isAuthenticated() {
-  const accessToken = localStorage.getItem('accessToken');
-  return !!accessToken;
-}
-
 export function getCurrentUser() {
   const userName = localStorage.getItem('userName');
   return userName;

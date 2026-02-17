@@ -66,3 +66,8 @@ export function clearAuth() {
 export function hasApiKey() {
   return !!getApiKey();
 }
+
+export function logout() {
+  clearAuth();
+  navigateTo('/login');
+}
