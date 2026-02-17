@@ -1,0 +1,145 @@
+/* =========================
+   FEED CONTAINER
+========================= */
+
+.feed-container {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: var(--space-xl);
+}
+
+/* =========================
+   SEARCH FORM
+========================= */
+
+.feed-search-form {
+  display: flex;
+  gap: var(--space-md);
+  margin-bottom: var(--space-section);
+}
+
+.feed-search-form .input-field {
+  flex: 1;
+}
+
+.feed-search-form .btn-accent {
+  white-space: nowrap;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .feed-search-form {
+    flex-direction: column;
+  }
+}
+
+/* =========================
+   POSTS
+========================= */
+
+.feed-posts {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-base);
+}
+
+/* Individual post card */
+.feed-post {
+  background: var(--color-white);
+  border: 1px solid var(--color-border-medium);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  transition: box-shadow 0.2s ease;
+}
+
+.feed-post:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Post header */
+.feed-post-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-md);
+}
+
+.feed-post-user {
+  font-weight: 600;
+  font-size: var(--font-size-body);
+}
+
+.feed-post-date {
+  font-size: var(--font-size-small);
+  color: var(--color-text-light);
+}
+
+/* Post content */
+.feed-post-content {
+  margin-bottom: var(--space-base);
+  color: var(--color-text-secondary);
+}
+
+/* Post footer */
+.feed-post-footer {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--font-size-small);
+  color: var(--color-text-light);
+}
+
+/* =========================
+   PAGINATION
+========================= */
+
+.feed-pagination {
+  display: flex;
+  justify-content: space-between;
+  margin-top: var(--space-section);
+}
+
+/* =========================
+   MODAL
+========================= */
+
+.feed-modal {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: var(--space-section);
+  z-index: 50;
+}
+
+.feed-modal.hidden {
+  display: none;
+}
+
+.feed-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.feed-modal-panel {
+  position: relative;
+  background: var(--color-white);
+  border: 1px solid var(--color-border-medium);
+  border-radius: var(--radius-lg);
+  padding: var(--space-page);
+  width: 100%;
+  max-width: 680px;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.feed-modal-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: var(--space-lg);
+}
+
+.feed-modal-content {
+  color: var(--color-text-secondary);
+}

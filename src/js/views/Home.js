@@ -8,17 +8,69 @@ export default class Home extends AbstractView {
 
   async getHtml() {
     return `
-      <div class="container">
-        <h1>Welcome to Social madia application!</h1>
-        <div class="test-links">
-          <ul>
-            <li><a href="/login" data-link>Go to Login</a></li>
-            <li><a href="/register" data-link>Go to Register</a></li>
-            <li><a href="/post/123" data-link>View Post</a></li>
-            <li><a href="/profile/_name" data-link>View Profile: _name</a></li>
-          </ul>
+  <section class="feed-container">
+
+    <!-- SEARCH -->
+    <form id="search-form" class="feed-search-form">
+      <input
+        type="search"
+        name="search"
+        placeholder="Search posts..."
+        class="input-field"
+      />
+
+      <button type="submit" class="btn-accent">
+        Search
+      </button>
+    </form>
+
+    <!-- POSTS -->
+    <section id="feed" class="feed-section">
+      <div class="feed-post">
+        <div class="feed-post-header">
+          <span class="feed-post-user">User</span>
+          <span class="feed-post-date">17 Feb 2026</span>
+        </div>
+
+        <div class="feed-post-content">
+          Post text goes here...
         </div>
       </div>
-    `;
+
+      <div class="feed-pagination">
+        <button class="btn-secondary" id="prev-page-btn">
+          Previous
+        </button>
+
+        <button class="btn-secondary" id="next-page-btn">
+          Next
+        </button>
+      </div>
+    </section>
+
+  </section>
+
+  <!-- MODAL -->
+  <div id="post-modal" class="feed-modal hidden">
+
+    <div class="feed-modal-backdrop"></div>
+
+    <div class="feed-modal-panel">
+
+      <div class="feed-modal-header">
+        <button id="follow-user-btn" class="feed-primary-btn">
+          Follow user
+        </button>
+
+        <button id="modal-close" class="feed-secondary-btn">
+          Close
+        </button>
+      </div>
+
+      <div id="post-modal-content" class="feed-modal-content"></div>
+
+    </div>
+  </div>
+`;
   }
 }

@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap');
 @import './auth.css';
+@import './home.css';
 /*Variables*/
 :root {
   /* Colors */
@@ -308,7 +309,77 @@ a:hover {
 
 
 
+/* =========================
+   LAYOUT
+========================= */
 
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* MAIN */
+
+.app-container {
+  flex: 1;
+  padding: var(--space-page);
+}
+
+/* =========================
+   NAVBAR
+========================= */
+
+.navbar {
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.navbar-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: var(--space-md) var(--space-page);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-logo {
+  font-size: var(--font-size-section-header);
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--color-text-primary);
+}
+
+.navbar-links {
+  list-style: none;
+  display: flex;
+  gap: var(--space-xl);
+  padding: 0;
+  margin: 0;
+}
+
+.navbar-links a {
+  text-decoration: none;
+  color: var(--color-text-secondary);
+  transition: color 0.2s ease;
+}
+
+.navbar-links a:hover {
+  color: var(--color-accent);
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer {
+  background: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+  padding: var(--space-lg);
+  text-align: center;
+  color: var(--color-text-secondary);
+}
 
 
 
