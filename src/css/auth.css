@@ -7,7 +7,7 @@
   background: var(--color-accent-bg);
 }
 
-/* Auth Card - White modal card */
+/* Auth Card */
 .auth-card {
   background: var(--color-white);
   border-radius: var(--radius-lg);
@@ -24,13 +24,6 @@
   text-align: center;
   margin-bottom: var(--space-sm);
   letter-spacing: -0.02em;
-}
-
-.auth-subtitle {
-  text-align: center;
-  color: var(--color-text-muted);
-  margin-bottom: var(--space-section);
-  font-size: var(--font-size-body);
 }
 
 .auth-form {
@@ -83,7 +76,7 @@
 
 /* Help Text */
 .form-help {
-  color: var(--color-text-muted);
+  color: var(--color-text-secondary);
   font-size: var(--font-size-small);
   line-height: 1.4;
 }
@@ -123,7 +116,7 @@
   background: var(--color-button-hover);
 }
 
-/*LOADING */
+/* Loading */
 .loading-spinner {
   text-align: center;
   padding: var(--space-section);
@@ -145,11 +138,11 @@
 }
 
 .loading-spinner p {
-  color: var(--color-text-muted);
+  color: var(--color-text-light);
   font-size: var(--font-size-body);
 }
 
-/*SUCCESS MESSAGE*/
+/* Success message */
 .success-message {
   background: #f0fdf4;
   border: 1px solid #86efac;
@@ -164,7 +157,7 @@
   font-size: var(--font-size-body);
 }
 
-/*ERROR MESSAGE*/
+/* Error message */
 .error-message {
   background: #fef2f2;
   border: 1px solid #fecaca;
@@ -180,11 +173,11 @@
   font-weight: 500;
 }
 
-/*AUTH LINK*/
+/* Auth link */
 .auth-link {
   text-align: center;
   margin-top: var(--space-xl);
-  color: var(--color-text-muted);
+  color: var(--color-text-secondary);
   font-size: var(--font-size-body);
 }
 

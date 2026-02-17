@@ -1,16 +1,10 @@
-/* =========================
-   FEED CONTAINER
-========================= */
-
 .feed-container {
   max-width: 680px;
   margin: 0 auto;
   padding: var(--space-xl);
 }
 
-/* =========================
-   SEARCH FORM
-========================= */
+/* Search form */
 
 .feed-search-form {
   display: flex;
@@ -33,17 +27,14 @@
   }
 }
 
-/* =========================
-   POSTS
-========================= */
-
+/* Posts */
 .feed-posts {
   display: flex;
   flex-direction: column;
   gap: var(--space-base);
 }
 
-/* Individual post card */
+/* Specific post card */
 .feed-post {
   background: var(--color-white);
   border: 1px solid var(--color-border);
@@ -79,27 +70,14 @@
   color: var(--color-text-secondary);
 }
 
-/* Post footer */
-.feed-post-footer {
-  display: flex;
-  justify-content: space-between;
-  font-size: var(--font-size-small);
-  color: var(--color-text-light);
-}
-
-/* =========================
-   PAGINATION
-========================= */
-
+/* Pagination */
 .feed-pagination {
   display: flex;
   justify-content: space-between;
   margin-top: var(--space-section);
 }
 
-/* =========================
-   MODAL
-========================= */
+/* Modal window */
 
 .feed-modal {
   position: fixed;

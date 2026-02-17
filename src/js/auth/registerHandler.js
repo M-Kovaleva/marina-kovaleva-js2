@@ -1,5 +1,5 @@
 /* Register Form Handler. Handles registration form submission and validation. Improved version with FormData*/
-import { completeRegistration } from '../api/auth.js';
+import { completeRegistration } from '../api/apiClient.js';
 import { navigateTo } from '../router/router.js';
 import {
   validateEmail,

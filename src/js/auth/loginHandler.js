@@ -1,5 +1,5 @@
 /* Login form handler. Handles login form submission and validation */
-import { login, createApiKey } from '../api/auth.js';
+import { login, createApiKey } from '../api/apiClient.js';
 import { saveAuth, saveApiKey } from './storage.js';
 import { navigateTo } from '../router/router.js';
 import {
