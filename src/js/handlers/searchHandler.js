@@ -3,10 +3,7 @@ import { get } from '../api/apiClient.js';
 import Home from '../views/Home.js';
 import { loadPosts, setQuery, getQuery } from './feedHandler.js';
 
-// ═══════════════════════════════════════════════
-// API
-// ═══════════════════════════════════════════════
-
+/* API */
 /**
  * Search posts by query
  * @param {string} query - Search term
@@ -30,10 +27,7 @@ export async function searchPosts(query, page = 1) {
   };
 }
 
-// ═══════════════════════════════════════════════
-// SEARCH INFO BAR
-// ═══════════════════════════════════════════════
-
+//* Search info bar */══════════════════════════════════════════════
 export function updateSearchInfo() {
   const searchInfo = document.getElementById('search-info');
   const query = getQuery();
@@ -50,10 +44,7 @@ export function updateSearchInfo() {
   }
 }
 
-// ═══════════════════════════════════════════════
-// CLEAR SEARCH
-// ═══════════════════════════════════════════════
-
+/* Clear search results */
 function clearSearch() {
   // Clear query
   setQuery('');
@@ -69,10 +60,7 @@ function clearSearch() {
   window.scrollTo(0, 0);
 }
 
-// ═══════════════════════════════════════════════
-// SETUP (called by router)
-// ═══════════════════════════════════════════════
-
+/* Setup (called by router) */
 export function setupSearch() {
   const form = document.getElementById('search-form');
   

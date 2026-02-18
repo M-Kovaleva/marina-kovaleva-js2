@@ -1,11 +1,10 @@
 /* Tests for Home.js - View templates */
-
-import { describe, it, expect} from '@jest/globals';
+import { describe, it, expect } from '@jest/globals';
 import Home from './Home.js';
 
 describe('Home.js - View templates', () => {
 
-  //getHtml()
+  // getHtml()
 
   describe('getHtml()', () => {
     it('should return HTML string with feed container', async () => {
@@ -40,7 +39,7 @@ describe('Home.js - View templates', () => {
     });
   });
 
-  //renderPostCard()
+  // renderPostCard()
 
   describe('renderPostCard()', () => {
     it('should render post card with all fields', () => {
@@ -114,12 +113,10 @@ describe('Home.js - View templates', () => {
 
       const html = Home.renderPostCard(post);
 
-      // Date formatting depends on locale, just check it exists
       expect(html).toContain('feed-post-date');
     });
-  });
 
-  it('should display image when post has media', () => {
+    it('should display image when post has media', () => {
       const post = {
         id: '222',
         title: 'Post with Image',
@@ -172,7 +169,7 @@ describe('Home.js - View templates', () => {
     });
   });
 
-  //renderEmptyState()
+  // renderEmptyState() 
 
   describe('renderEmptyState()', () => {
     it('should return empty state message', () => {
@@ -182,7 +179,7 @@ describe('Home.js - View templates', () => {
     });
   });
 
-  //renderErrorState()
+  // renderErrorState()
 
   describe('renderErrorState()', () => {
     it('should return error state message', () => {
@@ -191,7 +188,7 @@ describe('Home.js - View templates', () => {
       expect(html).toBe('<p>Error loading posts. Please try again.</p>');
     });
   });
-
+});
 
 
 
