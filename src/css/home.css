@@ -103,7 +103,35 @@
   margin-bottom: var(--space-base);
   color: var(--color-text-secondary);
 }
+/* Post image */
+.feed-post-image {
+  width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--space-base);
+}
 
+/* Post title */
+.feed-post-title {
+  font-size: var(--font-size-subheader);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-sm);
+}
+
+.feed-post-link {
+  display: inline-block;
+  font-size: var(--font-size-small);
+  font-weight: 600;
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+.feed-post-link:hover {
+  text-decoration: underline;
+  color: var(--color-text-primary);
+}
 /* Pagination */
 .feed-pagination {
   display: flex;

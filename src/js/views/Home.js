@@ -55,17 +55,19 @@ export default class Home extends AbstractView {
     const title = post.title || 'Untitled';
     const body = post.body || '';
     const date = new Date(post.created).toLocaleDateString();
+    const image = post.media?.url || '';
 
     return `
       <article class="feed-post">
-        <div class="feed-post-header">
-          <span class="feed-post-user">${author}</span>
-          <span class="feed-post-date">${date}</span>
-        </div>
-        <h2 class="feed-post-title">${title}</h2>
-        <p class="feed-post-content">${body.slice(0, 150)}...</p>
-        <a href="/post/${post.id}" data-link class="feed-post-link">Read more →</a>
-      </article>
+      <div class="feed-post-header">
+        <span class="feed-post-user">${author}</span>
+        <span class="feed-post-date">${date}</span>
+      </div>
+      ${image ? `<img src="${image}" alt="${title}" class="feed-post-image" />` : ''}
+      <h2 class="feed-post-title">${title}</h2>
+      <p class="feed-post-content">${body.slice(0, 150)}...</p>
+      <a href="/post/${post.id}" data-link class="feed-post-link">Read more →</a>
+    </article>
     `;
   }
 
