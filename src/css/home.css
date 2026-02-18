@@ -20,6 +20,7 @@
   white-space: nowrap;
 }
 
+/* Mobile */
 @media (max-width: 600px) {
   .feed-search-form {
     flex-direction: column;
@@ -27,13 +28,13 @@
 }
 
 /* Posts */
-
 .feed-posts {
   display: flex;
   flex-direction: column;
   gap: var(--space-base);
 }
 
+/* Specific post card */
 .feed-post {
   background: var(--color-white);
   border: 1px solid var(--color-border);
@@ -45,6 +46,7 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
+/* Post header */
 .feed-post-header {
   display: flex;
   justify-content: space-between;
@@ -62,30 +64,16 @@
   color: var(--color-text-light);
 }
 
+/* Post content */
 .feed-post-content {
   margin-bottom: var(--space-base);
   color: var(--color-text-secondary);
 }
 
-/* Read more link */
-
-.feed-post-link {
-  display: inline-block;
-  font-size: var(--font-size-small);
-  font-weight: 600;
-  color: var(--color-accent);
-  text-decoration: none;
-}
-
-.feed-post-link:hover {
-  text-decoration: underline;
-  color: var(--color-text-primary);
-}
-
 /* Pagination */
-
 .feed-pagination {
   display: flex;
   justify-content: space-between;
   margin-top: var(--space-section);
 }
+

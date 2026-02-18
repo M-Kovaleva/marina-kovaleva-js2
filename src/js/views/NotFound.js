@@ -10,7 +10,7 @@ export default class NotFound extends AbstractView {
     return `
       <div class="container">
         <h1>404 - Page not found</h1>
-        <p><a href="/" data-link>< Return to Home</a></p>
+        <p class="auth-link"><a href="/" data-link>< Return to Home</a></p>
       </div>
     `;
   }

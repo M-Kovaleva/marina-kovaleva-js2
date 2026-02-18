@@ -6,6 +6,9 @@ import Profile from '../views/Profile.js';
 import NotFound from '../views/NotFound.js';
 import { setupRegisterForm } from '../auth/registerHandler.js';
 import { setupLoginForm } from '../auth/loginHandler.js'; 
+import { isAuthenticated } from '../auth/storage.js'; // Imported authorization check
+
+const PROTECTED = ['/', '/post/:id', '/profile/:name'];  // Protected routes
 
 const pathToRegex = (path) =>
   new RegExp('^' + path.replace(/\//g, '\\/').replace(/:\w+/g, '(.+)') + '$');
@@ -59,6 +62,12 @@ export const router = async () => {
     };
   }
 
+  // Authorization check
+  if (PROTECTED.includes(match.route.path) && !isAuthenticated()) {
+    navigateTo('/login');
+    return;  // Stop execution
+  }
+
   // Extract params if the route has any
   const params = getParams(match);
 
@@ -66,7 +75,8 @@ export const router = async () => {
   const view = new match.route.view(params);
   const app = document.querySelector('#app');
   app.innerHTML = await view.getHtml();
-  // Initialize form after render
+
+   // Initialize form after render
   if (match.route.path === '/register') {
     setupRegisterForm()}
     if (match.route.path === '/login') { 

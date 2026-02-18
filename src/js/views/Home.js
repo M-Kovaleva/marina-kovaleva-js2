@@ -21,26 +21,15 @@ export default class Home extends AbstractView {
       <button type="submit" class="btn-accent">Search</button>
     </form>
 
-    <!-- POSTS -->
-    <section id="feed" class="feed-section">
-      <div class="feed-post">
-        <div class="feed-post-header">
-          <span class="feed-post-user">User</span>
-          <span class="feed-post-date">17 Feb 2026</span>
-        </div>
+    <!-- LOADING -->
+    <div id="feed-loading" class="loading-spinner" style="display: none;">
+      <div class="spinner"></div>
+      <p>Loading posts...</p>
+    </div>
+     <!-- POSTS -->
+    <section id="feed" class="feed-section"></section>
 
-        <div class="feed-post-content">
-          Post text goes here...
-        </div>
-
-        <a href="/post/1" data-link class="feed-post-link">Read more ></a>
-      </div>
-
-      <div class="feed-pagination">
-        <button class="btn-secondary" id="prev-page-btn">Previous</button>
-        <button class="btn-secondary" id="next-page-btn">Next</button>
-      </div>
-    </section>
+  </section>
 
   </section>
 `;
