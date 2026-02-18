@@ -6,6 +6,7 @@ import Profile from '../views/Profile.js';
 import NotFound from '../views/NotFound.js';
 import { setupRegisterForm } from '../auth/registerHandler.js';
 import { setupLoginForm } from '../auth/loginHandler.js'; 
+import { setupFeed } from '../handlers/feedHandler.js'
 import { isAuthenticated } from '../auth/storage.js'; // Imported authorization check
 
 const PROTECTED = ['/', '/post/:id', '/profile/:name'];  // Protected routes
@@ -76,10 +77,12 @@ export const router = async () => {
   const app = document.querySelector('#app');
   app.innerHTML = await view.getHtml();
 
-   // Initialize form after render
-  if (match.route.path === '/register') {
-    setupRegisterForm()}
-    if (match.route.path === '/login') { 
-    setupLoginForm();
-  }
+  // Initialize form after render
+  if (match.route.path === '/')         
+  setupFeed();   
+  if (match.route.path === '/register') 
+  setupRegisterForm()
+  if (match.route.path === '/login')  
+  setupLoginForm();
+  
 };

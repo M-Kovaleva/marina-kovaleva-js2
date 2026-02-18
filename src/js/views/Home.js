@@ -30,8 +30,128 @@ export default class Home extends AbstractView {
     <section id="feed" class="feed-section"></section>
 
   </section>
-
-  </section>
 `;
   }
+
+
+/* html templates called by feedHandler.js */
+  /**
+   * Generate HTML for a single post card
+   * @param {object} post - Post object from API
+   * @returns {string} HTML string
+   */
+  static renderPostCard(post) {
+    const author = post.author?.name || 'Unknown';
+    const title = post.title || 'Untitled';
+    const body = post.body || '';
+    const date = new Date(post.created).toLocaleDateString();
+
+    return `
+      <article class="feed-post">
+        <div class="feed-post-header">
+          <span class="feed-post-user">${author}</span>
+          <span class="feed-post-date">${date}</span>
+        </div>
+        <h2 class="feed-post-title">${title}</h2>
+        <p class="feed-post-content">${body.slice(0, 150)}...</p>
+        <a href="/post/${post.id}" data-link class="feed-post-link">Read more →</a>
+      </article>
+    `;
+  }
+
+  /**
+   * Generate HTML for empty state
+   * @returns {string} HTML string
+   */
+  static renderEmptyState() {
+    return '<p>No posts found.</p>';
+  }
+
+  /**
+   * Generate HTML for error state
+   * @returns {string} HTML string
+   */
+  static renderErrorState() {
+    return '<p>Error loading posts. Please try again.</p>';
+  }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
