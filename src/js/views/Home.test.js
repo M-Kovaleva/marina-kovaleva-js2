@@ -1,6 +1,6 @@
 /* Tests for Home.js - View templates */
 
-import { describe, it, expect, beforeEach } from '@jest/globals';
+import { describe, it, expect} from '@jest/globals';
 import Home from './Home.js';
 
 describe('Home.js - View templates', () => {
@@ -47,17 +47,17 @@ describe('Home.js - View templates', () => {
       const post = {
         id: '123',
         title: 'Test Post',
-        body: 'This is a test post body',
-        created: '2024-01-15T10:00:00Z',
-        author: { name: 'john_doe' }
+        body: 'Test post body',
+        created: '2026-02-18T10:00:00Z',
+        author: { name: 'marina' }
       };
 
       const html = Home.renderPostCard(post);
 
       expect(html).toContain('feed-post');
-      expect(html).toContain('john_doe');
+      expect(html).toContain('marina');
       expect(html).toContain('Test Post');
-      expect(html).toContain('This is a test post body');
+      expect(html).toContain('Test post body');
       expect(html).toContain('/post/123');
       expect(html).toContain('Read more');
     });
@@ -65,7 +65,7 @@ describe('Home.js - View templates', () => {
     it('should use default values for missing fields', () => {
       const post = {
         id: '456',
-        created: '2024-01-15T10:00:00Z'
+        created: '2026-02-18T10:00:00Z'
       };
 
       const html = Home.renderPostCard(post);
@@ -80,7 +80,7 @@ describe('Home.js - View templates', () => {
         id: '789',
         title: 'Long Post',
         body: longText,
-        created: '2024-01-15T10:00:00Z',
+        created: '2026-02-18T10:00:00Z',
         author: { name: 'alice' }
       };
 
@@ -95,7 +95,7 @@ describe('Home.js - View templates', () => {
         id: '999',
         title: 'No Author',
         body: 'Test',
-        created: '2024-01-15T10:00:00Z'
+        created: '2026-02-18T10:00:00Z'
       };
 
       const html = Home.renderPostCard(post);
@@ -108,14 +108,67 @@ describe('Home.js - View templates', () => {
         id: '111',
         title: 'Date Test',
         body: 'Test',
-        created: '2024-12-25T00:00:00Z',
-        author: { name: 'bob' }
+        created: '2026-12-25T00:00:00Z',
+        author: { name: 'lil' }
       };
 
       const html = Home.renderPostCard(post);
 
       // Date formatting depends on locale, just check it exists
       expect(html).toContain('feed-post-date');
+    });
+  });
+
+  it('should display image when post has media', () => {
+      const post = {
+        id: '222',
+        title: 'Post with Image',
+        body: 'Test',
+        created: '2026-02-18T10:00:00Z',
+        author: { name: 'mari' },
+        media: {
+          url: 'https://example.com/image.jpg'
+        }
+      };
+
+      const html = Home.renderPostCard(post);
+
+      expect(html).toContain('<img');
+      expect(html).toContain('src="https://example.com/image.jpg"');
+      expect(html).toContain('class="feed-post-image"');
+      expect(html).toContain('alt="Post with Image"');
+    });
+
+    it('should not display image when post has no media', () => {
+      const post = {
+        id: '333',
+        title: 'Post without Image',
+        body: 'Test',
+        created: '2026-02-18T10:00:00Z',
+        author: { name: 'lil' }
+      };
+
+      const html = Home.renderPostCard(post);
+
+      expect(html).not.toContain('<img');
+      expect(html).not.toContain('feed-post-image');
+    });
+
+    it('should not display image when media.url is empty', () => {
+      const post = {
+        id: '444',
+        title: 'Post with Empty Media',
+        body: 'Test',
+        created: '2026-02-18T10:00:00Z',
+        author: { name: 'charlie' },
+        media: {
+          url: ''
+        }
+      };
+
+      const html = Home.renderPostCard(post);
+
+      expect(html).not.toContain('<img');
     });
   });
 
@@ -139,7 +192,6 @@ describe('Home.js - View templates', () => {
     });
   });
 
-});
 
 
 
