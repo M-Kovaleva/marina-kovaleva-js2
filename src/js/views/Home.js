@@ -26,9 +26,16 @@ export default class Home extends AbstractView {
       <div class="spinner"></div>
       <p>Loading posts...</p>
     </div>
+
      <!-- POSTS -->
     <section id="feed" class="feed-section"></section>
 
+    <!-- PAGINATION -->
+    <div class="feed-pagination">
+      <button class="btn-secondary" id="prev-page-btn">Previous</button>
+      <span id="page-info" class="feed-page-info">Page 1</span>
+      <button class="btn-secondary" id="next-page-btn">Next</button>
+    </div>
   </section>
 `;
   }

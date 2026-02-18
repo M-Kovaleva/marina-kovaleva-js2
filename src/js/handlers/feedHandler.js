@@ -2,26 +2,32 @@
 import { get } from '../api/apiClient.js';
 import Home from '../views/Home.js';
 
-/* 1. Get posts from API */ 
+let currentPage = 1;  // current page
+let isFetching = false; // Double-click protection
+
+/* Get posts from API */ 
 
 /**
  * Fetch posts from API
- * @returns {Promise<Array>} Array of post objects
- * 
- * URLSearchParams for query strings
+ * @param {number} page - Page number
+ * @returns {Promise<{posts: Array, meta: Object}>} Posts and metadata
  */
-async function getPosts() {
+async function getPosts(page = 1) {
   // Build query string with URLSearchParams
   const params = new URLSearchParams({
     _author: 'true',
     _comments: 'true',
     _reactions: 'true',
-    limit: '12'
+    limit: '12',
+    page: page.toString()
   });
 
   // GET request: fetch with Bearer token (handled by apiClient)
   const result = await get(`/social/posts?${params}`);
-  return result.data;
+  return {
+    posts: result.data,
+    meta: result.meta  // Returning meta from the API
+  };
 }
 
 /* Render posts to DOM */
@@ -40,9 +46,56 @@ function renderPosts(posts) {
   }
 
    // Render posts using Home.js template
-  feed.innerHTML = posts
-    .map(post => Home.renderPostCard(post))  // HTML from Home.js
-    .join('');
+  feed.innerHTML = posts.map(post => Home.renderPostCard(post)).join('');  // HTML from Home.js
+}
+
+/* Pagination. Update pagination buttons based on meta */
+/**
+ * Update pagination UI using meta object from API
+ * @param {Object} meta - Pagination metadata
+ */
+function updatePagination(meta) {
+  const prevBtn = document.getElementById('prev-page-btn');
+  const nextBtn = document.getElementById('next-page-btn');
+  const pageInfo = document.getElementById('page-info');
+
+  // Update page text
+  if (pageInfo) {
+    pageInfo.textContent = `Page ${meta.currentPage} of ${meta.pageCount}`;
+  }
+
+  // Disable meta-based buttons
+  if (prevBtn) {
+    prevBtn.disabled = meta.isFirstPage;
+  }
+
+  if (nextBtn) {
+    nextBtn.disabled = meta.isLastPage;
+  }
+}
+
+  /* 4. Setup pagination event listeners */
+function setupPagination() {
+  const prevBtn = document.getElementById('prev-page-btn');
+  const nextBtn = document.getElementById('next-page-btn');
+
+  // Previous button
+  prevBtn?.addEventListener('click', async () => {
+    if (!isFetching && !prevBtn.disabled) {
+      currentPage--;
+      await loadPosts();
+      window.scrollTo(0, 0);
+    }
+  });
+
+  // Next button
+  nextBtn?.addEventListener('click', async () => {
+    if (!isFetching && !nextBtn.disabled) {
+      currentPage++;
+      await loadPosts();
+      window.scrollTo(0, 0);
+    }
+  });
 }
 
 /* Loading */
@@ -63,18 +116,28 @@ function showLoading(isLoading) {
   }
 }
 
-/* Load and display posts (called by router) - async/await, try/catch for error handling */
-export async function setupFeed() {
+/* Load posts (main logic) */
+async function loadPosts() {
+  isFetching = true;
   showLoading(true);
 
   try {
-    const posts = await getPosts();
+    const { posts, meta } = await getPosts(currentPage);  // Destructuring
     renderPosts(posts);
+    updatePagination(meta);  // Using meta for buttons
   } catch (error) {
     console.error('Failed to load posts:', error);
-    document.getElementById('feed').innerHTML = 
-      '<p>Error loading posts. Please try again.</p>';
+    document.getElementById('feed').innerHTML = Home.renderErrorState();
   } finally {
     showLoading(false);
+    isFetching = false;
   }
+}
+
+/* 7. Main function called by router */
+
+export async function setupFeed() {
+  currentPage = 1;
+  setupPagination();  //
+  await loadPosts();
 }
