@@ -8,6 +8,7 @@ import { setupRegisterForm } from '../auth/registerHandler.js';
 import { setupLoginForm } from '../auth/loginHandler.js'; 
 import { setupFeed } from '../handlers/feedHandler.js'
 import { setupSearch } from '../handlers/searchHandler.js';
+import { setupPost } from '../handlers/postHandler.js';
 import { isAuthenticated } from '../auth/storage.js'; // Imported authorization check
 
 const PROTECTED = ['/', '/post/:id', '/profile/:name'];  // Protected routes
@@ -83,9 +84,10 @@ export const router = async () => {
   if (match.route.path === '/') {
     setupFeed();    // Feed: posts + pagination
     setupSearch();  // Search: search form + logic
-  }
+  }if (match.route.path === '/post/:id')
+    setupPost(params.id); 
   if (match.route.path === '/register') 
-  setupRegisterForm()
+  setupRegisterForm();
   if (match.route.path === '/login')  
   setupLoginForm();
   

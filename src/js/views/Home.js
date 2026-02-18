@@ -66,7 +66,7 @@ export default class Home extends AbstractView {
       ${image ? `<img src="${image}" alt="${title}" class="feed-post-image" />` : ''}
       <h2 class="feed-post-title">${title}</h2>
       <p class="feed-post-content">${body.slice(0, 150)}...</p>
-      <a href="/post/${post.id}" data-link class="feed-post-link">Read more →</a>
+      <a href="/post/${post.id}" data-link class="feed-post-link">Read more ></a>
     </article>
     `;
   }
