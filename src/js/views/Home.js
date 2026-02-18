@@ -21,6 +21,9 @@ export default class Home extends AbstractView {
       <button type="submit" class="btn-accent">Search</button>
     </form>
 
+    <!-- SEARCH INFO -->
+    <div id="search-info" class="search-info" style="display: none;"></div>
+
     <!-- LOADING -->
     <div id="feed-loading" class="loading-spinner" style="display: none;">
       <div class="spinner"></div>
@@ -63,6 +66,18 @@ export default class Home extends AbstractView {
         <p class="feed-post-content">${body.slice(0, 150)}...</p>
         <a href="/post/${post.id}" data-link class="feed-post-link">Read more →</a>
       </article>
+    `;
+  }
+
+  /**
+   * Generate HTML for search info bar
+   * @param {string} query - Search query
+   * @returns {string} HTML string
+   */
+  static renderSearchInfo(query) {
+    return `
+      <span>Showing results for: <strong>"${query}"</strong></span>
+      <button id="clear-search-btn" class="btn-clear-search">Clear search</button>
     `;
   }
 

@@ -1,9 +1,25 @@
 /* Feed Handler - loads and displays posts */
 import { get } from '../api/apiClient.js';
 import Home from '../views/Home.js';
+import { searchPosts, updateSearchInfo } from './searchHandler.js';
 
 let currentPage = 1;  // current page
+let currentQuery = '';  // added for search
 let isFetching = false; // Double-click protection
+
+/* exported for searchHandler */
+export function setQuery(query) {
+  currentQuery = query;
+  currentPage = 1;
+}
+
+export function getQuery() {
+  return currentQuery;
+}
+
+export function setPage(page) {
+  currentPage = page;
+}
 
 /* Get posts from API */ 
 
@@ -36,7 +52,7 @@ async function getPosts(page = 1) {
  * Display posts in feed
  * @param {Array} posts - Posts from API
  */
-function renderPosts(posts) {
+export function renderPosts(posts) {
   const feed = document.getElementById('feed');
   
   // Empty state: conditional rendering
@@ -54,7 +70,7 @@ function renderPosts(posts) {
  * Update pagination UI using meta object from API
  * @param {Object} meta - Pagination metadata
  */
-function updatePagination(meta) {
+export function updatePagination(meta) {
   const prevBtn = document.getElementById('prev-page-btn');
   const nextBtn = document.getElementById('next-page-btn');
   const pageInfo = document.getElementById('page-info');
@@ -103,7 +119,7 @@ function setupPagination() {
  * Show/hide loading spinner
  * @param {boolean} isLoading
  */
-function showLoading(isLoading) {
+export function showLoading(isLoading) {
   const spinner = document.getElementById('feed-loading');
   const feed = document.getElementById('feed');
 
@@ -116,15 +132,22 @@ function showLoading(isLoading) {
   }
 }
 
-/* Load posts (main logic) */
-async function loadPosts() {
+/* Load posts (search or regular) */
+export async function loadPosts() {
+  if (isFetching) return;
+  
   isFetching = true;
   showLoading(true);
 
   try {
-    const { posts, meta } = await getPosts(currentPage);  // Destructuring
+    // Search or regular load
+    const { posts, meta } = currentQuery
+      ? await searchPosts(currentQuery, currentPage)
+      : await getPosts(currentPage);
+    
     renderPosts(posts);
-    updatePagination(meta);  // Using meta for buttons
+    updatePagination(meta);
+    updateSearchInfo();  // From searchHandler
   } catch (error) {
     console.error('Failed to load posts:', error);
     document.getElementById('feed').innerHTML = Home.renderErrorState();
@@ -134,7 +157,7 @@ async function loadPosts() {
   }
 }
 
-/* 7. Main function called by router */
+/* Main function called by router */
 
 export async function setupFeed() {
   currentPage = 1;
