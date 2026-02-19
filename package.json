@@ -7,8 +7,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
-    "deploy": "gh-pages -d dist"
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
   },
   "devDependencies": {
     "@jest/globals": "^30.2.0",
