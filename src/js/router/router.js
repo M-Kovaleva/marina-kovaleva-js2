@@ -13,8 +13,6 @@ import { setupPost } from '../handlers/postHandler.js';
 import { setupCreatePost } from '../handlers/createPostHandler.js';
 import { isAuthenticated } from '../auth/storage.js'; // Imported authorization check
 
-const BASE_PATH = '/marina-kovaleva-js2'; // Base path для GitHub Pages
-
 const PROTECTED = ['/', '/post/:id', '/profile/:name', '/create'];  // Protected routes
 
 const pathToRegex = (path) =>
@@ -34,16 +32,11 @@ const getParams = (match) => {
 };
 
 export const navigateTo = (url) => {
-  history.pushState(null, null, BASE_PATH + url);
+  history.pushState(null, null, url);
   router();
 };
 
 export const router = async () => {
-  // remove base path from pathname
-  let pathname = location.pathname;
-  if (pathname.startsWith(BASE_PATH)) {
-    pathname = pathname.slice(BASE_PATH.length) || '/';
-  }
   // Define all application routes
   const routes = [
     { path: '/', view: Home },
