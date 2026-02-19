@@ -15,7 +15,7 @@ function validateTitle(title) {
 
 function validateMediaUrl(url) {
   if (!url || url.trim() === '') {
-    return { valid: true, message: '' }; // user may not add an image
+    return { valid: true, message: '' }; //user may not add an image
   }
   
   try {
