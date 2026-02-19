@@ -13,6 +13,8 @@ import { setupPost } from '../handlers/postHandler.js';
 import { setupCreatePost } from '../handlers/createPostHandler.js';
 import { isAuthenticated } from '../auth/storage.js'; // Imported authorization check
 
+const BASE_PATH = '/marina-kovaleva-js2'; 
+
 const PROTECTED = ['/', '/post/:id', '/profile/:name', '/create'];  // Protected routes
 
 const pathToRegex = (path) =>
@@ -32,11 +34,15 @@ const getParams = (match) => {
 };
 
 export const navigateTo = (url) => {
-  history.pushState(null, null, url);
+  history.pushState(null, null, BASE_PATH + url);
   router();
 };
 
 export const router = async () => {
+  let pathname = window.location.pathname;
+  if (BASE_PATH && pathname.startsWith(BASE_PATH)) {
+    pathname = pathname.slice(BASE_PATH.length) || '/';
+  }
   // Define all application routes
   const routes = [
     { path: '/', view: Home },

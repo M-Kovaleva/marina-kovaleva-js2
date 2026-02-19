@@ -5,12 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Social media application</title>
 
-    <!-- Твои стили -->
+    <script>
+    (function() {
+      const params = new URLSearchParams(window.location.search);
+      const redirect = params.get('p');
+      if (redirect) {
+        const base = '/marina-kovaleva-js2';
+        const newPath = base + redirect;
+        history.replaceState(null, null, newPath);
+      }
+    })();
+  </script>
     <link rel="stylesheet" href="/src/css/style.css" />
   </head>
-
   <body>
-
     <!-- NAVBAR -->
     <nav class="navbar">
       <div class="navbar-container">
