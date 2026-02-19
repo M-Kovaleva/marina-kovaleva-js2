@@ -1,5 +1,4 @@
 /* Single Post Page Styles */
-
 .post-container {
   max-width: 680px;
   margin: 0 auto;
@@ -7,7 +6,6 @@
 }
 
 /* Back link */
-
 .post-back-link {
   text-align: center;
   margin-top: var(--space-xl);

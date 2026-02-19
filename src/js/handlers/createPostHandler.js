@@ -1,12 +1,8 @@
-/* Create Post Handler - handles post creation form */
+/* Create Post Handler */
 import { createPost } from '../api/apiClient.js';
-import { navigateTo } from '../router/router.js';
 import { clearAllErrors } from '../utils/validation.js';
 
-// ═══════════════════════════════════════════════
-// VALIDATION
-// ═══════════════════════════════════════════════
-
+/* Validation */
 function validateTitle(title) {
   if (!title || title.trim() === '') {
     return { valid: false, message: 'Title is required' };
@@ -19,7 +15,7 @@ function validateTitle(title) {
 
 function validateMediaUrl(url) {
   if (!url || url.trim() === '') {
-    return { valid: true, message: '' }; // Optional field
+    return { valid: true, message: '' }; // user may not add an image
   }
   
   try {
@@ -44,10 +40,188 @@ function showError(fieldId, message) {
   }
 }
 
-// ═══════════════════════════════════════════════
-// FORM SUBMISSION
-// ═══════════════════════════════════════════════
+/* DOM creation - form fields */
+/* Create form group: label, input, help, error */
+function createFormGroup(config) {
+  const group = document.createElement('div');
+  group.className = 'form-group';
 
+  // Label
+  const label = document.createElement('label');
+  label.htmlFor = config.id;
+  label.textContent = config.label;
+  group.append(label);
+
+  // Input
+  let input;
+  if (config.type === 'textarea') {
+    input = document.createElement('textarea');
+    input.rows = config.rows || 8;
+  } else {
+    input = document.createElement('input');
+    input.type = config.type || 'text';
+    if (config.maxlength) input.maxLength = config.maxlength;
+  }
+  
+  input.id = config.id;
+  input.name = config.name;
+  input.placeholder = config.placeholder || '';
+  if (config.required) input.required = true;
+  
+  group.append(input);
+
+  // Help text
+  if (config.helpText) {
+    const help = document.createElement('small');
+    help.className = 'form-help';
+    help.textContent = config.helpText;
+    group.append(help);
+  }
+
+  // Error span
+  const error = document.createElement('span');
+  error.className = 'form-error';
+  error.id = `${config.id.replace('post-', '')}-error`;
+  group.append(error);
+
+  return group;
+}
+
+/* Create title field */
+function createTitleField() {
+  return createFormGroup({
+    id: 'post-title',
+    name: 'title',
+    label: 'Title *',
+    type: 'text',
+    required: true,
+    placeholder: 'Enter post title',
+    maxlength: 100,
+    helpText: 'Required • Max 100 characters'
+  });
+}
+
+/* Create body field */
+function createBodyField() {
+  return createFormGroup({
+    id: 'post-body',
+    name: 'body',
+    label: 'Content',
+    type: 'textarea',
+    placeholder: "What's on your mind?",
+    rows: 8,
+    helpText: 'Optional'
+  });
+}
+
+/* Create tags field */
+function createTagsField() {
+  return createFormGroup({
+    id: 'post-tags',
+    name: 'tags',
+    label: 'Tags',
+    type: 'text',
+    placeholder: 'javascript, react, tutorial (comma-separated)',
+    helpText: 'Optional • Separate tags with commas'
+  });
+}
+
+/* Create media URL field */
+function createMediaField() {
+  return createFormGroup({
+    id: 'post-media',
+    name: 'media',
+    label: 'Image URL',
+    type: 'url',
+    placeholder: 'https://example.com/image.jpg',
+    helpText: 'Optional • Enter a valid image URL'
+  });
+}
+
+/* Create submit button */
+function createSubmitButton() {
+  const button = document.createElement('button');
+  button.type = 'submit';
+  button.className = 'btn-primary';
+  button.id = 'create-post-submit';
+  button.textContent = 'Create Post';
+  return button;
+}
+
+/* DOM creation - success message */
+function createSuccessMessage() {
+  const container = document.createElement('div');
+  container.className = 'success-message';
+  container.id = 'create-post-success';
+  container.style.display = 'none';
+
+  const text1 = document.createElement('p');
+  text1.textContent = '✅ Post created successfully!';
+
+  container.append(text1);
+  return container;
+}
+
+/* DOM creation - error message */
+function createErrorMessage() {
+  const container = document.createElement('div');
+  container.className = 'error-message';
+  container.id = 'create-post-error';
+  container.style.display = 'none';
+
+  const text = document.createElement('p');
+  text.id = 'create-post-error-text';
+
+  container.append(text);
+  return container;
+}
+
+/* DOM building - complete form */
+function buildForm() {
+  const form = document.getElementById('create-post-form');
+  if (!form) return;
+
+  // Clear form
+  form.innerHTML = '';
+
+  // Create and append all fields
+  const titleField = createTitleField();
+  const bodyField = createBodyField();
+  const tagsField = createTagsField();
+  const mediaField = createMediaField();
+  const submitButton = createSubmitButton();
+  const successMessage = createSuccessMessage();
+  const errorMessage = createErrorMessage();
+
+  form.append(
+    titleField,
+    bodyField,
+    tagsField,
+    mediaField,
+    submitButton,
+    successMessage,
+    errorMessage
+  );
+}
+
+/* DOM - loading spinner */
+
+function showLoading(isLoading) {
+  const spinner = document.getElementById('create-post-loading');
+  const formCard = document.querySelector('.post-detail');
+
+  if (!spinner || !formCard) return;
+
+  if (isLoading) {
+    spinner.style.display = 'block';
+    formCard.style.display = 'none';
+  } else {
+    spinner.style.display = 'none';
+    formCard.style.display = 'block';
+  }
+}
+
+/* Form submission */
 async function handleCreatePostSubmit(event) {
   event.preventDefault();
 
@@ -63,7 +237,6 @@ async function handleCreatePostSubmit(event) {
 
   // Get UI elements
   const submitButton = document.getElementById('create-post-submit');
-  const loadingSpinner = document.getElementById('create-post-loading');
   const successMessage = document.getElementById('create-post-success');
   const errorMessage = document.getElementById('create-post-error');
   const errorText = document.getElementById('create-post-error-text');
@@ -90,7 +263,7 @@ async function handleCreatePostSubmit(event) {
 
   if (!isValid) return;
 
-  // Parse tags (comma-separated)
+  // tags 
   const tags = tagsInput
     ? tagsInput.split(',').map(tag => tag.trim()).filter(tag => tag)
     : [];
@@ -103,25 +276,21 @@ async function handleCreatePostSubmit(event) {
     media: mediaUrl ? { url: mediaUrl } : undefined
   };
 
-  // Show loading state
+  // Show loading 
+  showLoading(true);
   submitButton.disabled = true;
-  submitButton.style.display = 'none';
-  loadingSpinner.style.display = 'block';
 
   try {
     await createPost(postData);
 
-    // Show success
-    loadingSpinner.style.display = 'none';
+    showLoading(false);
     successMessage.style.display = 'block';
+    submitButton.style.display = 'none';
 
-    // Redirect to feed
     setTimeout(() => navigateTo('/'), 2000);
 
   } catch (error) {
-    // Show error
-    loadingSpinner.style.display = 'none';
-    submitButton.style.display = 'block';
+    showLoading(false);
     submitButton.disabled = false;
 
     console.error('Create post error:', error);
@@ -130,13 +299,13 @@ async function handleCreatePostSubmit(event) {
   }
 }
 
-// ═══════════════════════════════════════════════
-// SETUP (called by router)
-// ═══════════════════════════════════════════════
-
+/* Setup called by router */
 export function setupCreatePost() {
-  const form = document.getElementById('create-post-form');
+  // Build form with createElement
+  buildForm();
 
+  // Attach submit handler
+  const form = document.getElementById('create-post-form');
   if (!form) return;
 
   form.addEventListener('submit', handleCreatePostSubmit);
