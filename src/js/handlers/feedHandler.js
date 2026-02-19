@@ -2,6 +2,8 @@
 import { get } from '../api/apiClient.js';
 import Home from '../views/Home.js';
 import { searchPosts, updateSearchInfo } from './searchHandler.js';
+import { getCurrentUserData } from '../auth/storage.js';
+import { navigateTo } from '../router/router.js';
 
 let currentPage = 1;  // current page
 let currentQuery = '';  // added for search
@@ -61,10 +63,62 @@ export function renderPosts(posts) {
     return;
   }
 
+  // Get current user name
+  const currentUser = getCurrentUserData();
+  const currentUserName = currentUser?.name || null;
+
    // Render posts using Home.js template
-  feed.innerHTML = posts.map(post => Home.renderPostCard(post)).join('');  // HTML from Home.js
+  feed.innerHTML = posts.map(post => Home.renderPostCard(post, currentUserName)).join('');
+  // Attach action handlers after rendering
+  attachActionHandlers();
 }
 
+/* Attach Edit/Delete button handlers */
+function attachActionHandlers() {
+  const feed = document.getElementById('feed');
+  if (!feed) return;
+
+  feed.addEventListener('click', async (e) => {
+    const button = e.target.closest('[data-action]');
+    if (!button) return;
+
+    const action = button.dataset.action;
+    const postId = button.dataset.postId;
+
+    if (action === 'edit') {
+      handleEdit(postId);
+    } else if (action === 'delete') {
+      handleDelete(postId);
+    }
+  });
+}
+
+/* Handle Edit action */
+function handleEdit(postId) {
+  // Navigate to edit page (you'll need to create this)
+  navigateTo(`/post/${postId}/edit`);
+}
+
+/* Handle Delete action */
+async function handleDelete(postId) {
+  // Confirm deletion
+  const confirmed = confirm('Are you sure you want to delete this post?');
+  if (!confirmed) return;
+
+  try {
+    // Delete post via API
+    await del(`/social/posts/${postId}`);
+    
+    // Reload posts to show updated list
+    await loadPosts();
+    
+    // Show success (optional)
+    alert('Post deleted successfully!');
+  } catch (error) {
+    console.error('Failed to delete post:', error);
+    alert('Failed to delete post. Please try again.');
+  }
+}
 /* Pagination. Update pagination buttons based on meta */
 /**
  * Update pagination UI using meta object from API

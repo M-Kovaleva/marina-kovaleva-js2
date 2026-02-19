@@ -50,18 +50,26 @@ export default class Home extends AbstractView {
    * @param {object} post - Post object from API
    * @returns {string} HTML string
    */
-  static renderPostCard(post) {
+  static renderPostCard(post, currentUserName = null) {
     const author = post.author?.name || 'Unknown';
     const title = post.title || 'Untitled';
     const body = post.body || '';
     const date = new Date(post.created).toLocaleDateString();
     const image = post.media?.url || '';
+    // Check if current user is the author
+    const isAuthor = currentUserName && author === currentUserName;
 
     return `
       <article class="feed-post">
       <div class="feed-post-header">
         <span class="feed-post-user">${author}</span>
         <span class="feed-post-date">${date}</span>
+        ${isAuthor ? `
+           <div class="feed-post-actions">
+                <button class="btn-action btn-edit" data-post-id="${post.id}" data-action="edit" title="Edit post">Edit</button>
+                <button class="btn-action btn-delete" data-post-id="${post.id}" data-action="delete" title="Delete post">X</button>
+              </div>
+        ` : ''}
       </div>
       ${image ? `<img src="${image}" alt="${title}" class="feed-post-image" />` : ''}
       <h2 class="feed-post-title">${title}</h2>

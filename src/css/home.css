@@ -149,3 +149,58 @@
   cursor: not-allowed;
 }
 
+/* Post Action Buttons (Edit/Delete) */
+
+.feed-post-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-sm);
+}
+
+.feed-post-header-right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.feed-post-actions {
+  display: flex;
+  gap: var(--space-xs);
+}
+
+.btn-action {
+  background: none;
+  border: none;
+  padding: var(--space-xs);
+  cursor: pointer;
+  font-size: 16px;
+  opacity: 0.7;
+  transition: opacity 0.2s, transform 0.1s;
+  border-radius: var(--radius-sm);
+}
+
+.btn-action:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.btn-action:active {
+  transform: scale(0.95);
+}
+
+.btn-edit:hover {
+  background: rgba(59, 130, 246, 0.1);
+}
+
+.btn-delete:hover {
+  background: rgba(239, 68, 68, 0.1);
+}
+
+/* Mobile adjustments */
+@media (max-width: 600px) {
+  .btn-action {
+    font-size: 14px;
+    padding: 4px;
+  }
+}
