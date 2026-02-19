@@ -251,6 +251,19 @@
   color: var(--color-text-light);
 }
 
+.feed-post-user {
+  font-weight: 600;
+  font-size: var(--font-size-body);
+  color: var(--color-text-primary);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.feed-post-user:hover {
+  color: var(--color-accent);
+  text-decoration: underline;
+}
+
 /* Mobile */
 @media (max-width: 600px) {
   .feed-post-avatar,

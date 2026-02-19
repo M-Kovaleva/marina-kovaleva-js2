@@ -66,7 +66,7 @@ export default class Home extends AbstractView {
             <div class="feed-post-author">
               ${Home.renderAvatar(authorAvatar, author)}
             <div class="feed-post-author-info">
-              <span class="feed-post-user">${author}</span>
+              <a href="/profile/${author}" data-link class="feed-post-user">${author}</a>
               <span class="feed-post-date">${date}</span>
             </div>
           </div>

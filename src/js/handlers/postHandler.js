@@ -146,7 +146,7 @@ function createPostStats(post) {
 
   const comments = document.createElement('span');
   comments.className = 'post-stat';
-  comments.textContent = `💬 ${post._count?.comments || 0} comments`;
+  comments.textContent = `${post._count?.comments || 0} comments`;
 
   stats.append(reactions, comments);
   return stats;
