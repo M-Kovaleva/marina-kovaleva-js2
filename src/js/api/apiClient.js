@@ -43,10 +43,10 @@ async function apiClient(endpoint, options = {}) {
 }
 
 // CRUD
-export const get  = (endpoint)        => apiClient(endpoint);
-export const post = (endpoint, body)  => apiClient(endpoint, { body });
-export const put  = (endpoint, body)  => apiClient(endpoint, { method: 'PUT', body });
-export const del  = (endpoint)        => apiClient(endpoint, { method: 'DELETE' });
+export const get  = (endpoint) => apiClient(endpoint);
+export const post = (endpoint, body) => apiClient(endpoint, { body });
+export const put  = (endpoint, body) => apiClient(endpoint, { method: 'PUT', body });
+export const del  = (endpoint) => apiClient(endpoint, { method: 'DELETE' });
 
 // Auth
 export async function register(userData) {

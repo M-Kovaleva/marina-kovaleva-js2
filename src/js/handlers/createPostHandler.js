@@ -1,7 +1,9 @@
 /* Create Post Handler */
-import { createPost } from '../api/apiClient.js';
+import { createPost, get, put } from '../api/apiClient.js';
 import { clearAllErrors } from '../utils/validation.js';
 import { navigateTo } from '../router/router.js';  
+
+let currentPostId = null; 
 
 /* Validation */
 function validateTitle(title) {
@@ -206,6 +208,34 @@ function buildForm() {
 }
 
 /* DOM - loading spinner */
+/* Edit mode - load post for editing */
+async function loadPostForEdit(postId) {
+  showLoading(true);
+  
+  try {
+    const result = await get(`/social/posts/${postId}`);
+    const post = result.data;
+    
+    // Fill form with post data
+    document.getElementById('post-title').value = post.title || '';
+    document.getElementById('post-body').value = post.body || '';
+    document.getElementById('post-tags').value = post.tags?.join(', ') || '';
+    document.getElementById('post-media').value = post.media?.url || '';
+    
+    // Change page title
+    const pageTitle = document.querySelector('.post-title');
+    if (pageTitle) {
+      pageTitle.textContent = 'Edit Post';
+    }
+    
+    showLoading(false);
+  } catch (error) {
+    console.error('Failed to load post:', error);
+    showLoading(false);
+    alert('Failed to load post for editing');
+    navigateTo('/');
+  }
+}
 
 function showLoading(isLoading) {
   const spinner = document.getElementById('create-post-loading');
@@ -282,7 +312,14 @@ async function handleCreatePostSubmit(event) {
   submitButton.disabled = true;
 
   try {
-    await createPost(postData);
+    // Edit or Create
+   if (currentPostId) {
+      // Edit - PUT
+      await put(`/social/posts/${currentPostId}`, postData);
+    } else {
+      // Create - POST
+      await createPost(postData);
+    }
 
     showLoading(false);
     successMessage.style.display = 'block';
@@ -301,9 +338,21 @@ async function handleCreatePostSubmit(event) {
 }
 
 /* Setup called by router */
-export function setupCreatePost() {
-  // Build form with createElement
-  buildForm();
+export async function setupCreatePost() {
+  //Check if Edit mode (query parameter ?id= )
+  const urlParams = new URLSearchParams(window.location.search);
+  const postId = urlParams.get('id');
+
+  currentPostId = postId;  // Store for later use
+  const isEdit = !!postId;
+
+  // Build form
+  buildForm(isEdit);
+
+  //If Edit mode, load post data
+  if (isEdit) {
+    await loadPostForEdit(postId);
+  }
 
   // Attach submit handler
   const form = document.getElementById('create-post-form');

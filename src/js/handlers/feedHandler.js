@@ -1,5 +1,5 @@
 /* Feed Handler - loads and displays posts */
-import { get } from '../api/apiClient.js';
+import { get, del } from '../api/apiClient.js';
 import Home from '../views/Home.js';
 import { searchPosts, updateSearchInfo } from './searchHandler.js';
 import { getCurrentUserData } from '../auth/storage.js';
@@ -95,8 +95,8 @@ function attachActionHandlers() {
 
 /* Handle Edit action */
 function handleEdit(postId) {
-  // Navigate to edit page (you'll need to create this)
-  navigateTo(`/post/${postId}/edit`);
+  // Navigate to create post page 
+  navigateTo(`/create?id=${postId}`);
 }
 
 /* Handle Delete action */
@@ -112,7 +112,7 @@ async function handleDelete(postId) {
     // Reload posts to show updated list
     await loadPosts();
     
-    // Show success (optional)
+    // Show success 
     alert('Post deleted successfully!');
   } catch (error) {
     console.error('Failed to delete post:', error);
