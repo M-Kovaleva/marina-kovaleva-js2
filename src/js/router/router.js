@@ -58,7 +58,7 @@ export const router = async () => {
   const potentialMatches = routes.map((route) => {
     return {
       route: route,
-      result: pathname.match(pathToRegex(route.path))
+      result: location.pathname.match(pathToRegex(route.path))
     };
   });
 
