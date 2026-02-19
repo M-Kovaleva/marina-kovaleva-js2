@@ -1,6 +1,7 @@
 /* Create Post Handler */
 import { createPost } from '../api/apiClient.js';
 import { clearAllErrors } from '../utils/validation.js';
+import { navigateTo } from '../router/router.js';  
 
 /* Validation */
 function validateTitle(title) {
