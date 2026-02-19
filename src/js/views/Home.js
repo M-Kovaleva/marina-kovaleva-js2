@@ -52,6 +52,7 @@ export default class Home extends AbstractView {
    */
   static renderPostCard(post, currentUserName = null) {
     const author = post.author?.name || 'Unknown';
+    const authorAvatar = post.author?.avatar?.url || '';
     const title = post.title || 'Untitled';
     const body = post.body || '';
     const date = new Date(post.created).toLocaleDateString();
@@ -61,9 +62,14 @@ export default class Home extends AbstractView {
 
     return `
       <article class="feed-post">
-      <div class="feed-post-header">
-        <span class="feed-post-user">${author}</span>
-        <span class="feed-post-date">${date}</span>
+          <div class="feed-post-header">
+            <div class="feed-post-author">
+              ${Home.renderAvatar(authorAvatar, author)}
+            <div class="feed-post-author-info">
+              <span class="feed-post-user">${author}</span>
+              <span class="feed-post-date">${date}</span>
+            </div>
+          </div>
         ${isAuthor ? `
            <div class="feed-post-actions">
                 <button class="btn-action btn-edit" data-post-id="${post.id}" data-action="edit" title="Edit post">Edit</button>
@@ -78,6 +84,21 @@ export default class Home extends AbstractView {
     </article>
     `;
   }
+
+  /**
+   * Generate HTML for avatar (image or placeholder)
+   * @param {string} avatarUrl - Avatar URL
+   * @param {string} name - User name
+   * @returns {string} HTML string
+   */
+  static renderAvatar(avatarUrl, name) {
+    if (avatarUrl) {
+      return `<img src="${avatarUrl}" alt="${name}" class="feed-post-avatar" />`;
+    }
+    return `<div class="feed-post-avatar-placeholder">${name[0]?.toUpperCase() || '?'}</div>`;
+  }
+
+  /**
 
   /**
    * Generate HTML for search info bar

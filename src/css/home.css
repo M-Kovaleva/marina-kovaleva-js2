@@ -196,7 +196,70 @@
 .btn-delete:hover {
   background: rgba(239, 68, 68, 0.1);
 }
+/* Feed Card Avatars */
 
+.feed-post-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-sm);
+}
+
+.feed-post-author {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.feed-post-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--color-border);
+}
+
+.feed-post-avatar-placeholder {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--color-accent-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--color-text-primary);
+  text-transform: uppercase;
+  border: 2px solid var(--color-border);
+}
+
+.feed-post-author-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.feed-post-user {
+  font-weight: 600;
+  font-size: var(--font-size-body);
+  color: var(--color-text-primary);
+}
+
+.feed-post-date {
+  font-size: var(--font-size-small);
+  color: var(--color-text-light);
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .feed-post-avatar,
+  .feed-post-avatar-placeholder {
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+  }
+}
 /* Mobile adjustments */
 @media (max-width: 600px) {
   .btn-action {
