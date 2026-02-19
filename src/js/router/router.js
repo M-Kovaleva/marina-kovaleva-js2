@@ -3,15 +3,17 @@ import Login from '../views/Login.js';
 import Register from '../views/Register.js';
 import Post from '../views/Post.js';
 import Profile from '../views/Profile.js';
+import CreatePost from '../views/CreatePost.js';
 import NotFound from '../views/NotFound.js';
 import { setupRegisterForm } from '../auth/registerHandler.js';
 import { setupLoginForm } from '../auth/loginHandler.js'; 
 import { setupFeed } from '../handlers/feedHandler.js'
 import { setupSearch } from '../handlers/searchHandler.js';
 import { setupPost } from '../handlers/postHandler.js';
+import { setupCreatePost } from '../handlers/createPostHandler.js';
 import { isAuthenticated } from '../auth/storage.js'; // Imported authorization check
 
-const PROTECTED = ['/', '/post/:id', '/profile/:name'];  // Protected routes
+const PROTECTED = ['/', '/post/:id', '/profile/:name', '/create'];  // Protected routes
 
 const pathToRegex = (path) =>
   new RegExp('^' + path.replace(/\//g, '\\/').replace(/:\w+/g, '(.+)') + '$');
@@ -41,7 +43,8 @@ export const router = async () => {
     { path: '/login', view: Login },
     { path: '/register', view: Register },
     { path: '/post/:id', view: Post },
-    { path: '/profile/:name', view: Profile }
+    { path: '/profile/:name', view: Profile },
+    { path: '/create', view: CreatePost }
   ];
 
   // Test each route for potential match
@@ -86,6 +89,8 @@ export const router = async () => {
     setupSearch();  // Search: search form + logic
   }if (match.route.path === '/post/:id')
     setupPost(params.id); 
+    if (match.route.path === '/create') 
+    setupCreatePost();
   if (match.route.path === '/register') 
   setupRegisterForm();
   if (match.route.path === '/login')  

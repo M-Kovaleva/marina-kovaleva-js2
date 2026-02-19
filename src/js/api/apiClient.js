@@ -83,3 +83,9 @@ export async function completeRegistration(userData) {
 
   return user;
 }
+
+// Posts
+export async function createPost(postData) {
+  const result = await post('/social/posts', postData);
+  return result.data;
+}
