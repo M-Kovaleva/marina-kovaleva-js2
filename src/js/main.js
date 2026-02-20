@@ -1,8 +1,12 @@
 import { router, navigateTo } from './router/router.js';
+import { initAuthLink, updateAuthLink } from './components/Nav.js';
 
 // Wait for DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', () => {
   console.log('App initialized!');
+
+  //Initialize auth link
+  initAuthLink();
 
   // Handle all navigation link clicks using event delegation
   document.body.addEventListener('click', (e) => {
@@ -19,3 +23,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // Load initial page
   router();
 });
+
+// Export for use in handlers
+export { updateAuthLink };

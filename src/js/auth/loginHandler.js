@@ -2,6 +2,7 @@
 import { login, createApiKey } from '../api/apiClient.js';
 import { saveAuth, saveApiKey } from './storage.js';
 import { navigateTo } from '../router/router.js';
+import { updateAuthLink } from '../components/Nav.js';
 import {
   validateEmail,
   validatePassword,
@@ -110,6 +111,9 @@ async function handleLoginSubmit(event) {
     
     console.log('Login complete!');
     
+    // Update auth link: Login - Logout
+    updateAuthLink();
+
     // Redirect to home
     navigateTo('/');
     
