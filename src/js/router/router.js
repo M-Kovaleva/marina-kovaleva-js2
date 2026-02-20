@@ -12,9 +12,9 @@ import { setupSearch } from '../handlers/searchHandler.js';
 import { setupPost } from '../handlers/postHandler.js';
 import { setupCreatePost } from '../handlers/createPostHandler.js';
 import { setupProfile } from '../handlers/profileHandler.js';
-import { isAuthenticated } from '../auth/storage.js'; // Imported authorization check
+import { isAuthenticated, getCurrentUserData } from '../auth/storage.js'; // Imported authorization check
 
-const PROTECTED = ['/', '/post/:id', '/profile/:name', '/create'];  // Protected routes
+const PROTECTED = ['/', '/post/:id', '/profile', '/profile/:name', '/create'];  // Protected routes
 
 const pathToRegex = (path) =>
   new RegExp('^' + path.replace(/\//g, '\\/').replace(/:\w+/g, '(.+)') + '$');
@@ -44,6 +44,7 @@ export const router = async () => {
     { path: '/login', view: Login },
     { path: '/register', view: Register },
     { path: '/post/:id', view: Post },
+    { path: '/profile', view: Profile }, 
     { path: '/profile/:name', view: Profile },
     { path: '/create', view: CreatePost }
   ];
@@ -73,6 +74,18 @@ export const router = async () => {
   if (PROTECTED.includes(match.route.path) && !isAuthenticated()) {
     navigateTo('/login');
     return;  // Stop execution
+  }
+
+  // ✅ Special handling for /profile (without username)
+  if (match.route.path === '/profile') {
+    const currentUser = getCurrentUserData();
+    if (currentUser && currentUser.name) {
+      navigateTo(`/profile/${currentUser.name}`);
+      return;
+    } else {
+      navigateTo('/login');
+      return;
+    }
   }
 
   // Extract params if the route has any
