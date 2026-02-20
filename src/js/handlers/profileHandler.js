@@ -59,24 +59,7 @@ function createProfileHeader(profile, isOwnProfile, isFollowing) {
   } else {
     userInfo.append(name);
   }
-
-  // Bio
-  if (profile.bio) {
-    const bio = document.createElement('p');
-    bio.className = 'profile-bio';
-    bio.textContent = profile.bio;
-    userInfo.append(bio);
-  }
-
-  // Banner
-  if (profile.banner?.url) {
-    const banner = document.createElement('img');
-    banner.src = profile.banner.url;
-    banner.alt = profile.banner.alt || 'Profile banner';
-    banner.className = 'profile-banner';
-    header.prepend(banner);
-  }
-
+  
     const userInfoContainer = document.createElement('div');
     userInfoContainer.className = 'profile-user-info-container';
     userInfoContainer.append(userInfo);

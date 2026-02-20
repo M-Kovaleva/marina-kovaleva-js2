@@ -36,15 +36,6 @@
   border-bottom: 1px solid var(--color-border);
 }
 
-/* Banner */
-.profile-banner {
-  width: calc(100% + var(--space-xl) * 2);
-  height: 200px;
-  object-fit: cover;
-  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-  margin: calc(var(--space-xl) * -1) calc(var(--space-xl) * -1) var(--space-lg);
-}
-
 /* Avatar */
 .profile-avatar-container {
   margin-bottom: var(--space-base);
@@ -89,13 +80,6 @@
   font-size: var(--font-size-body);
   color: var(--color-text-light);
   margin-bottom: var(--space-base);
-}
-
-.profile-bio {
-  font-size: var(--font-size-body);
-  line-height: 1.6;
-  color: var(--color-text-secondary);
-  margin-top: var(--space-base);
 }
 
 /* Stats */
@@ -223,11 +207,6 @@
 
   .profile-detail {
     padding: var(--space-base);
-  }
-
-  .profile-banner {
-    width: calc(100% + var(--space-base) * 2);
-    margin: calc(var(--space-base) * -1) calc(var(--space-base) * -1) var(--space-lg);
   }
 
   .profile-name {

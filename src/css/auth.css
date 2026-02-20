@@ -192,13 +192,6 @@
   text-decoration: underline;
 }
 
-/*CHARACTER COUNTER
-#bio-count {
-  font-weight: 600;
-  color: var(--color-accent);
-  transition: color 0.2s;
-}*/
-
 @media (max-width: 600px) {
   .auth-container {
     padding: var(--space-base);

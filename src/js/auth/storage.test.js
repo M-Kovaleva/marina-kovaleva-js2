@@ -24,7 +24,6 @@ describe('storage.js - localStorage management', () => {
         name: 'test_user',
         email: 'test@stud.noroff.no',
         avatar: { url: 'https://example.com/avatar.jpg' },
-        bio: 'Test bio'
       };
 
       saveAuth(userData);
@@ -33,7 +32,6 @@ describe('storage.js - localStorage management', () => {
       expect(localStorage.getItem('userName')).toBe('test_user');
       expect(localStorage.getItem('userEmail')).toBe('test@stud.noroff.no');
       expect(localStorage.getItem('userAvatar')).toBe('https://example.com/avatar.jpg');
-      expect(localStorage.getItem('userBio')).toBe('Test bio');
     });
 
     it('should handle missing optional fields', () => {
@@ -89,7 +87,6 @@ describe('storage.js - localStorage management', () => {
       localStorage.setItem('userName', 'john_doe');
       localStorage.setItem('userEmail', 'john@stud.noroff.no');
       localStorage.setItem('userAvatar', 'https://example.com/avatar.jpg');
-      localStorage.setItem('userBio', 'My bio');
 
       const userData = getCurrentUserData();
 
@@ -97,7 +94,6 @@ describe('storage.js - localStorage management', () => {
         name: 'john_doe',
         email: 'john@stud.noroff.no',
         avatar: 'https://example.com/avatar.jpg',
-        bio: 'My bio'
       });
     });
 
@@ -126,7 +122,6 @@ describe('storage.js - localStorage management', () => {
       localStorage.setItem('userName', 'user');
       localStorage.setItem('userEmail', 'email');
       localStorage.setItem('userAvatar', 'avatar');
-      localStorage.setItem('userBio', 'bio');
 
       // Act: Clean up
       clearAuth();

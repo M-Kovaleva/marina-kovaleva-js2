@@ -21,9 +21,6 @@ export function saveAuth(data) {
   if (data.avatar?.url) {
     localStorage.setItem(KEYS.USER_AVATAR, data.avatar.url);
   }
-  if (data.bio) {
-    localStorage.setItem(KEYS.USER_BIO, data.bio);
-  }
 }
 
 export function saveApiKey(apiKey) {
@@ -46,7 +43,6 @@ export function getCurrentUserData() {
     name: localStorage.getItem(KEYS.USER_NAME),
     email: localStorage.getItem(KEYS.USER_EMAIL),
     avatar: localStorage.getItem(KEYS.USER_AVATAR),
-    bio: localStorage.getItem(KEYS.USER_BIO)
   };
 }
 

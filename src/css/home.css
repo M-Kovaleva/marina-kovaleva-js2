@@ -203,7 +203,6 @@
   height: 40px;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid var(--color-border);
 }
 
 .feed-post-avatar-placeholder {
@@ -218,7 +217,6 @@
   font-size: 16px;
   color: var(--color-text-primary);
   text-transform: uppercase;
-  border: 2px solid var(--color-border);
 }
 
 .feed-post-author-info {
