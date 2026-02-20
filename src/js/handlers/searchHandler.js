@@ -1,7 +1,7 @@
 /* Search Handler - handles post search functionality */
 import { get } from '../api/apiClient.js';
 import Home from '../views/Home.js';
-import { loadPosts, setQuery, getQuery } from './feedHandler.js';
+import { setQuery, setPage, getQuery, loadFeed } from './feedHandler.js';
 
 /* API */
 /**
@@ -72,8 +72,8 @@ export function setupSearch() {
     
     if (query) {
       setQuery(query);
-      await loadPosts();
-      window.scrollTo(0, 0);
+      await loadFeed()();
+      setPage(1);
     }
   });
 }
