@@ -80,7 +80,7 @@ export default class Register extends AbstractView {
             <!-- Success Message -->
             <div class="success-message" id="register-success" style="display: none;">
               <p>✅ Account created successfully!</p>
-              <p>Redirecting to login...</p>
+              <p>Redirecting to Home...</p>
             </div>
 
             <!-- Error Message -->
