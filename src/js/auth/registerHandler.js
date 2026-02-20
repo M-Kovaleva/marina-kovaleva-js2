@@ -1,6 +1,7 @@
 /* Register Form Handler. Handles registration form submission and validation. Improved version with FormData*/
 import { completeRegistration } from '../api/apiClient.js';
 import { navigateTo } from '../router/router.js';
+import { updateAuthLink } from '../components/Nav.js';
 import {
   validateEmail,
   validateUsername,
@@ -79,8 +80,11 @@ async function handleRegisterSubmit(event) {
     loadingSpinner.style.display = 'none';
     successMessage.style.display = 'block';
     
+    // Update auth link: Login - Logout
+    updateAuthLink();
+
     // Redirect to login
-    setTimeout(() => navigateTo('/login'), 3000);
+    setTimeout(() => navigateTo('/'), 3000);
     
   } catch (error) {
     // Show error message
