@@ -1,5 +1,7 @@
 /* Profile Handler - loads and displays user profile with all posts */
 import { get } from '../api/apiClient.js';
+import { followUser, unfollowUser } from '../api/apiClient.js';
+import { getCurrentUserData } from '../auth/storage.js';
 
 /* API */
 async function getProfile(username) {
@@ -28,7 +30,7 @@ function formatDate(dateString) {
 
 /* DOM creation - profile components */
 /* Create profile header with info */
-function createProfileHeader(profile) {
+function createProfileHeader(profile, isOwnProfile, isFollowing) {
   const header = document.createElement('div');
   header.className = 'profile-header';
 
@@ -41,7 +43,7 @@ function createProfileHeader(profile) {
 
   // User info
   const userInfo = document.createElement('div');
-  userInfo.className = 'profile-user-info';
+  userInfo.className = 'profile-user-info-container';
 
   // Name
   const name = document.createElement('h1');
@@ -75,7 +77,22 @@ function createProfileHeader(profile) {
     header.prepend(banner);
   }
 
-  header.append(userInfo);
+    const userInfoContainer = document.createElement('div');
+    userInfoContainer.className = 'profile-user-info-container';
+    userInfoContainer.append(userInfo);
+
+  // Follow/Unfollow button - if not own profile
+  if (!isOwnProfile) {
+    const followBtn = document.createElement('button');
+    followBtn.className = isFollowing ? 'btn-unfollow' : 'btn-follow';
+    followBtn.id = 'follow-btn';
+    followBtn.textContent = isFollowing ? 'Unfollow' : 'Follow';
+    followBtn.setAttribute('data-username', profile.name);
+    followBtn.setAttribute('data-following', isFollowing);
+    userInfoContainer.append(followBtn);
+  }
+
+  header.append(userInfoContainer);
   return header;
 }
 
@@ -121,6 +138,7 @@ function createStats(profile) {
   followersCount.className = 'profile-stat';
   const followersNumber = document.createElement('span');
   followersNumber.className = 'profile-stat-number';
+  followersNumber.id = 'followers-count'; //ID for updating 
   followersNumber.textContent = profile._count?.followers || 0;
   const followersLabel = document.createElement('span');
   followersLabel.className = 'profile-stat-label';
@@ -250,6 +268,14 @@ function showLoading(isLoading) {
     content.style.display = 'block';
   }
 }
+/* Check if current user is following this profile */
+function checkIfFollowing(profile) {
+  const currentUser = getCurrentUserData();
+  if (!currentUser || !currentUser.name) return false;
+
+  // Check if current user is in the followers list
+  return profile.followers?.some(follower => follower.name === currentUser.name) || false;
+}
 
 /* Display profile in DOM */
 function displayProfile(profile) {
@@ -259,8 +285,15 @@ function displayProfile(profile) {
   // Clear existing content
   profileContent.innerHTML = '';
 
+  // Check if this is own profile
+  const currentUser = getCurrentUserData();
+  const isOwnProfile = currentUser && currentUser.name === profile.name;
+
+  // Check if following
+  const isFollowing = checkIfFollowing(profile);
+
   // Create and append components
-  const header = createProfileHeader(profile);
+  const header = createProfileHeader(profile, isOwnProfile, isFollowing);
   profileContent.append(header);
 
   const stats = createStats(profile);
@@ -268,7 +301,66 @@ function displayProfile(profile) {
 
   const posts = createPostsSection(profile.posts);
   profileContent.append(posts);
+
+  // Attach follow button handler
+  if (!isOwnProfile) {
+    attachFollowHandler(profile.name);
+  }
 }
+/* Attach Follow/Unfollow button handler */
+function attachFollowHandler(username) {
+  const followBtn = document.getElementById('follow-btn');
+  if (!followBtn) return;
+
+  followBtn.addEventListener('click', async () => {
+    const isFollowing = followBtn.getAttribute('data-following') === 'true';
+
+    // Disable button during request
+    followBtn.disabled = true;
+
+    try {
+      if (isFollowing) {
+        // Unfollow
+        await unfollowUser(username);
+        
+        // Update button
+        followBtn.textContent = 'Follow';
+        followBtn.className = 'btn-follow';
+        followBtn.setAttribute('data-following', 'false');
+
+        // Update followers count
+        updateFollowersCount(-1);
+      } else {
+        // Follow
+        await followUser(username);
+        
+        // Update button
+        followBtn.textContent = 'Unfollow';
+        followBtn.className = 'btn-unfollow';
+        followBtn.setAttribute('data-following', 'true');
+
+        // Update followers count
+        updateFollowersCount(1);
+      }
+    } catch (error) {
+      console.error('Follow/Unfollow error:', error);
+      alert('Failed to update follow status. Please try again.');
+    } finally {
+      followBtn.disabled = false;
+    }
+  });
+}
+
+/* Update followers count */
+function updateFollowersCount(delta) {
+  const followersCountElement = document.getElementById('followers-count');
+  if (!followersCountElement) return;
+
+  const currentCount = parseInt(followersCountElement.textContent, 10);
+  const newCount = currentCount + delta;
+  followersCountElement.textContent = newCount;
+}
+
 
 /* Display error state */
 function displayError() {

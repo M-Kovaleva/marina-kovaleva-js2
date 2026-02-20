@@ -89,3 +89,14 @@ export async function createPost(postData) {
   const result = await post('/social/posts', postData);
   return result.data;
 }
+
+// Follow/Unfollow
+export async function followUser(username) {
+  const result = await put(`/social/profiles/${username}/follow`);
+  return result.data;
+}
+
+export async function unfollowUser(username) {
+  const result = await put(`/social/profiles/${username}/unfollow`);
+  return result.data;
+}

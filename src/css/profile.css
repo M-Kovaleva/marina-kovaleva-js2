@@ -120,13 +120,6 @@
   color: var(--color-text-primary);
 }
 
-/*.profile-stat-label {
-  font-size: var(--font-size-small);
-  color: var(--color-text-light);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
 /* Posts Section */
 .profile-posts {
   margin-top: var(--space-section);
@@ -158,7 +151,7 @@
   padding: var(--space-base);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
-  background: var(--color-bg);
+  background: var(--color-white);
 }
 
 .profile-post-image {
