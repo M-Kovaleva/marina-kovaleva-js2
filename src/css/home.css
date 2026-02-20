@@ -176,7 +176,6 @@
   cursor: pointer;
   font-size: 16px;
   opacity: 0.7;
-  transition: opacity 0.2s, transform 0.1s;
   border-radius: var(--radius-sm);
 }
 
@@ -256,7 +255,6 @@
   font-size: var(--font-size-body);
   color: var(--color-text-primary);
   text-decoration: none;
-  transition: color 0.2s;
 }
 
 .feed-post-user:hover {

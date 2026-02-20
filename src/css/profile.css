@@ -120,7 +120,7 @@
   color: var(--color-text-primary);
 }
 
-.profile-stat-label {
+/*.profile-stat-label {
   font-size: var(--font-size-small);
   color: var(--color-text-light);
   text-transform: uppercase;
@@ -159,12 +159,6 @@
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   background: var(--color-bg);
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.profile-post-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .profile-post-image {

@@ -1,4 +1,4 @@
-/* Profile Handler - loads and displays user profile */
+/* Profile Handler - loads and displays user profile with all posts */
 import { get } from '../api/apiClient.js';
 
 /* API */
@@ -27,8 +27,7 @@ function formatDate(dateString) {
 }
 
 /* DOM creation - profile components */
-
-/* Create profile header with avatar and info */
+/* Create profile header with info */
 function createProfileHeader(profile) {
   const header = document.createElement('div');
   header.className = 'profile-header';
@@ -49,7 +48,7 @@ function createProfileHeader(profile) {
   name.className = 'profile-name';
   name.textContent = profile.name;
 
-  // Email (if available)
+  // Email
   if (profile.email) {
     const email = document.createElement('p');
     email.className = 'profile-email';
@@ -67,7 +66,7 @@ function createProfileHeader(profile) {
     userInfo.append(bio);
   }
 
-  // Banner (if available)
+  // Banner
   if (profile.banner?.url) {
     const banner = document.createElement('img');
     banner.src = profile.banner.url;
@@ -101,7 +100,7 @@ function createAvatar(avatarUrl, name) {
   return container;
 }
 
-/* Create stats section (posts, followers, following) */
+/* Create stats section: nuber of posts, followers, following */
 function createStats(profile) {
   const stats = document.createElement('div');
   stats.className = 'profile-stats';
@@ -176,7 +175,7 @@ function createPostCard(post) {
   const card = document.createElement('article');
   card.className = 'profile-post-card';
 
-  // Post image (if available)
+  // Post image 
   if (post.media?.url) {
     const image = document.createElement('img');
     image.src = post.media.url;
@@ -194,7 +193,7 @@ function createPostCard(post) {
   title.className = 'profile-post-title';
   title.textContent = post.title || 'Untitled';
 
-  // Body preview
+  // Body
   const body = document.createElement('p');
   body.className = 'profile-post-body';
   body.textContent = post.body ? post.body.slice(0, 120) + '...' : '';
