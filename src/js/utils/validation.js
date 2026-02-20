@@ -46,6 +46,46 @@ export function validatePassword(password) {
 
   return { valid: true, message: '' };
 }
+/* Validate avatar URL */
+export function validateAvatarUrl(url) {
+  // Empty is OK 
+  if (!url || url.trim() === '') {
+    return { valid: true, message: '' };
+  }
+
+  // Check if it's a valid URL
+  try {
+    const urlObj = new URL(url);
+    
+    // Must be http or https
+    if (!['http:', 'https:'].includes(urlObj.protocol)) {
+      return { 
+        valid: false, 
+        message: 'URL must start with http:// or https://' 
+      };
+    }
+
+    // Check if URL ends with image extension
+    const imageExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.webp', '.svg'];
+    const hasImageExt = imageExtensions.some(ext => 
+      url.toLowerCase().endsWith(ext)
+    );
+
+    if (!hasImageExt) {
+      return { 
+        valid: false, 
+        message: 'URL must be a direct link to an image (jpg, png, gif, webp, svg)' 
+      };
+    }
+
+    return { valid: true, message: '' };
+  } catch (error) {
+    return { 
+      valid: false, 
+      message: 'Please enter a valid URL' 
+    };
+  }
+}
 
 /*Show error message for a field*/
 export function showError(fieldId, message) {

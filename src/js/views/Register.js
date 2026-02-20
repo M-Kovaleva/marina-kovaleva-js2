@@ -54,6 +54,18 @@ export default class Register extends AbstractView {
               <small class="form-help">Minimum 8 characters</small>
               <span class="form-error" id="password-error"></span>
             </div>
+            <!-- ✅ ДОБАВЬ: Avatar URL -->
+            <div class="form-group">
+              <label for="register-avatar">Avatar URL (optional)</label>
+              <input 
+                type="url" 
+                id="register-avatar" 
+                name="avatarUrl"
+                placeholder="https://example.com/avatar.jpg"
+              />
+              <small class="form-help">Enter a direct image URL (jpg, png, gif, webp)</small>
+              <span class="form-error" id="avatar-error"></span>
+            </div>
             <!-- Submit Button -->
             <button type="submit" class="btn-primary" id="register-submit">
               Create Account

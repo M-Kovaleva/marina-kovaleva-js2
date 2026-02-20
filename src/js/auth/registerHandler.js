@@ -6,6 +6,7 @@ import {
   validateEmail,
   validateUsername,
   validatePassword,
+  validateAvatarUrl,
   showError,
   clearAllErrors
 } from '../utils/validation.js';
@@ -33,6 +34,7 @@ async function handleRegisterSubmit(event) {
   const email = formFields.email?.trim() || '';
   const password = formFields.password || '';
   const name = formFields.name?.trim() || '';
+  const avatarUrl = formFields.avatarUrl?.trim() || ''; 
   // Get UI elements
   const submitButton = document.getElementById('register-submit');
   const loadingSpinner = document.getElementById('register-loading');
@@ -48,7 +50,8 @@ async function handleRegisterSubmit(event) {
   const validations = [
   { field: 'register-name', validator: () => validateUsername(name) },
   { field: 'register-email', validator: () => validateEmail(email) },
-  { field: 'register-password', validator: () => validatePassword(password) }
+  { field: 'register-password', validator: () => validatePassword(password) },
+  { field: 'register-avatar', validator: () => validateAvatarUrl(avatarUrl) }
   ];
   
   let isValid = true;
@@ -66,6 +69,14 @@ async function handleRegisterSubmit(event) {
   
   // Build user data object
   const userData = { name, email, password };
+
+  // Add avatar if provided
+  if (avatarUrl) {
+    userData.avatar = {
+      url: avatarUrl,
+      alt: `${name}'s avatar`
+    };
+  }
   
   // Show loading state
   submitButton.disabled = true;
