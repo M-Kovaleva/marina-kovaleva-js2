@@ -1,11 +1,6 @@
-/* These styles already existв post.css:
-  .post-container
-  .post-back-link
-  .post-detail
-  .post-title*/
+/* Create Post Form Styles - aligned with auth.css */
 
 /* Form */
-
 .create-post-form {
   display: flex;
   flex-direction: column;
@@ -13,18 +8,21 @@
   margin-top: var(--space-lg);
 }
 
+/* Form Group - как в auth.css */
 .form-group {
   display: flex;
   flex-direction: column;
-  gap: var(--space-xs);
+  gap: var(--space-sm); 
 }
 
 .form-group label {
   font-size: var(--font-size-label);
   font-weight: 600;
+  letter-spacing: 0.01em; 
   color: var(--color-text-primary);
 }
 
+/* Inputs - как в auth.css */
 .form-group input[type="text"],
 .form-group input[type="url"],
 .form-group textarea {
@@ -33,8 +31,9 @@
   border-radius: var(--radius-sm);
   font-size: var(--font-size-body);
   font-family: var(--font-family);
+  background: var(--color-white);
+  color: var(--color-text-primary);
   width: 100%;
-  transition: border-color 0.2s;
 }
 
 .form-group textarea {
@@ -43,26 +42,38 @@
   line-height: 1.6;
 }
 
+/* Focus - как в auth.css */
 .form-group input:focus,
 .form-group textarea:focus {
   outline: none;
-  border-color: var(--color-accent);
-  box-shadow: 0 0 0 3px rgba(234, 88, 12, 0.1);
+  border-color: var(--color-border); 
 }
 
-.form-group input.error,
-.form-group textarea.error {
-  border-color: var(--color-error);
-}
-
-.form-help {
-  font-size: var(--font-size-label);
+/* Placeholder - как в auth.css */
+.form-group input::placeholder,
+.form-group textarea::placeholder {
   color: var(--color-text-light);
 }
 
+/* Error state - как в auth.css */
+.form-group input.error,
+.form-group textarea.error {
+  border-color: var(--color-error);
+  background: #fef2f2; 
+}
+
+/* Help Text - как в auth.css */
+.form-help {
+  color: var(--color-text-secondary); 
+  font-size: var(--font-size-small);
+  line-height: 1.4; 
+}
+
+/* Form Error - как в auth.css */
 .form-error {
-  font-size: var(--font-size-label);
   color: var(--color-error);
+  font-size: var(--font-size-small); 
+  line-height: 1.4; 
   display: none;
 }
 
@@ -71,44 +82,58 @@
 }
 
 /* Submit Button */
-
 #create-post-submit {
   margin-top: var(--space-base);
+  padding: 14px; 
+  background: var(--color-text-primary);
+  color: var(--color-white);
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-body);
+  font-weight: 600;
+  cursor: pointer;
+  font-family: var(--font-family);
+  width: 100%; 
 }
 
-/* Success Message */
+#create-post-submit:hover {
+  background: var(--color-button-hover); 
+}
 
+/* Success Message - как в auth.css */
 .success-message {
+  background: #f0fdf4; 
+  border: 1px solid #86efac; 
+  color: #166534;
+  padding: var(--space-base);
+  border-radius: var(--radius-sm);
   text-align: center;
-  padding: var(--space-xl);
-  background: #d1fae5;
-  border: 1px solid #6ee7b7;
-  border-radius: var(--radius-md);
-  color: #065f46;
 }
 
 .success-message p {
-  margin: var(--space-xs) 0;
-  color: #065f46;
+  margin: var(--space-sm) 0;
+  font-size: var(--font-size-body); 
+  color: #166534; 
 }
 
-/* Error Message */
-
+/* Error Message - как в auth.css */
 .error-message {
-  padding: var(--space-base);
-  background: #fee2e2;
-  border: 1px solid #fca5a5;
-  border-radius: var(--radius-md);
+  background: #fef2f2; 
+  border: 1px solid #fecaca;
   color: var(--color-error);
+  padding: var(--space-base);
+  border-radius: var(--radius-sm);
+  text-align: center;
 }
 
 .error-message p {
   margin: 0;
+  font-size: var(--font-size-body);
+  font-weight: 500; 
   color: var(--color-error);
 }
 
 /* Mobile */
-
 @media (max-width: 600px) {
   .create-post-form {
     gap: var(--space-base);

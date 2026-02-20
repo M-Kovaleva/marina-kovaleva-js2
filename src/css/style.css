@@ -201,32 +201,6 @@ a:hover {
   box-shadow: 0 0 0 3px rgba(231, 229, 228, 0.2);
 }
 
-/*AVATARS*/
-.avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: var(--color-accent-bg);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 600;
-  color: var(--color-text-primary);
-}
-
-.avatar-large {
-  width: 80px;
-  height: 80px;
-  font-size: var(--font-size-section-header);
-}
-
-.avatar-small {
-  width: 32px;
-  height: 32px;
-  font-size: var(--font-size-small);
-}*/
-
-
 /* Layout */
 
 body {
@@ -243,6 +217,8 @@ body {
 
 /* Navbar */
 .navbar {
+  top: 0;
+  z-index: 1000;
   background: var(--color-bg);
   border-bottom: 1px solid var(--color-border);
   position: sticky;
@@ -318,7 +294,34 @@ body {
     --font-size-section-header: 22px;
     --space-page: var(--space-xl);
   }
-  
+  .navbar-container {
+    flex-direction: column;
+    gap: var(--space-base);
+    padding: var(--space-base);
+  }
+
+  .navbar-logo {
+    font-size: var(--font-size-subheader);
+  }
+
+  .navbar-links {
+    flex-direction: column;
+    gap: var(--space-sm);
+    width: 100%;
+  }
+
+  .navbar-links li {
+    width: 100%;
+    text-align: center;
+  }
+
+  .navbar-accent-link {
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
 }
+  
+
 
 
