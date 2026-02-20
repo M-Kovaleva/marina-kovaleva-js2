@@ -2,6 +2,8 @@
 @import './auth.css';
 @import './home.css';
 @import './post.css'; 
+@import './createPost.css';
+@import './profile.css';  
 /*Variables*/
 :root {
   /* Colors */
