@@ -247,3 +247,44 @@
     height: 180px;
   }
 }
+.btn-follow {
+  background: var(--color-accent);
+  color: var(--color-white);
+  padding: var(--space-md) var(--space-lg);
+  border-radius: var(--radius-sm);
+  border: none;
+  font-size: var(--font-size-body);
+  font-weight: 600;
+  cursor: pointer;
+  font-family: var(--font-family);
+  white-space: nowrap;
+}
+
+.btn-unfollow {
+  background: var(--color-bg);
+  color: var(--color-text-primary);
+  padding: 10px var(--space-xl);
+  border-radius: var(--radius-sm);
+  border: none;
+  font-size: var(--font-size-body);
+  font-weight: 600;
+  cursor: pointer;
+  font-family: var(--font-family);
+}
+
+.btn-follow:hover{
+  opacity: 0.7;
+}
+
+.btn-unfollow:hover{
+   background: var(--color-text-primary);
+    color: var(--color-white);
+    opacity: 0.7;
+}
+/* Mobile */
+@media (max-width: 600px) {
+  .btn-follow,
+  .btn-unfollow {
+    width: 100%;
+  }
+}
