@@ -2,7 +2,11 @@
 import { get } from "../api/apiClient.js";
 import { toggleLoading, formatDate } from "../utils/ui.js";
 
-/* API */
+/**
+ * Fetch single post with author and comments
+ * @param {string} id - Post ID
+ * @returns {Promise<Object>} Post data
+ */
 async function getPost(id) {
   const params = new URLSearchParams({
     _author: "true",
@@ -290,7 +294,11 @@ async function loadPost(id) {
   }
 }
 
-/* Setup - called by router */
+/**
+ * Setup post page - called by router
+ * @param {string} id - Post ID to display
+ * @returns {Promise<void>}
+ */
 export async function setupPost(id) {
   await loadPost(id);
 }

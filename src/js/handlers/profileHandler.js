@@ -6,7 +6,11 @@ import { createPostCard } from "../components/PostCard.js";
 import { navigateTo } from "../router/router.js";
 import { toggleLoading, confirmAction, showAlert } from "../utils/ui.js";
 
-/* API */
+/**
+ * Fetch user profile with posts and followers
+ * @param {string} username - Username to fetch
+ * @returns {Promise<Object>} Profile data with posts
+ */
 async function getProfile(username) {
   const params = new URLSearchParams({
     _posts: "true",
@@ -342,7 +346,11 @@ async function loadProfile(username) {
   }
 }
 
-/* Setup - called by router */
+/**
+ * Setup profile page - called by router
+ * @param {string} username - Username to display
+ * @returns {Promise<void>}
+ */
 export async function setupProfile(username) {
   await loadProfile(username);
 }

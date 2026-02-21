@@ -12,20 +12,36 @@ let currentQuery = "";
 let isFetching = false;
 
 /* Exported for searchHandler */
+/**
+ * Set search query and reset pagination
+ * @param {string} query - Search query string
+ */
 export function setQuery(query) {
   currentQuery = query;
   currentPage = 1;
 }
 
+/**
+ * Get current search query
+ * @returns {string} Current search query
+ */
 export function getQuery() {
   return currentQuery;
 }
 
+/**
+ * Set current page number
+ * @param {number} page - Page number
+ */
 export function setPage(page) {
   currentPage = page;
 }
 
-/* API */
+/**
+ * Fetch posts from API with pagination
+ * @param {number} [page=1] - Page number to fetch
+ * @returns {Promise<{posts: Array, meta: Object}>} Posts array and metadata
+ */
 async function getPosts(page = 1) {
   const params = new URLSearchParams({
     _author: "true",
@@ -44,8 +60,7 @@ async function getPosts(page = 1) {
 }
 
 /* DOM creation - empty/error states */
-
-/* Create empty state */
+/* Create empty state element*/
 function createEmptyState() {
   const empty = document.createElement("p");
   empty.className = "feed-empty";
@@ -53,7 +68,7 @@ function createEmptyState() {
   return empty;
 }
 
-/* Create error state */
+/* Create error state element */
 function createErrorState() {
   const error = document.createElement("p");
   error.className = "feed-error";
@@ -107,7 +122,14 @@ function displayError() {
   feed.append(error);
 }
 
-/* Update pagination */
+/**
+ * Update pagination UI controls
+ * @param {Object} meta - Pagination metadata
+ * @param {number} meta.currentPage - Current page number
+ * @param {number} meta.pageCount - Total number of pages
+ * @param {boolean} meta.isFirstPage - Whether this is the first page
+ * @param {boolean} meta.isLastPage - Whether this is the last page
+ */
 function updatePagination(meta) {
   const prevBtn = document.getElementById("prev-page-btn");
   const nextBtn = document.getElementById("next-page-btn");
@@ -154,14 +176,13 @@ export function updateSearchInfo() {
   }
 }
 
-/* Event handlers *
-
-/* Handle edit action */
+/* Event handlers */
+/* Handle edit post action */
 function handleEdit(postId) {
   navigateTo(`/create?id=${postId}`);
 }
 
-/* Handle delete action */
+/* Handle delete post action */
 async function handleDelete(postId) {
   if (!confirmAction("Are you sure you want to delete this post?")) return;
 
@@ -202,8 +223,11 @@ function attachPagination() {
 }
 
 /* Main logic */
-
-/* Load feed (search or regular) */
+/**
+ * Load feed posts (search or regular)
+ * Handles loading state, fetching posts, and updating UI
+ * @returns {Promise<void>}
+ */
 export async function loadFeed() {
   if (isFetching) return;
 
@@ -228,7 +252,12 @@ export async function loadFeed() {
   }
 }
 
-/* Setup - called by router */
+/**
+ * Setup feed page
+ * Called by router when navigating to feed page
+ * Initializes page and loads posts
+ * @returns {Promise<void>}
+ */
 export async function setupFeed() {
   currentPage = 1;
   attachPagination();

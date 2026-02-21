@@ -35,10 +35,7 @@ export function setupLoginForm() {
   form.addEventListener("submit", handleLoginSubmit);
 }
 
-/**
- * Handle login form submission
- * @param {Event} event - Form submit event
- */
+/* Handle login form submission */
 async function handleLoginSubmit(event) {
   event.preventDefault();
 

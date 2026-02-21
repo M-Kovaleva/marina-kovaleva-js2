@@ -211,7 +211,11 @@ function buildForm() {
 }
 
 /* DOM - loading spinner */
-/* Edit mode - load post for editing */
+/**
+ * Load post data for editing
+ * @param {string} postId - ID of post to edit
+ * @returns {Promise<void>}
+ */
 async function loadPostForEdit(postId) {
   toggleLoading("create-post-loading", "post-detail", true);
 
@@ -327,7 +331,10 @@ async function handleCreatePostSubmit(event) {
   }
 }
 
-/* Setup called by router */
+/**
+ * Setup create/edit post page - called by router
+ * @returns {Promise<void>}
+ */
 export async function setupCreatePost() {
   //Check if Edit mode (query parameter ?id= )
   const urlParams = new URLSearchParams(window.location.search);

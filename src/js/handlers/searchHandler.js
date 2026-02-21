@@ -3,12 +3,11 @@ import { get } from "../api/apiClient.js";
 import Home from "../views/Home.js";
 import { setQuery, setPage, getQuery, loadFeed } from "./feedHandler.js";
 
-/* API */
 /**
  * Search posts by query
  * @param {string} query - Search term
- * @param {number} page - Page number
- * @returns {Promise<{posts: Array, meta: Object}>}
+ * @param {number} [page=1] - Page number
+ * @returns {Promise<{posts: Array, meta: Object}>} Posts array and metadata
  */
 export async function searchPosts(query, page = 1) {
   const params = new URLSearchParams({
@@ -28,7 +27,7 @@ export async function searchPosts(query, page = 1) {
   };
 }
 
-//* Search info bar */══════════════════════════════════════════════
+/* Search info bar */
 export function updateSearchInfo() {
   const searchInfo = document.getElementById("search-info");
   const query = getQuery();

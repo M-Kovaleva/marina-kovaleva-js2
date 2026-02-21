@@ -8,6 +8,15 @@ const KEYS = {
   USER_BIO: "userBio",
 };
 
+/**
+ * Save authentication data to localStorage
+ * @param {Object} data - Authentication data
+ * @param {string} [data.accessToken] - Access token
+ * @param {string} [data.name] - User name
+ * @param {string} [data.email] - User email
+ * @param {Object} [data.avatar] - Avatar object
+ * @param {string} [data.avatar.url] - Avatar URL
+ */
 export function saveAuth(data) {
   if (data.accessToken) {
     localStorage.setItem(KEYS.ACCESS_TOKEN, data.accessToken);
@@ -35,6 +44,13 @@ export function getApiKey() {
   return localStorage.getItem(KEYS.API_KEY);
 }
 
+/**
+ * Get current user data from localStorage
+ * @returns {Object|null} User data object or null if not authenticated
+ * @returns {string} returns.name - User name
+ * @returns {string} returns.email - User email
+ * @returns {string} returns.avatar - Avatar URL
+ */
 export function getCurrentUserData() {
   const token = getToken();
   if (!token) return null;
