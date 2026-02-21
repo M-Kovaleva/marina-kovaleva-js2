@@ -30,22 +30,6 @@ function validateMediaUrl(url) {
   }
 }
 
-function showError(fieldId, message) {
-  const input = document.getElementById(fieldId);
-  const errorElement = document.getElementById(
-    `${fieldId.replace("post-", "")}-error`,
-  );
-
-  if (input) {
-    input.classList.add("error");
-  }
-
-  if (errorElement) {
-    errorElement.textContent = message;
-    errorElement.classList.add("show");
-  }
-}
-
 /* DOM creation - form fields */
 /* Create form group: label, input, help, error */
 function createFormGroup(config) {
