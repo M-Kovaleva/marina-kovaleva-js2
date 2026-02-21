@@ -11,7 +11,7 @@ export default class CreatePost extends AbstractView {
        <div class="post-container">
         
         <!-- BACK BUTTON -->
-        <a href="/" data-link class="post-back-link">← Back to Home</a>
+        <a href="/" data-link class="post-back-link">< Back to Home</a>
 
         <!-- LOADING -->
         <div id="create-post-loading" class="loading-spinner" style="display: none;">

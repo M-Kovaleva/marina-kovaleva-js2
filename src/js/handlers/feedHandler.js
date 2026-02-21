@@ -3,6 +3,7 @@ import { get, del } from '../api/apiClient.js';
 import { getCurrentUserData } from '../auth/storage.js';
 import { navigateTo } from '../router/router.js';
 import { searchPosts } from './searchHandler.js';
+import { createPostCard } from '../components/PostCard.js'; 
 
 /* State */
 let currentPage = 1;
@@ -41,150 +42,6 @@ async function getPosts(page = 1) {
   };
 }
 
-/* Helpers */
-function formatDate(dateString) {
-  return new Date(dateString).toLocaleDateString('en-GB', {
-    day: 'numeric',
-    month: 'short',
-    year: 'numeric'
-  });
-}
-
-function getInitial(name) {
-  return name?.[0]?.toUpperCase() || '?';
-}
-
-/* DOM creation - post card components */
-
-/* Create post card */
-function createPostCard(post, isAuthor) {
-  const card = document.createElement('article');
-  card.className = 'feed-post';
-
-  // Header (author + actions)
-  const header = createPostHeader(post, isAuthor);
-  card.append(header);
-
-  // Image
-  if (post.media?.url) {
-    const image = createPostImage(post.media.url, post.title);
-    card.append(image);
-  }
-
-  // Title
-  const title = document.createElement('h2');
-  title.className = 'feed-post-title';
-  title.textContent = post.title || 'Untitled';
-  card.append(title);
-
-  // Body
-  const body = document.createElement('p');
-  body.className = 'feed-post-content';
-  body.textContent = post.body ? post.body.slice(0, 150) + '...' : '';
-  card.append(body);
-
-  // Read more link
-  const link = document.createElement('a');
-  link.href = `/post/${post.id}`;
-  link.className = 'feed-post-link';
-  link.setAttribute('data-link', '');
-  link.textContent = 'Read more >';
-  card.append(link);
-
-  return card;
-}
-
-/* Create post header with author info and actions */
-function createPostHeader(post, isAuthor) {
-  const header = document.createElement('div');
-  header.className = 'feed-post-header';
-
-  // Author section
-  const authorSection = document.createElement('div');
-  authorSection.className = 'feed-post-author';
-
-  // Avatar
-  const avatar = createAvatar(
-    post.author?.avatar?.url,
-    post.author?.name || 'Unknown'
-  );
-  authorSection.append(avatar);
-
-  // Author info
-  const authorInfo = document.createElement('div');
-  authorInfo.className = 'feed-post-author-info';
-
-  const authorLink = document.createElement('a');
-  authorLink.href = `/profile/${post.author?.name}`;
-  authorLink.className = 'feed-post-user';
-  authorLink.setAttribute('data-link', '');
-  authorLink.textContent = post.author?.name || 'Unknown';
-
-  const date = document.createElement('span');
-  date.className = 'feed-post-date';
-  date.textContent = formatDate(post.created);
-
-  authorInfo.append(authorLink, date);
-  authorSection.append(authorInfo);
-  header.append(authorSection);
-
-  // Actions (Edit/Delete) - only for author
-  if (isAuthor) {
-    const actions = createPostActions(post.id);
-    header.append(actions);
-  }
-
-  return header;
-}
-
-/* Create avatar - image or placeholder */
-function createAvatar(avatarUrl, name) {
-  if (avatarUrl) {
-    const img = document.createElement('img');
-    img.src = avatarUrl;
-    img.alt = name;
-    img.className = 'feed-post-avatar';
-    return img;
-  }
-
-  const placeholder = document.createElement('div');
-  placeholder.className = 'feed-post-avatar-placeholder';
-  placeholder.textContent = getInitial(name);
-  return placeholder;
-}
-
-/* Create post image */
-function createPostImage(imageUrl, title) {
-  const img = document.createElement('img');
-  img.src = imageUrl;
-  img.alt = title || 'Post image';
-  img.className = 'feed-post-image';
-  return img;
-}
-
-/* Create post actions (Edit/Delete buttons) */
-function createPostActions(postId) {
-  const actions = document.createElement('div');
-  actions.className = 'feed-post-actions';
-
-  const editBtn = document.createElement('button');
-  editBtn.className = 'btn-action btn-edit';
-  editBtn.setAttribute('data-post-id', postId);
-  editBtn.setAttribute('data-action', 'edit');
-  editBtn.setAttribute('title', 'Edit post');
-  editBtn.textContent = 'Edit';
-
-  const deleteBtn = document.createElement('button');
-  deleteBtn.className = 'btn-action btn-delete';
-  deleteBtn.setAttribute('data-post-id', postId);
-  deleteBtn.setAttribute('data-action', 'delete');
-  deleteBtn.setAttribute('title', 'Delete post');
-  deleteBtn.textContent = 'X';
-
-  actions.append(editBtn, deleteBtn);
-  return actions;
-}
-
 /* DOM creation - empty/error states */
 
 /* Create empty state */
@@ -204,7 +61,6 @@ function createErrorState() {
 }
 
 /* DOM manipulation */
-
 /* Show/hide loading spinner */
 function showLoading(isLoading) {
   const spinner = document.getElementById('feed-loading');
@@ -231,8 +87,7 @@ function displayFeed(posts) {
 
   // Empty state
   if (!posts || posts.length === 0) {
-    const empty = createEmptyState();
-    feed.append(empty);
+    feed.append(createEmptyState());
     return;
   }
 
@@ -243,7 +98,16 @@ function displayFeed(posts) {
   // Create and append post cards
   posts.forEach(post => {
     const isAuthor = currentUserName && post.author?.name === currentUserName;
-    const postCard = createPostCard(post, isAuthor);
+
+    // Using PostCard component
+    const postCard = createPostCard(post, {
+      variant: 'feed',
+      showAuthor: true,
+      showActions: isAuthor,
+      onEdit: handleEdit,
+      onDelete: handleDelete
+    });
+    
     feed.append(postCard);
   });
 }
@@ -258,7 +122,7 @@ function displayError() {
   feed.append(error);
 }
 
-/* Update pagination UI */
+/* Update pagination */
 function updatePagination(meta) {
   const prevBtn = document.getElementById('prev-page-btn');
   const nextBtn = document.getElementById('next-page-btn');
@@ -305,27 +169,7 @@ export function updateSearchInfo() {
   }
 }
 
-/* Event handlers */
-
-/* Attach post action handlers (Edit/Delete) */
-function attachActionHandlers() {
-  const feed = document.getElementById('feed');
-  if (!feed) return;
-
-  feed.addEventListener('click', async (e) => {
-    const button = e.target.closest('[data-action]');
-    if (!button) return;
-
-    const action = button.getAttribute('data-action');
-    const postId = button.getAttribute('data-post-id');
-
-    if (action === 'edit') {
-      handleEdit(postId);
-    } else if (action === 'delete') {
-      await handleDelete(postId);
-    }
-  });
-}
+/* Event handlers *
 
 /* Handle edit action */
 function handleEdit(postId) {
@@ -404,6 +248,5 @@ export async function loadFeed() {
 export async function setupFeed() {
   currentPage = 1;
   attachPagination();
-  attachActionHandlers();
   await loadFeed();
 }

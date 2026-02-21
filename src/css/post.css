@@ -1,4 +1,3 @@
-/* Single Post Page Styles */
 .post-container {
   max-width: 680px;
   margin: 0 auto;
@@ -20,7 +19,6 @@
   text-decoration: underline;
 }
 /* Post Detail */
-
 .post-detail {
   background: var(--color-white);
   border: 1px solid var(--color-border);
@@ -29,7 +27,6 @@
 }
 
 /* Post Header */
-
 .post-header {
   margin-bottom: var(--space-lg);
   padding-bottom: var(--space-base);
@@ -86,7 +83,6 @@
 }
 
 /* Post Image */
-
 .post-image {
   width: 100%;
   max-height: 500px;
@@ -96,7 +92,6 @@
 }
 
 /* Post Body */
-
 .post-body {
   margin-bottom: var(--space-lg);
 }
@@ -118,7 +113,6 @@
 }
 
 /* Post Tags */
-
 .post-tags {
   display: flex;
   flex-wrap: wrap;
@@ -136,7 +130,6 @@
 }
 
 /* Post Stats */
-
 .post-stats {
   display: flex;
   gap: var(--space-lg);
@@ -171,7 +164,6 @@
 }
 
 /* Single Comment */
-
 .comment {
   padding: var(--space-base);
   margin-bottom: var(--space-base);

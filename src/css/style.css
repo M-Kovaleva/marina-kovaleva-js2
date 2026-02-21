@@ -3,7 +3,9 @@
 @import './home.css';
 @import './post.css'; 
 @import './createPost.css';
-@import './profile.css';  
+@import './profile.css';
+@import './postCard.css';  
+
 /*Variables*/
 :root {
   /* Colors */

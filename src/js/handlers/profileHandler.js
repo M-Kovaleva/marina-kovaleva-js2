@@ -1,14 +1,18 @@
 /* Profile Handler - loads and displays user profile with all posts */
-import { get } from '../api/apiClient.js';
+import { get, del } from '../api/apiClient.js';
 import { followUser, unfollowUser } from '../api/apiClient.js';
 import { getCurrentUserData } from '../auth/storage.js';
+import { createPostCard } from '../components/PostCard.js';
+import { navigateTo } from '../router/router.js';
+
 
 /* API */
 async function getProfile(username) {
   const params = new URLSearchParams({
     _posts: 'true',
     _followers: 'true',
-    _following: 'true'
+    _following: 'true',
+    _media: 'true'
   });
 
   const result = await get(`/social/profiles/${username}?${params}`);
@@ -19,15 +23,6 @@ async function getProfile(username) {
 function getInitial(name) {
   return name?.[0]?.toUpperCase() || '?';
 }
-
-function formatDate(dateString) {
-  return new Date(dateString).toLocaleDateString('en-GB', {
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric'
-  });
-}
-
 /* DOM creation - profile components */
 /* Create profile header with info */
 function createProfileHeader(profile, isOwnProfile, isFollowing) {
@@ -37,7 +32,8 @@ function createProfileHeader(profile, isOwnProfile, isFollowing) {
   // Avatar
   const avatar = createAvatar(
     profile.avatar?.url,
-    profile.avatar?.alt || profile.name
+    profile.name, 
+    'large'        
   );
   header.append(avatar);
 
@@ -80,26 +76,20 @@ function createProfileHeader(profile, isOwnProfile, isFollowing) {
 }
 
 /* Create avatar - image or placeholder */
-function createAvatar(avatarUrl, name) {
-  const container = document.createElement('div');
-  container.className = 'profile-avatar-container';
-
+function createAvatar(avatarUrl, name, size = 'large') {
   if (avatarUrl) {
     const img = document.createElement('img');
     img.src = avatarUrl;
     img.alt = name;
-    img.className = 'profile-avatar';
-    container.append(img);
-  } else {
-    const placeholder = document.createElement('div');
-    placeholder.className = 'profile-avatar-placeholder';
-    placeholder.textContent = getInitial(name);
-    container.append(placeholder);
+    img.className = `profile-avatar profile-avatar-${size}`;
+    return img;
   }
 
-  return container;
+  const placeholder = document.createElement('div');
+  placeholder.className = `profile-avatar-placeholder profile-avatar-${size}`;
+  placeholder.textContent = getInitial(name);
+  return placeholder;
 }
-
 /* Create stats section: nuber of posts, followers, following */
 function createStats(profile) {
   const stats = document.createElement('div');
@@ -110,6 +100,7 @@ function createStats(profile) {
   postsCount.className = 'profile-stat';
   const postsNumber = document.createElement('span');
   postsNumber.className = 'profile-stat-number';
+  postsNumber.id = 'posts-count';
   postsNumber.textContent = profile._count?.posts || 0;
   const postsLabel = document.createElement('span');
   postsLabel.className = 'profile-stat-label';
@@ -144,7 +135,7 @@ function createStats(profile) {
 }
 
 /* Create posts section */
-function createPostsSection(posts) {
+function createPostsSection(posts, isOwnProfile) {
   const section = document.createElement('div');
   section.className = 'profile-posts';
 
@@ -154,6 +145,7 @@ function createPostsSection(posts) {
 
   const postsList = document.createElement('div');
   postsList.className = 'profile-posts-list';
+   postsList.id = 'profile-posts-list'; 
 
   if (!posts || posts.length === 0) {
     const empty = document.createElement('p');
@@ -162,59 +154,20 @@ function createPostsSection(posts) {
     postsList.append(empty);
   } else {
     posts.forEach(post => {
-      const postCard = createPostCard(post);
+      // Using PostCard component
+      const postCard = createPostCard(post, {
+        variant: 'profile',
+        showAuthor: false,
+        showActions: isOwnProfile,
+        onEdit: handleEdit, 
+        onDelete: handleDelete 
+      });
       postsList.append(postCard);
     });
   }
 
   section.append(postsList);
   return section;
-}
-
-/* Create post card */
-function createPostCard(post) {
-  const card = document.createElement('article');
-  card.className = 'profile-post-card';
-
-  // Post image 
-  if (post.media?.url) {
-    const image = document.createElement('img');
-    image.src = post.media.url;
-    image.alt = post.title || 'Post image';
-    image.className = 'profile-post-image';
-    card.append(image);
-  }
-
-  // Post content
-  const content = document.createElement('div');
-  content.className = 'profile-post-content';
-
-  // Title
-  const title = document.createElement('h3');
-  title.className = 'profile-post-title';
-  title.textContent = post.title || 'Untitled';
-
-  // Body
-  const body = document.createElement('p');
-  body.className = 'profile-post-body';
-  body.textContent = post.body ? post.body.slice(0, 120) + '...' : '';
-
-  // Date
-  const date = document.createElement('span');
-  date.className = 'profile-post-date';
-  date.textContent = formatDate(post.created);
-
-  // Link to post
-  const link = document.createElement('a');
-  link.href = `/post/${post.id}`;
-  link.className = 'profile-post-link';
-  link.setAttribute('data-link', '');
-  link.textContent = 'Read more >';
-
-  content.append(title, body, date, link);
-  card.append(content);
-
-  return card;
 }
 
 /* DOM creation - error state */
@@ -282,7 +235,7 @@ function displayProfile(profile) {
   const stats = createStats(profile);
   profileContent.append(stats);
 
-  const posts = createPostsSection(profile.posts);
+  const posts = createPostsSection(profile.posts, isOwnProfile);
   profileContent.append(posts);
 
   // Attach follow button handler
@@ -344,6 +297,46 @@ function updateFollowersCount(delta) {
   followersCountElement.textContent = newCount;
 }
 
+/* Update posts count */
+function updatePostsCount(delta) {
+  const postsCountElement = document.getElementById('posts-count');
+  if (!postsCountElement) return;
+
+  const currentCount = parseInt(postsCountElement.textContent, 10);
+  const newCount = Math.max(0, currentCount + delta);  // Не меньше 0
+  postsCountElement.textContent = newCount;
+}
+
+/* Event handlers Edit/Delet */
+
+// Edit handler - redirect to create post
+function handleEdit(postId) {
+  navigateTo(`/create?id=${postId}`);
+}
+
+// Delete handler 
+async function handleDelete(postId) {
+  const confirmed = confirm('Are you sure you want to delete this post?');
+  if (!confirmed) return;
+
+  try {
+    // delete post
+    await del(`/social/posts/${postId}`);
+    
+    // delete post card from DOM
+    const postCard = document.querySelector(`[data-post-id="${postId}"]`)?.closest('.post-card');
+    if (postCard) {
+      postCard.remove();
+    }
+    
+    updatePostsCount(-1);
+    
+    alert('Post deleted successfully!');
+  } catch (error) {
+    console.error('Failed to delete post:', error);
+    alert('Failed to delete post. Please try again.');
+  }
+}
 
 /* Display error state */
 function displayError() {
