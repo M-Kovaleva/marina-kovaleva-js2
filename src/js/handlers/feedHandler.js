@@ -29,6 +29,7 @@ async function getPosts(page = 1) {
     _author: 'true',
     _comments: 'true',
     _reactions: 'true',
+    _media: 'true', 
     limit: '12',
     page: page.toString()
   });

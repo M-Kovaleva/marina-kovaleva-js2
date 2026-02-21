@@ -16,6 +16,7 @@ export async function searchPosts(query, page = 1) {
     _author: 'true',
     _comments: 'true',
     _reactions: 'true',
+    _media: 'true',
     limit: '12',
     page: page.toString()
   });
@@ -72,7 +73,7 @@ export function setupSearch() {
     
     if (query) {
       setQuery(query);
-      await loadFeed()();
+      await loadFeed();
       setPage(1);
     }
   });

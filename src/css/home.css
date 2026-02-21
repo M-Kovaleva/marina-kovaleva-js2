@@ -46,11 +46,11 @@
   font-weight: 600;
   cursor: pointer;
   font-family: var(--font-family);
+  text-decoration: underline;
 }
 
 .btn-clear-search:hover {
   color: var(--color-text-primary);
-  text-decoration: underline;
 }
 
 
@@ -62,13 +62,18 @@
 }
 
 /* Posts */
+.feed-posts {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-base);
+}
+
 /* Specific post card */
 .feed-post {
   background: var(--color-white);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
   padding: var(--space-xl);
-  margin-bottom: var(--space-base)
 }
 
 .feed-post:hover {
@@ -95,9 +100,6 @@
 
 /* Post content */
 .feed-post-content {
-  word-break: break-word;
-  overflow-wrap: break-word;
-  hyphens: auto;
   margin-bottom: var(--space-base);
   color: var(--color-text-secondary);
 }
@@ -149,6 +151,19 @@
 
 /* Post Action Buttons (Edit/Delete) */
 
+.feed-post-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-sm);
+}
+
+.feed-post-header-right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
 .feed-post-actions {
   display: flex;
   gap: var(--space-xs);
@@ -166,6 +181,15 @@
 
 .btn-action:hover {
   color: var(--color-accent);
+}
+
+/* Feed Card Avatars */
+
+.feed-post-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-sm);
 }
 
 .feed-post-author {
@@ -201,6 +225,12 @@
   gap: 2px;
 }
 
+.feed-post-user {
+  font-weight: 600;
+  font-size: var(--font-size-body);
+  color: var(--color-text-primary);
+}
+
 .feed-post-date {
   font-size: var(--font-size-small);
   color: var(--color-text-light);
@@ -226,9 +256,11 @@
     height: 32px;
     font-size: 14px;
   }
+}
+/* Mobile adjustments */
+@media (max-width: 600px) {
   .btn-action {
     font-size: 14px;
     padding: 4px;
   }
-
 }
