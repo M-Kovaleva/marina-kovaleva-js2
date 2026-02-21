@@ -4,12 +4,7 @@ import { followUser, unfollowUser } from "../api/apiClient.js";
 import { getCurrentUserData } from "../auth/storage.js";
 import { createPostCard } from "../components/PostCard.js";
 import { navigateTo } from "../router/router.js";
-import {
-  toggleLoading,
-  getInitial,
-  confirmAction,
-  showAlert,
-} from "../utils/ui.js";
+import { toggleLoading, confirmAction, showAlert } from "../utils/ui.js";
 
 /* API */
 async function getProfile(username) {
@@ -83,7 +78,6 @@ function createAvatar(avatarUrl, name, size = "large") {
 
   const placeholder = document.createElement("div");
   placeholder.className = `profile-avatar-placeholder profile-avatar-${size}`;
-  placeholder.textContent = getInitial(name);
   return placeholder;
 }
 /* Create stats section: nuber of posts, followers, following */

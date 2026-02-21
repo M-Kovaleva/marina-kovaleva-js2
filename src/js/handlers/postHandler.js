@@ -1,6 +1,6 @@
 /* Post Handler - loads and displays single post */
 import { get } from "../api/apiClient.js";
-import { toggleLoading, getInitial, formatDate } from "../utils/ui.js";
+import { toggleLoading, formatDate } from "../utils/ui.js";
 
 /* API */
 async function getPost(id) {
@@ -64,7 +64,6 @@ function createAvatar(avatarUrl, name) {
 
   const placeholder = document.createElement("div");
   placeholder.className = "post-author-avatar-placeholder";
-  placeholder.textContent = getInitial(name);
   return placeholder;
 }
 
@@ -214,7 +213,6 @@ function createCommentAvatar(avatarUrl, name) {
 
   const placeholder = document.createElement("div");
   placeholder.className = "comment-avatar-placeholder";
-  placeholder.textContent = getInitial(name);
   return placeholder;
 }
 

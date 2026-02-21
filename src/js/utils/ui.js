@@ -22,15 +22,6 @@ export function toggleLoading(spinnerId, contentId, isLoading) {
 }
 
 /**
- * Get first letter of name for avatar placeholder
- * @param {string} name - User name
- * @returns {string} First letter uppercase or '?'
- */
-export function getInitial(name) {
-  return name?.[0]?.toUpperCase() || "?";
-}
-
-/**
  * Format date for display
  * @param {string} dateString - ISO date string
  * @param {string} format - 'short' | 'long' | 'full'
