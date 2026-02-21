@@ -1,6 +1,6 @@
 /* Create Post Handler */
 import { createPost, get, put } from "../api/apiClient.js";
-import { clearAllErrors } from "../utils/validation.js";
+import { validateFields, clearAllErrors } from "../utils/validation.js";
 import { navigateTo } from "../router/router.js";
 import { toggleLoading, showAlert } from "../utils/ui.js";
 
@@ -268,23 +268,14 @@ async function handleCreatePostSubmit(event) {
   clearAllErrors();
   errorMessage.style.display = "none";
 
-  // Validate fields
-  const validations = [
+  const isValid = validateFields([
     { field: "post-title", validator: () => validateTitle(title) },
     { field: "post-media", validator: () => validateMediaUrl(mediaUrl) },
-  ];
+  ]);
 
-  let isValid = true;
-
-  for (const { field, validator } of validations) {
-    const result = validator();
-    if (!result.valid) {
-      showError(field, result.message);
-      isValid = false;
-    }
+  if (!isValid) {
+    return;
   }
-
-  if (!isValid) return;
 
   // tags
   const tags = tagsInput

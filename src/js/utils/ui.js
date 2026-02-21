@@ -1,5 +1,4 @@
 /* reusable UI helper functions */
-
 /**
  * loading spinner and content visibility
  * @param {string} spinnerId - ID of loading spinner element

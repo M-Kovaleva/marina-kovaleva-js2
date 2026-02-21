@@ -130,3 +130,24 @@ export function clearAllErrors() {
     el.classList.remove("error");
   });
 }
+
+/**
+ * Run multiple field validations
+ * @param {Array} validations - Array of validation objects
+ * @param {string} validations[].field - Field ID
+ * @param {Function} validations[].validator - Validator function returning {valid, message}
+ * @returns {boolean} True if all validations pass
+ */
+export function validateFields(validations) {
+  let isValid = true;
+
+  for (const { field, validator } of validations) {
+    const result = validator();
+    if (!result.valid) {
+      showError(field, result.message);
+      isValid = false;
+    }
+  }
+
+  return isValid;
+}

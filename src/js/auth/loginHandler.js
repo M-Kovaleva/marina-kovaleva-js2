@@ -6,25 +6,9 @@ import { updateAuthLink } from "../components/Nav.js";
 import {
   validateEmail,
   validatePassword,
+  validateFields,
   clearAllErrors,
 } from "../utils/validation.js";
-
-/* Show error for login form field */
-function showLoginError(fieldId, message) {
-  const input = document.getElementById(fieldId);
-  const errorElement = document.getElementById(
-    `${fieldId.replace("login-", "")}-error`,
-  );
-
-  if (input) {
-    input.classList.add("error");
-  }
-
-  if (errorElement) {
-    errorElement.textContent = message;
-    errorElement.classList.add("show");
-  }
-}
 
 /* Setup login form event listeners */
 export function setupLoginForm() {
@@ -58,19 +42,13 @@ async function handleLoginSubmit(event) {
   errorMessage.style.display = "none";
 
   // Validate fields
-  const validations = [
+  const isValid = validateFields([
     { field: "login-email", validator: () => validateEmail(email) },
     { field: "login-password", validator: () => validatePassword(password) },
-  ];
+  ]);
 
-  let isValid = true;
-
-  for (const { field, validator } of validations) {
-    const result = validator();
-    if (!result.valid) {
-      showLoginError(field, result.message);
-      isValid = false;
-    }
+  if (!isValid) {
+    return;
   }
 
   // Stop if validation failed

@@ -7,7 +7,7 @@ import {
   validateUsername,
   validatePassword,
   validateAvatarUrl,
-  showError,
+  validateFields,
   clearAllErrors,
 } from "../utils/validation.js";
 
@@ -47,25 +47,16 @@ async function handleRegisterSubmit(event) {
   errorMessage.style.display = "none";
 
   // Validate fields
-  const validations = [
+  const isValid = validateFields([
     { field: "register-name", validator: () => validateUsername(name) },
     { field: "register-email", validator: () => validateEmail(email) },
     { field: "register-password", validator: () => validatePassword(password) },
     { field: "register-avatar", validator: () => validateAvatarUrl(avatarUrl) },
-  ];
+  ]);
 
-  let isValid = true;
-
-  for (const { field, validator } of validations) {
-    const result = validator();
-    if (!result.valid) {
-      showError(field, result.message);
-      isValid = false;
-    }
+  if (!isValid) {
+    return;
   }
-
-  // Stop if validation failed
-  if (!isValid) return;
 
   // Build user data object
   const userData = { name, email, password };
@@ -95,7 +86,7 @@ async function handleRegisterSubmit(event) {
     updateAuthLink();
 
     // Redirect to login
-    setTimeout(() => navigateTo("/"), 3000);
+    setTimeout(() => navigateTo("/"), 2000);
   } catch (error) {
     // Show error message
     loadingSpinner.style.display = "none";

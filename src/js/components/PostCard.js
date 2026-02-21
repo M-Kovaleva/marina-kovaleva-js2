@@ -1,15 +1,6 @@
 /* PostCard Component -  post card for Feed and Profile pages */
 import { navigateTo } from "../router/router.js";
-
-/*Format date for display*/
-function formatDate(dateString, format = "short") {
-  const options =
-    format === "long"
-      ? { day: "numeric", month: "long", year: "numeric" }
-      : { day: "numeric", month: "short", year: "numeric" };
-
-  return new Date(dateString).toLocaleDateString("en-GB", options);
-}
+import { formatDate } from "../utils/ui.js";
 
 /* Create avatar - image or placeholder */
 function createAvatar(avatarUrl, name, size = "default") {
