@@ -1,10 +1,10 @@
-import AbstractView from './AbstractView.js';
+import AbstractView from "./AbstractView.js";
 
 export default class Post extends AbstractView {
   constructor(params) {
     super(params);
     this.postId = params.id;
-    this.setTitle('Post - Social media applicaion');
+    this.setTitle("Post - Social media applicaion");
   }
 
   async getHtml() {
@@ -26,4 +26,4 @@ export default class Post extends AbstractView {
       </div>
     `;
   }
-} 
+}

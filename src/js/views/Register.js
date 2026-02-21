@@ -1,9 +1,9 @@
-import AbstractView from './AbstractView.js';
+import AbstractView from "./AbstractView.js";
 
 export default class Register extends AbstractView {
   constructor(params) {
     super(params);
-    this.setTitle('Register - Social media application');
+    this.setTitle("Register - Social media application");
   }
 
   async getHtml() {

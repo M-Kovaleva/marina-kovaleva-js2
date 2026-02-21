@@ -112,7 +112,7 @@
   font-family: var(--font-family);
 }
 
-.auth-form .btn-primary:hover{
+.auth-form .btn-primary:hover {
   background: var(--color-button-hover);
 }
 
@@ -133,8 +133,12 @@
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .loading-spinner p {

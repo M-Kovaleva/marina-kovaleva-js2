@@ -6,8 +6,8 @@ export default class AbstractView {
   setTitle(title) {
     document.title = title;
   }
-  
+
   async getHtml() {
-    return '';
+    return "";
   }
 }

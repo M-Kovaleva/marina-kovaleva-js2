@@ -9,15 +9,15 @@
 export function toggleLoading(spinnerId, contentId, isLoading) {
   const spinner = document.getElementById(spinnerId);
   const content = document.getElementById(contentId);
-  
+
   if (!spinner || !content) return;
-  
+
   if (isLoading) {
-    spinner.style.display = 'block';
-    content.style.display = 'none';
+    spinner.style.display = "block";
+    content.style.display = "none";
   } else {
-    spinner.style.display = 'none';
-    content.style.display = 'block';
+    spinner.style.display = "none";
+    content.style.display = "block";
   }
 }
 
@@ -27,7 +27,7 @@ export function toggleLoading(spinnerId, contentId, isLoading) {
  * @returns {string} First letter uppercase or '?'
  */
 export function getInitial(name) {
-  return name?.[0]?.toUpperCase() || '?';
+  return name?.[0]?.toUpperCase() || "?";
 }
 
 /**
@@ -36,28 +36,31 @@ export function getInitial(name) {
  * @param {string} format - 'short' | 'long' | 'full'
  * @returns {string} Formatted date
  */
-export function formatDate(dateString, format = 'short') {
+export function formatDate(dateString, format = "short") {
   const options = {
     short: {
-      day: 'numeric',
-      month: 'short',
-      year: 'numeric'
+      day: "numeric",
+      month: "short",
+      year: "numeric",
     },
     long: {
-      day: 'numeric',
-      month: 'long',
-      year: 'numeric'
+      day: "numeric",
+      month: "long",
+      year: "numeric",
     },
     full: {
-      day: 'numeric',
-      month: 'short',
-      year: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit'
-    }
+      day: "numeric",
+      month: "short",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    },
   };
 
-  return new Date(dateString).toLocaleDateString('en-GB', options[format] || options.short);
+  return new Date(dateString).toLocaleDateString(
+    "en-GB",
+    options[format] || options.short,
+  );
 }
 
 /**
@@ -72,8 +75,7 @@ export function confirmAction(message) {
 /**
  * Show alert message
  * @param {string} message - Alert message
- * @param {string} type - 'success' | 'error' | 'info'
  */
-export function showAlert(message, type = 'info') {
+export function showAlert(message) {
   alert(message);
 }

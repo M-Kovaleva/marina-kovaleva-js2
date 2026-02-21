@@ -1,13 +1,13 @@
 /* Post Handler - loads and displays single post */
-import { get } from '../api/apiClient.js';
-import { toggleLoading, getInitial, formatDate } from '../utils/ui.js';
+import { get } from "../api/apiClient.js";
+import { toggleLoading, getInitial, formatDate } from "../utils/ui.js";
 
 /* API */
 async function getPost(id) {
   const params = new URLSearchParams({
-    _author: 'true',
-    _comments: 'true',
-    _reactions: 'true'
+    _author: "true",
+    _comments: "true",
+    _reactions: "true",
   });
 
   const result = await get(`/social/posts/${id}?${params}`);
@@ -18,32 +18,32 @@ async function getPost(id) {
 
 /*Create post header with author info */
 function createPostHeader(post) {
-  const header = document.createElement('div');
-  header.className = 'post-header';
+  const header = document.createElement("div");
+  header.className = "post-header";
 
-  const author = document.createElement('div');
-  author.className = 'post-author';
+  const author = document.createElement("div");
+  author.className = "post-author";
 
   // Avatar
   const avatar = createAvatar(
     post.author?.avatar?.url,
-    post.author?.name || 'Unknown'
+    post.author?.name || "Unknown",
   );
   author.append(avatar);
 
   // Author info
-  const authorInfo = document.createElement('div');
-  authorInfo.className = 'post-author-info';
+  const authorInfo = document.createElement("div");
+  authorInfo.className = "post-author-info";
 
-  const authorLink = document.createElement('a');
+  const authorLink = document.createElement("a");
   authorLink.href = `/profile/${post.author?.name}`;
-  authorLink.className = 'post-author-name';
-  authorLink.setAttribute('data-link', '');
-  authorLink.textContent = post.author?.name || 'Unknown';
+  authorLink.className = "post-author-name";
+  authorLink.setAttribute("data-link", "");
+  authorLink.textContent = post.author?.name || "Unknown";
 
-  const date = document.createElement('span');
-  date.className = 'post-date';
-  date.textContent = formatDate(post.created, 'full'); //formatDate from ui.js
+  const date = document.createElement("span");
+  date.className = "post-date";
+  date.textContent = formatDate(post.created, "full"); //formatDate from ui.js
 
   authorInfo.append(authorLink, date);
   author.append(authorInfo);
@@ -55,15 +55,15 @@ function createPostHeader(post) {
 /* Create avatar - image or placeholder */
 function createAvatar(avatarUrl, name) {
   if (avatarUrl) {
-    const img = document.createElement('img');
+    const img = document.createElement("img");
     img.src = avatarUrl;
     img.alt = name;
-    img.className = 'post-author-avatar';
+    img.className = "post-author-avatar";
     return img;
   }
 
-  const placeholder = document.createElement('div');
-  placeholder.className = 'post-author-avatar-placeholder';
+  const placeholder = document.createElement("div");
+  placeholder.className = "post-author-avatar-placeholder";
   placeholder.textContent = getInitial(name);
   return placeholder;
 }
@@ -72,25 +72,25 @@ function createAvatar(avatarUrl, name) {
 function createPostImage(imageUrl, title) {
   if (!imageUrl) return null;
 
-  const img = document.createElement('img');
+  const img = document.createElement("img");
   img.src = imageUrl;
   img.alt = title;
-  img.className = 'post-image';
+  img.className = "post-image";
   return img;
 }
 
 /* Create post body - title and text */
 function createPostBody(post) {
-  const body = document.createElement('div');
-  body.className = 'post-body';
+  const body = document.createElement("div");
+  body.className = "post-body";
 
-  const title = document.createElement('h1');
-  title.className = 'post-title';
-  title.textContent = post.title || 'Untitled';
+  const title = document.createElement("h1");
+  title.className = "post-title";
+  title.textContent = post.title || "Untitled";
 
-  const text = document.createElement('p');
-  text.className = 'post-text';
-  text.textContent = post.body || '';
+  const text = document.createElement("p");
+  text.className = "post-text";
+  text.textContent = post.body || "";
 
   body.append(title, text);
   return body;
@@ -100,12 +100,12 @@ function createPostBody(post) {
 function createTags(tags) {
   if (!tags || tags.length === 0) return null;
 
-  const tagsContainer = document.createElement('div');
-  tagsContainer.className = 'post-tags';
+  const tagsContainer = document.createElement("div");
+  tagsContainer.className = "post-tags";
 
-  tags.forEach(tag => {
-    const tagElement = document.createElement('span');
-    tagElement.className = 'post-tag';
+  tags.forEach((tag) => {
+    const tagElement = document.createElement("span");
+    tagElement.className = "post-tag";
     tagElement.textContent = `#${tag}`;
     tagsContainer.append(tagElement);
   });
@@ -115,15 +115,15 @@ function createTags(tags) {
 
 /*Create reactions and comments count */
 function createPostStats(post) {
-  const stats = document.createElement('div');
-  stats.className = 'post-stats';
+  const stats = document.createElement("div");
+  stats.className = "post-stats";
 
-  const reactions = document.createElement('span');
-  reactions.className = 'post-stat';
+  const reactions = document.createElement("span");
+  reactions.className = "post-stat";
   reactions.textContent = `♡ ${post._count?.reactions || 0} reactions`;
 
-  const comments = document.createElement('span');
-  comments.className = 'post-stat';
+  const comments = document.createElement("span");
+  comments.className = "post-stat";
   comments.textContent = `${post._count?.comments || 0} comments`;
 
   stats.append(reactions, comments);
@@ -133,23 +133,23 @@ function createPostStats(post) {
 /* DOM creation - comments */
 /* Create comments section */
 function createCommentsSection(comments) {
-  const section = document.createElement('div');
-  section.className = 'post-comments';
+  const section = document.createElement("div");
+  section.className = "post-comments";
 
-  const heading = document.createElement('h2');
-  heading.textContent = 'Comments';
+  const heading = document.createElement("h2");
+  heading.textContent = "Comments";
   section.append(heading);
 
-  const commentsList = document.createElement('div');
-  commentsList.id = 'comments-list';
+  const commentsList = document.createElement("div");
+  commentsList.id = "comments-list";
 
   if (!comments || comments.length === 0) {
-    const empty = document.createElement('p');
-    empty.className = 'comments-empty';
-    empty.textContent = 'No comments yet. Be the first to comment!';
+    const empty = document.createElement("p");
+    empty.className = "comments-empty";
+    empty.textContent = "No comments yet. Be the first to comment!";
     commentsList.append(empty);
   } else {
-    comments.forEach(comment => {
+    comments.forEach((comment) => {
       const commentElement = createComment(comment);
       commentsList.append(commentElement);
     });
@@ -161,32 +161,32 @@ function createCommentsSection(comments) {
 
 /* Create comment element */
 function createComment(comment) {
-  const commentBox = document.createElement('div');
-  commentBox.className = 'comment';
+  const commentBox = document.createElement("div");
+  commentBox.className = "comment";
 
   // Header
-  const header = document.createElement('div');
-  header.className = 'comment-header';
+  const header = document.createElement("div");
+  header.className = "comment-header";
 
   const avatar = createCommentAvatar(
     comment.author?.avatar?.url,
-    comment.author?.name || 'Anonymous'
+    comment.author?.name || "Anonymous",
   );
   header.append(avatar);
 
   // Author info
-  const info = document.createElement('div');
-  info.className = 'comment-info';
+  const info = document.createElement("div");
+  info.className = "comment-info";
 
-  const authorLink = document.createElement('a');
+  const authorLink = document.createElement("a");
   authorLink.href = `/profile/${comment.author?.name}`;
-  authorLink.className = 'comment-author';
-  authorLink.setAttribute('data-link', '');
-  authorLink.textContent = comment.author?.name || 'Anonymous';
+  authorLink.className = "comment-author";
+  authorLink.setAttribute("data-link", "");
+  authorLink.textContent = comment.author?.name || "Anonymous";
 
-  const date = document.createElement('span');
-  date.className = 'comment-date';
-  date.textContent = formatDate(comment.created, 'long'); // formatDate from ui.js
+  const date = document.createElement("span");
+  date.className = "comment-date";
+  date.textContent = formatDate(comment.created, "long"); // formatDate from ui.js
 
   info.append(authorLink, date);
 
@@ -194,9 +194,9 @@ function createComment(comment) {
   header.append(info);
 
   // Body
-  const body = document.createElement('p');
-  body.className = 'comment-body';
-  body.textContent = comment.body || '';
+  const body = document.createElement("p");
+  body.className = "comment-body";
+  body.textContent = comment.body || "";
 
   commentBox.append(header, body);
   return commentBox;
@@ -205,15 +205,15 @@ function createComment(comment) {
 /* Create comment avatar */
 function createCommentAvatar(avatarUrl, name) {
   if (avatarUrl) {
-    const img = document.createElement('img');
+    const img = document.createElement("img");
     img.src = avatarUrl;
     img.alt = name;
-    img.className = 'comment-avatar';
+    img.className = "comment-avatar";
     return img;
   }
 
-  const placeholder = document.createElement('div');
-  placeholder.className = 'comment-avatar-placeholder';
+  const placeholder = document.createElement("div");
+  placeholder.className = "comment-avatar-placeholder";
   placeholder.textContent = getInitial(name);
   return placeholder;
 }
@@ -221,17 +221,18 @@ function createCommentAvatar(avatarUrl, name) {
 /* DOM creation - error state */
 
 function createErrorState() {
-  const error = document.createElement('div');
-  error.className = 'post-error';
+  const error = document.createElement("div");
+  error.className = "post-error";
 
-  const text = document.createElement('p');
-  text.textContent = 'Could not load post. It may have been deleted or you don\'t have permission to view it.';
+  const text = document.createElement("p");
+  text.textContent =
+    "Could not load post. It may have been deleted or you don't have permission to view it.";
 
-  const link = document.createElement('a');
-  link.href = '/';
-  link.className = 'btn-secondary';
-  link.setAttribute('data-link', '');
-  link.textContent = 'Back to Feed';
+  const link = document.createElement("a");
+  link.href = "/";
+  link.className = "btn-secondary";
+  link.setAttribute("data-link", "");
+  link.textContent = "Back to Feed";
 
   error.append(text, link);
   return error;
@@ -240,11 +241,11 @@ function createErrorState() {
 /* DON manipulation */
 /* Display post in DOM */
 function displayPost(post) {
-  const postContent = document.getElementById('post-content');
+  const postContent = document.getElementById("post-content");
   if (!postContent) return;
 
   // Clear existing content
-  postContent.innerHTML = '';
+  postContent.innerHTML = "";
 
   // Create and append components
   const header = createPostHeader(post);
@@ -268,26 +269,26 @@ function displayPost(post) {
 
 /* Display error state */
 function displayError() {
-  const postContent = document.getElementById('post-content');
+  const postContent = document.getElementById("post-content");
   if (!postContent) return;
 
-  postContent.innerHTML = '';
+  postContent.innerHTML = "";
   const error = createErrorState();
   postContent.append(error);
 }
 
 /* Main logic */
 async function loadPost(id) {
-  toggleLoading('post-loading', 'post-content', true);
+  toggleLoading("post-loading", "post-content", true);
 
   try {
     const post = await getPost(id);
     displayPost(post);
   } catch (error) {
-    console.error('Failed to load post:', error);
+    console.error("Failed to load post:", error);
     displayError();
   } finally {
-    toggleLoading('post-loading', 'post-content', false);
+    toggleLoading("post-loading", "post-content", false);
   }
 }
 

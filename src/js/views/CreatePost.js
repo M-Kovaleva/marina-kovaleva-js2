@@ -1,9 +1,9 @@
-import AbstractView from './AbstractView.js';
+import AbstractView from "./AbstractView.js";
 
 export default class CreatePost extends AbstractView {
   constructor(params) {
     super(params);
-    this.setTitle('Create Post - Social media application');
+    this.setTitle("Create Post - Social media application");
   }
 
   async getHtml() {

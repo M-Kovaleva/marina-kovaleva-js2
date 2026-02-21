@@ -1,9 +1,9 @@
-import AbstractView from './AbstractView.js';
+import AbstractView from "./AbstractView.js";
 
 export default class Home extends AbstractView {
   constructor(params) {
     super(params);
-    this.setTitle('Feed - Social media application');
+    this.setTitle("Feed - Social media application");
   }
 
   async getHtml() {

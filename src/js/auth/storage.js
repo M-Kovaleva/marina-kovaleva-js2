@@ -1,11 +1,11 @@
 // Storage keys
 const KEYS = {
-  ACCESS_TOKEN: 'accessToken',
-  API_KEY: 'apiKey',
-  USER_NAME: 'userName',
-  USER_EMAIL: 'userEmail',
-  USER_AVATAR: 'userAvatar',
-  USER_BIO: 'userBio'
+  ACCESS_TOKEN: "accessToken",
+  API_KEY: "apiKey",
+  USER_NAME: "userName",
+  USER_EMAIL: "userEmail",
+  USER_AVATAR: "userAvatar",
+  USER_BIO: "userBio",
 };
 
 export function saveAuth(data) {
@@ -65,5 +65,4 @@ export function hasApiKey() {
 
 export function logout() {
   clearAuth();
-  navigateTo('/login');
 }

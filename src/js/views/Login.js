@@ -1,8 +1,8 @@
-import AbstractView from './AbstractView.js';
+import AbstractView from "./AbstractView.js";
 export default class Login extends AbstractView {
   constructor(params) {
     super(params);
-    this.setTitle('Login - Social media application');
+    this.setTitle("Login - Social media application");
   }
 
   async getHtml() {

@@ -1,9 +1,9 @@
-import AbstractView from './AbstractView.js';
+import AbstractView from "./AbstractView.js";
 
 export default class NotFound extends AbstractView {
   constructor(params) {
     super(params);
-    this.setTitle('404 - Page not found');
+    this.setTitle("404 - Page not found");
   }
 
   async getHtml() {

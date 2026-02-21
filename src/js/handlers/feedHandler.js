@@ -1,14 +1,14 @@
 /* Feed Handler - loads and displays posts with pagination */
-import { get, del } from '../api/apiClient.js';
-import { getCurrentUserData } from '../auth/storage.js';
-import { navigateTo } from '../router/router.js';
-import { searchPosts } from './searchHandler.js';
-import { createPostCard } from '../components/PostCard.js'; 
-import { toggleLoading, confirmAction, showAlert } from '../utils/ui.js';
+import { get, del } from "../api/apiClient.js";
+import { getCurrentUserData } from "../auth/storage.js";
+import { navigateTo } from "../router/router.js";
+import { searchPosts } from "./searchHandler.js";
+import { createPostCard } from "../components/PostCard.js";
+import { toggleLoading, confirmAction, showAlert } from "../utils/ui.js";
 
 /* State */
 let currentPage = 1;
-let currentQuery = '';
+let currentQuery = "";
 let isFetching = false;
 
 /* Exported for searchHandler */
@@ -28,18 +28,18 @@ export function setPage(page) {
 /* API */
 async function getPosts(page = 1) {
   const params = new URLSearchParams({
-    _author: 'true',
-    _comments: 'true',
-    _reactions: 'true',
-    _media: 'true', 
-    limit: '12',
-    page: page.toString()
+    _author: "true",
+    _comments: "true",
+    _reactions: "true",
+    _media: "true",
+    limit: "12",
+    page: page.toString(),
   });
 
   const result = await get(`/social/posts?${params}`);
   return {
     posts: result.data,
-    meta: result.meta
+    meta: result.meta,
   };
 }
 
@@ -47,28 +47,28 @@ async function getPosts(page = 1) {
 
 /* Create empty state */
 function createEmptyState() {
-  const empty = document.createElement('p');
-  empty.className = 'feed-empty';
-  empty.textContent = 'No posts found.';
+  const empty = document.createElement("p");
+  empty.className = "feed-empty";
+  empty.textContent = "No posts found.";
   return empty;
 }
 
 /* Create error state */
 function createErrorState() {
-  const error = document.createElement('p');
-  error.className = 'feed-error';
-  error.textContent = 'Error loading posts. Please try again.';
+  const error = document.createElement("p");
+  error.className = "feed-error";
+  error.textContent = "Error loading posts. Please try again.";
   return error;
 }
 
 /* DOM manipulation */
 /* Display posts in feed */
 function displayFeed(posts) {
-  const feed = document.getElementById('feed');
+  const feed = document.getElementById("feed");
   if (!feed) return;
 
   // Clear existing content
-  feed.innerHTML = '';
+  feed.innerHTML = "";
 
   // Empty state
   if (!posts || posts.length === 0) {
@@ -81,37 +81,37 @@ function displayFeed(posts) {
   const currentUserName = currentUser?.name || null;
 
   // Create and append post cards
-  posts.forEach(post => {
+  posts.forEach((post) => {
     const isAuthor = currentUserName && post.author?.name === currentUserName;
 
     // Using PostCard component
     const postCard = createPostCard(post, {
-      variant: 'feed',
+      variant: "feed",
       showAuthor: true,
       showActions: isAuthor,
       onEdit: handleEdit,
-      onDelete: handleDelete
+      onDelete: handleDelete,
     });
-    
+
     feed.append(postCard);
   });
 }
 
 /* Display error state */
 function displayError() {
-  const feed = document.getElementById('feed');
+  const feed = document.getElementById("feed");
   if (!feed) return;
 
-  feed.innerHTML = '';
+  feed.innerHTML = "";
   const error = createErrorState();
   feed.append(error);
 }
 
 /* Update pagination */
 function updatePagination(meta) {
-  const prevBtn = document.getElementById('prev-page-btn');
-  const nextBtn = document.getElementById('next-page-btn');
-  const pageInfo = document.getElementById('page-info');
+  const prevBtn = document.getElementById("prev-page-btn");
+  const nextBtn = document.getElementById("next-page-btn");
+  const pageInfo = document.getElementById("page-info");
 
   if (pageInfo) {
     pageInfo.textContent = `Page ${meta.currentPage} of ${meta.pageCount}`;
@@ -128,29 +128,29 @@ function updatePagination(meta) {
 
 /* Update search info bar */
 export function updateSearchInfo() {
-  const searchInfo = document.getElementById('search-info');
+  const searchInfo = document.getElementById("search-info");
   if (!searchInfo) return;
 
   if (currentQuery) {
-    searchInfo.style.display = 'flex';
+    searchInfo.style.display = "flex";
     searchInfo.innerHTML = `
       <span>Showing results for: <strong>"${currentQuery}"</strong></span>
       <button id="clear-search-btn" class="btn-clear-search">Clear search</button>
     `;
 
     // Attach clear search handler
-    const clearBtn = document.getElementById('clear-search-btn');
+    const clearBtn = document.getElementById("clear-search-btn");
     if (clearBtn) {
-      clearBtn.addEventListener('click', async () => {
-        currentQuery = '';
+      clearBtn.addEventListener("click", async () => {
+        currentQuery = "";
         currentPage = 1;
         const searchInput = document.querySelector('[name="search"]');
-        if (searchInput) searchInput.value = '';
+        if (searchInput) searchInput.value = "";
         await loadFeed();
       });
     }
   } else {
-    searchInfo.style.display = 'none';
+    searchInfo.style.display = "none";
   }
 }
 
@@ -163,25 +163,25 @@ function handleEdit(postId) {
 
 /* Handle delete action */
 async function handleDelete(postId) {
-  if (!confirmAction('Are you sure you want to delete this post?')) return;
+  if (!confirmAction("Are you sure you want to delete this post?")) return;
 
   try {
     await del(`/social/posts/${postId}`);
     await loadFeed();
-    showAlert('Post deleted successfully!', 'success');
+    showAlert("Post deleted successfully!");
   } catch (error) {
-    console.error('Failed to delete post:', error);
-    showAlert('Failed to delete post. Please try again.', 'error');
+    console.error("Failed to delete post:", error);
+    showAlert("Failed to delete post. Please try again.");
   }
 }
 
 /* Attach pagination handlers */
 function attachPagination() {
-  const prevBtn = document.getElementById('prev-page-btn');
-  const nextBtn = document.getElementById('next-page-btn');
+  const prevBtn = document.getElementById("prev-page-btn");
+  const nextBtn = document.getElementById("next-page-btn");
 
   if (prevBtn) {
-    prevBtn.addEventListener('click', async () => {
+    prevBtn.addEventListener("click", async () => {
       if (!isFetching && !prevBtn.disabled) {
         currentPage--;
         await loadFeed();
@@ -191,7 +191,7 @@ function attachPagination() {
   }
 
   if (nextBtn) {
-    nextBtn.addEventListener('click', async () => {
+    nextBtn.addEventListener("click", async () => {
       if (!isFetching && !nextBtn.disabled) {
         currentPage++;
         await loadFeed();
@@ -208,7 +208,7 @@ export async function loadFeed() {
   if (isFetching) return;
 
   isFetching = true;
-  toggleLoading('feed-loading', 'feed', true);
+  toggleLoading("feed-loading", "feed", true);
 
   try {
     // Search or regular load
@@ -220,10 +220,10 @@ export async function loadFeed() {
     updatePagination(meta);
     updateSearchInfo();
   } catch (error) {
-    console.error('Failed to load posts:', error);
+    console.error("Failed to load posts:", error);
     displayError();
   } finally {
-    toggleLoading('feed-loading', 'feed', false);
+    toggleLoading("feed-loading", "feed", false);
     isFetching = false;
   }
 }
