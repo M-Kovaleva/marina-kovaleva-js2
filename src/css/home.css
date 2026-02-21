@@ -44,11 +44,12 @@
   font-weight: 600;
   cursor: pointer;
   font-family: var(--font-family);
-  text-decoration: underline;
+ 
 }
 
 .btn-clear-search:hover {
   color: var(--color-text-primary);
+  text-decoration: underline;
 }
 
 /* Empty/Error states */
