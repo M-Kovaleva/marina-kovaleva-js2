@@ -1,5 +1,6 @@
 /* Post Handler - loads and displays single post */
 import { get } from '../api/apiClient.js';
+import { toggleLoading, getInitial, formatDate } from '../utils/ui.js';
 
 /* API */
 async function getPost(id) {
@@ -11,29 +12,6 @@ async function getPost(id) {
 
   const result = await get(`/social/posts/${id}?${params}`);
   return result.data;
-}
-
-/* Helpers */
-function formatDate(dateString) {
-  return new Date(dateString).toLocaleDateString('en-GB', {
-    day: 'numeric',
-    month: 'short',
-    year: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit'
-  });
-}
-
-function formatCommentDate(dateString) {
-  return new Date(dateString).toLocaleDateString('en-GB', {
-    day: 'numeric',
-    month: 'short',
-    year: 'numeric'
-  });
-}
-
-function getInitial(name) {
-  return name?.[0]?.toUpperCase() || '?';
 }
 
 /* DOM creation - post components */
@@ -65,7 +43,7 @@ function createPostHeader(post) {
 
   const date = document.createElement('span');
   date.className = 'post-date';
-  date.textContent = formatDate(post.created);
+  date.textContent = formatDate(post.created, 'full'); //formatDate from ui.js
 
   authorInfo.append(authorLink, date);
   author.append(authorInfo);
@@ -208,7 +186,9 @@ function createComment(comment) {
 
   const date = document.createElement('span');
   date.className = 'comment-date';
-  date.textContent = formatCommentDate(comment.created);
+  date.textContent = formatDate(comment.created, 'long'); // formatDate from ui.js
+
+  info.append(authorLink, date);
 
   info.append(authorLink, date);
   header.append(info);
@@ -258,22 +238,6 @@ function createErrorState() {
 }
 
 /* DON manipulation */
-/*Show/hide loading spinner*/
-function showLoading(isLoading) {
-  const spinner = document.getElementById('post-loading');
-  const content = document.getElementById('post-content');
-
-  if (!spinner || !content) return;
-
-  if (isLoading) {
-    spinner.style.display = 'block';
-    content.style.display = 'none';
-  } else {
-    spinner.style.display = 'none';
-    content.style.display = 'block';
-  }
-}
-
 /* Display post in DOM */
 function displayPost(post) {
   const postContent = document.getElementById('post-content');
@@ -314,7 +278,7 @@ function displayError() {
 
 /* Main logic */
 async function loadPost(id) {
-  showLoading(true);
+  toggleLoading('post-loading', 'post-content', true);
 
   try {
     const post = await getPost(id);
@@ -323,7 +287,7 @@ async function loadPost(id) {
     console.error('Failed to load post:', error);
     displayError();
   } finally {
-    showLoading(false);
+    toggleLoading('post-loading', 'post-content', false);
   }
 }
 

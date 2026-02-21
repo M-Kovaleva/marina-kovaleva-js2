@@ -57,7 +57,7 @@ function clearSearch() {
   }
   
   // Reload regular posts
-  loadPosts();
+  loadFeed();
   window.scrollTo(0, 0);
 }
 

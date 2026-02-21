@@ -4,7 +4,7 @@ import { followUser, unfollowUser } from '../api/apiClient.js';
 import { getCurrentUserData } from '../auth/storage.js';
 import { createPostCard } from '../components/PostCard.js';
 import { navigateTo } from '../router/router.js';
-
+import { toggleLoading, getInitial, confirmAction, showAlert } from '../utils/ui.js';
 
 /* API */
 async function getProfile(username) {
@@ -17,11 +17,6 @@ async function getProfile(username) {
 
   const result = await get(`/social/profiles/${username}?${params}`);
   return result.data;
-}
-
-/* Helpers */
-function getInitial(name) {
-  return name?.[0]?.toUpperCase() || '?';
 }
 /* DOM creation - profile components */
 /* Create profile header with info */
@@ -189,21 +184,6 @@ function createErrorState() {
 }
 
 /* DOM manipulation */
-/* Show/hide loading spinner */
-function showLoading(isLoading) {
-  const spinner = document.getElementById('profile-loading');
-  const content = document.getElementById('profile-content');
-
-  if (!spinner || !content) return;
-
-  if (isLoading) {
-    spinner.style.display = 'block';
-    content.style.display = 'none';
-  } else {
-    spinner.style.display = 'none';
-    content.style.display = 'block';
-  }
-}
 /* Check if current user is following this profile */
 function checkIfFollowing(profile) {
   const currentUser = getCurrentUserData();
@@ -280,7 +260,7 @@ function attachFollowHandler(username) {
       }
     } catch (error) {
       console.error('Follow/Unfollow error:', error);
-      alert('Failed to update follow status. Please try again.');
+      showAlert('Failed to update follow status. Please try again.', 'error'); 
     } finally {
       followBtn.disabled = false;
     }
@@ -316,8 +296,7 @@ function handleEdit(postId) {
 
 // Delete handler 
 async function handleDelete(postId) {
-  const confirmed = confirm('Are you sure you want to delete this post?');
-  if (!confirmed) return;
+  if (!confirmAction('Are you sure you want to delete this post?')) return;
 
   try {
     // delete post
@@ -331,10 +310,10 @@ async function handleDelete(postId) {
     
     updatePostsCount(-1);
     
-    alert('Post deleted successfully!');
+    showAlert('Post deleted successfully!', 'success');
   } catch (error) {
     console.error('Failed to delete post:', error);
-    alert('Failed to delete post. Please try again.');
+    showAlert('Failed to delete post. Please try again.', 'error'); 
   }
 }
 
@@ -350,7 +329,7 @@ function displayError() {
 
 /* Main logic */
 async function loadProfile(username) {
-  showLoading(true);
+  toggleLoading('profile-loading', 'profile-content', true);
 
   try {
     const profile = await getProfile(username);
@@ -359,7 +338,7 @@ async function loadProfile(username) {
     console.error('Failed to load profile:', error);
     displayError();
   } finally {
-    showLoading(false);
+    toggleLoading('profile-loading', 'profile-content', false);
   }
 }
 

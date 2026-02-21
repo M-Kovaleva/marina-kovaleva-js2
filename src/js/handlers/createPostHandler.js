@@ -1,7 +1,8 @@
 /* Create Post Handler */
 import { createPost, get, put } from '../api/apiClient.js';
-import { clearAllErrors } from '../utils/validation.js';
+import { clearAllErrors} from '../utils/validation.js';
 import { navigateTo } from '../router/router.js';  
+import { toggleLoading, showAlert } from '../utils/ui.js';
 
 let currentPostId = null; 
 
@@ -210,7 +211,7 @@ function buildForm() {
 /* DOM - loading spinner */
 /* Edit mode - load post for editing */
 async function loadPostForEdit(postId) {
-  showLoading(true);
+  toggleLoading('create-post-loading', 'post-detail', true); 
   
   try {
     const result = await get(`/social/posts/${postId}`);
@@ -228,27 +229,12 @@ async function loadPostForEdit(postId) {
       pageTitle.textContent = 'Edit Post';
     }
     
-    showLoading(false);
+    toggleLoading('create-post-loading', 'post-detail', false); 
   } catch (error) {
     console.error('Failed to load post:', error);
     showLoading(false);
-    alert('Failed to load post for editing');
+    showAlert('Failed to load post for editing', 'error');  
     navigateTo('/');
-  }
-}
-
-function showLoading(isLoading) {
-  const spinner = document.getElementById('create-post-loading');
-  const formCard = document.querySelector('.post-detail');
-
-  if (!spinner || !formCard) return;
-
-  if (isLoading) {
-    spinner.style.display = 'block';
-    formCard.style.display = 'none';
-  } else {
-    spinner.style.display = 'none';
-    formCard.style.display = 'block';
   }
 }
 
@@ -307,8 +293,7 @@ async function handleCreatePostSubmit(event) {
     media: mediaUrl ? { url: mediaUrl } : undefined
   };
 
-  // Show loading 
-  showLoading(true);
+  toggleLoading('create-post-loading', 'post-detail', true); 
   submitButton.disabled = true;
 
   try {
@@ -321,14 +306,14 @@ async function handleCreatePostSubmit(event) {
       await createPost(postData);
     }
 
-    showLoading(false);
+    toggleLoading('create-post-loading', 'post-detail', false); 
     successMessage.style.display = 'block';
     submitButton.style.display = 'none';
 
     setTimeout(() => navigateTo('/'), 2000);
 
   } catch (error) {
-    showLoading(false);
+    toggleLoading('create-post-loading', 'post-detail', false); 
     submitButton.disabled = false;
 
     console.error('Create post error:', error);

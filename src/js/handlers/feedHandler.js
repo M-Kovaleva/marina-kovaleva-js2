@@ -4,6 +4,7 @@ import { getCurrentUserData } from '../auth/storage.js';
 import { navigateTo } from '../router/router.js';
 import { searchPosts } from './searchHandler.js';
 import { createPostCard } from '../components/PostCard.js'; 
+import { toggleLoading, confirmAction, showAlert } from '../utils/ui.js';
 
 /* State */
 let currentPage = 1;
@@ -61,22 +62,6 @@ function createErrorState() {
 }
 
 /* DOM manipulation */
-/* Show/hide loading spinner */
-function showLoading(isLoading) {
-  const spinner = document.getElementById('feed-loading');
-  const feed = document.getElementById('feed');
-
-  if (!spinner || !feed) return;
-
-  if (isLoading) {
-    spinner.style.display = 'block';
-    feed.style.display = 'none';
-  } else {
-    spinner.style.display = 'none';
-    feed.style.display = 'block';
-  }
-}
-
 /* Display posts in feed */
 function displayFeed(posts) {
   const feed = document.getElementById('feed');
@@ -178,16 +163,15 @@ function handleEdit(postId) {
 
 /* Handle delete action */
 async function handleDelete(postId) {
-  const confirmed = confirm('Are you sure you want to delete this post?');
-  if (!confirmed) return;
+  if (!confirmAction('Are you sure you want to delete this post?')) return;
 
   try {
     await del(`/social/posts/${postId}`);
     await loadFeed();
-    alert('Post deleted successfully!');
+    showAlert('Post deleted successfully!', 'success');
   } catch (error) {
     console.error('Failed to delete post:', error);
-    alert('Failed to delete post. Please try again.');
+    showAlert('Failed to delete post. Please try again.', 'error');
   }
 }
 
@@ -224,7 +208,7 @@ export async function loadFeed() {
   if (isFetching) return;
 
   isFetching = true;
-  showLoading(true);
+  toggleLoading('feed-loading', 'feed', true);
 
   try {
     // Search or regular load
@@ -239,7 +223,7 @@ export async function loadFeed() {
     console.error('Failed to load posts:', error);
     displayError();
   } finally {
-    showLoading(false);
+    toggleLoading('feed-loading', 'feed', false);
     isFetching = false;
   }
 }
