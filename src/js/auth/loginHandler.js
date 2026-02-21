@@ -89,26 +89,16 @@ async function handleLoginSubmit(event) {
 
   try {
     // Step 1: Login
-    console.log("Step 1: Logging in...");
     const user = await login(credentials);
-    console.log("Logged in! Token:", user.accessToken ? "Yes" : "No");
 
     // Step 2: Save auth data
-    console.log("Step 2: Saving auth data...");
     saveAuth(user);
-    console.log("Auth data saved!");
 
     // Step 3: Create API key (if doesn't exist)
-    console.log("Step 3: Creating API key...");
     const apiKey = await createApiKey(user.accessToken);
-    console.log("API key created:", apiKey);
 
     // Step 4: Save API key
-    console.log("Step 4: Saving API key...");
     saveApiKey(apiKey);
-    console.log("API key saved!");
-
-    console.log("Login complete!");
 
     // Update auth link: Login - Logout
     updateAuthLink();

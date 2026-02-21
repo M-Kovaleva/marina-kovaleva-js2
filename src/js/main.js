@@ -3,8 +3,6 @@ import { initAuthLink, updateAuthLink } from "./components/Nav.js";
 
 // Wait for DOM to be fully loaded
 document.addEventListener("DOMContentLoaded", () => {
-  console.log("App initialized!");
-
   //Initialize auth link
   initAuthLink();
 
