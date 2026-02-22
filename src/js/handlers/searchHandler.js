@@ -3,6 +3,9 @@ import { get } from "../api/apiClient.js";
 import Home from "../views/Home.js";
 import { setQuery, setPage, getQuery, loadFeed } from "./feedHandler.js";
 
+/* Constants */
+const POSTS_PER_PAGE = 12;
+
 /**
  * Search posts by query
  * @param {string} query - Search term
@@ -16,7 +19,7 @@ export async function searchPosts(query, page = 1) {
     _comments: "true",
     _reactions: "true",
     _media: "true",
-    limit: "12",
+    limit: POSTS_PER_PAGE.toString(),
     page: page.toString(),
   });
 

@@ -6,6 +6,10 @@ import { searchPosts } from "./searchHandler.js";
 import { createPostCard } from "../components/PostCard.js";
 import { toggleLoading, confirmAction, showAlert } from "../utils/ui.js";
 
+/* Constants */
+const POSTS_PER_PAGE = 12;
+const BODY_PREVIEW_LENGTH_FEED = 150;
+
 /* State */
 let currentPage = 1;
 let currentQuery = "";
@@ -48,7 +52,7 @@ async function getPosts(page = 1) {
     _comments: "true",
     _reactions: "true",
     _media: "true",
-    limit: "12",
+    limit: POSTS_PER_PAGE.toString(),
     page: page.toString(),
   });
 
@@ -104,6 +108,7 @@ function displayFeed(posts) {
       variant: "feed",
       showAuthor: true,
       showActions: isAuthor,
+      bodyPreviewLength: BODY_PREVIEW_LENGTH_FEED,
       onEdit: handleEdit,
       onDelete: handleDelete,
     });

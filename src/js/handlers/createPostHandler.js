@@ -4,6 +4,10 @@ import { validateFields, clearAllErrors } from "../utils/validation.js";
 import { navigateTo } from "../router/router.js";
 import { toggleLoading, showAlert } from "../utils/ui.js";
 
+/* Constants */
+const MAX_TITLE_LENGTH = 100;
+const REDIRECT_DELAY = 2000;
+
 let currentPostId = null;
 
 /* Validation */
@@ -11,15 +15,15 @@ function validateTitle(title) {
   if (!title || title.trim() === "") {
     return { valid: false, message: "Title is required" };
   }
-  if (title.length > 100) {
-    return { valid: false, message: "Title must be 100 characters or less" };
+  if (title.length > MAX_TITLE_LENGTH) {
+    return { valid: false, message: `Title must be ${MAX_TITLE_LENGTH} characters or less` };
   }
   return { valid: true, message: "" };
 }
 
 function validateMediaUrl(url) {
   if (!url || url.trim() === "") {
-    return { valid: true, message: "" }; //user may not add an image
+    return { valid: true, message: "" }; 
   }
 
   try {
@@ -86,8 +90,8 @@ function createTitleField() {
     type: "text",
     required: true,
     placeholder: "Enter post title",
-    maxlength: 100,
-    helpText: "Required • Max 100 characters",
+    maxlength: MAX_TITLE_LENGTH,
+    helpText: `Required • Max ${MAX_TITLE_LENGTH} characters`,
   });
 }
 
@@ -197,7 +201,7 @@ function buildForm() {
 /* DOM - loading spinner */
 /**
  * Load post data for editing
- * @param {string} postId - ID of post to edit
+ * @param {string} postId
  * @returns {Promise<void>}
  */
 async function loadPostForEdit(postId) {
@@ -294,7 +298,7 @@ async function handleCreatePostSubmit(event) {
     successMessage.style.display = "block";
     submitButton.style.display = "none";
 
-    setTimeout(() => navigateTo("/"), 2000);
+    setTimeout(() => navigateTo("/"), REDIRECT_DELAY);
   } catch (error) {
     toggleLoading("create-post-loading", "post-detail", false);
     submitButton.disabled = false;
@@ -311,11 +315,10 @@ async function handleCreatePostSubmit(event) {
  * @returns {Promise<void>}
  */
 export async function setupCreatePost() {
-  //Check if Edit mode (query parameter ?id= )
   const urlParams = new URLSearchParams(window.location.search);
   const postId = urlParams.get("id");
 
-  currentPostId = postId; // Store for later use
+  currentPostId = postId;
   const isEdit = !!postId;
 
   // Build form

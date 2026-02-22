@@ -11,6 +11,9 @@ import {
   clearAllErrors,
 } from "../utils/validation.js";
 
+/* Constants */
+const REDIRECT_DELAY = 2000;
+
 /* Setup register form event listeners*/
 export function setupRegisterForm() {
   const form = document.getElementById("register-form");
@@ -29,7 +32,6 @@ async function handleRegisterSubmit(event) {
   // Get form data using FormData API
   const formData = new FormData(event.target);
   const formFields = Object.fromEntries(formData);
-
   // Extract and clean values
   const email = formFields.email?.trim() || "";
   const password = formFields.password || "";
@@ -86,7 +88,7 @@ async function handleRegisterSubmit(event) {
     updateAuthLink();
 
     // Redirect to login
-    setTimeout(() => navigateTo("/"), 2000);
+    setTimeout(() => navigateTo("/"), REDIRECT_DELAY);
   } catch (error) {
     // Show error message
     loadingSpinner.style.display = "none";

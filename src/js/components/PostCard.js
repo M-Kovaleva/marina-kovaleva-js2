@@ -2,6 +2,9 @@
 import { navigateTo } from "../router/router.js";
 import { formatDate, createAvatar } from "../utils/ui.js";
 
+/* Constants */
+const BODY_PREVIEW_LENGTH = { FEED: 150, PROFILE: 120 };
+
 /* Create post image */
 function createPostImage(imageUrl, title) {
   if (!imageUrl) return null;
@@ -90,7 +93,9 @@ export function createPostCard(post, options = {}) {
     variant = "feed",
     showAuthor = variant === "feed",
     showActions = false,
-    bodyPreviewLength = variant === "feed" ? 150 : 120,
+    bodyPreviewLength = variant === "feed"
+    ? BODY_PREVIEW_LENGTH.FEED   
+    : BODY_PREVIEW_LENGTH.PROFILE,
     onEdit = (id) => navigateTo(`/create?id=${id}`),
     onDelete = () => {},
   } = options;

@@ -1,3 +1,6 @@
+/* Constants */
+const MIN_PASSWORD_LENGTH = 8;
+
 /*Validate email format (should be @stud.noroff.no)*/
 export function validateEmail(email) {
   if (!email) {
@@ -35,8 +38,8 @@ export function validatePassword(password) {
   if (!password) {
     return { valid: false, message: "Password is required" };
   }
-  if (password.length < 8) {
-    return { valid: false, message: "Password must be at least 8 characters" };
+  if (password.length < MIN_PASSWORD_LENGTH) {
+    return { valid: false, message: `Password must be at least ${MIN_PASSWORD_LENGTH} characters` };
   }
   return { valid: true, message: "" };
 }

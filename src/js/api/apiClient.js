@@ -1,5 +1,4 @@
 /* API Clientn - file for all API communication: base URL, headers, auth functions, CRUD methods */
-
 import { getToken, getApiKey, saveAuth, saveApiKey } from "../auth/storage.js";
 
 const BASE_URL = "https://v2.api.noroff.dev";
