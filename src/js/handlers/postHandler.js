@@ -49,8 +49,7 @@ function createPostHeader(post) {
 
   const date = document.createElement("span");
   date.className = "post-date";
-  date.textContent = formatDate(post.created, "full"); //formatDate from ui.js
-
+  date.textContent = formatDate(post.created, "full");
   authorInfo.append(authorLink, date);
   author.append(authorInfo);
   header.append(author);
@@ -178,7 +177,7 @@ function createComment(comment) {
 
   const date = document.createElement("span");
   date.className = "comment-date";
-  date.textContent = formatDate(comment.created, "long"); // formatDate from ui.js
+  date.textContent = formatDate(comment.created, "long");
 
   info.append(authorLink, date);
 

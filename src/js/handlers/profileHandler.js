@@ -102,7 +102,7 @@ function createStats(profile) {
   followersCount.className = "profile-stat";
   const followersNumber = document.createElement("span");
   followersNumber.className = "profile-stat-number";
-  followersNumber.id = "followers-count"; //ID for updating
+  followersNumber.id = "followers-count";
   followersNumber.textContent = profile._count?.followers || 0;
   const followersLabel = document.createElement("span");
   followersLabel.className = "profile-stat-label";
@@ -144,7 +144,6 @@ function createPostsSection(posts, isOwnProfile) {
     postsList.append(empty);
   } else {
     posts.forEach((post) => {
-      // Using PostCard component
       const postCard = createPostCard(post, {
         variant: "profile",
         showAuthor: false,
@@ -152,6 +151,7 @@ function createPostsSection(posts, isOwnProfile) {
         onEdit: handleEdit,
         onDelete: handleDelete,
       });
+
       postsList.append(postCard);
     });
   }

@@ -39,14 +39,16 @@ export function validatePassword(password) {
     return { valid: false, message: "Password is required" };
   }
   if (password.length < MIN_PASSWORD_LENGTH) {
-    return { valid: false, message: `Password must be at least ${MIN_PASSWORD_LENGTH} characters` };
+    return {
+      valid: false,
+      message: `Password must be at least ${MIN_PASSWORD_LENGTH} characters`,
+    };
   }
   return { valid: true, message: "" };
 }
 
 /* Validate avatar URL */
 export function validateAvatarUrl(url) {
-  // Empty is OK
   if (!url || url.trim() === "") {
     return { valid: true, message: "" };
   }
@@ -55,7 +57,6 @@ export function validateAvatarUrl(url) {
   try {
     const urlObj = new URL(url);
 
-    // Must be http or https
     if (!["http:", "https:"].includes(urlObj.protocol)) {
       return {
         valid: false,

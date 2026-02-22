@@ -14,8 +14,10 @@ import { setupCreatePost } from "../handlers/createPostHandler.js";
 import { setupProfile } from "../handlers/profileHandler.js";
 import { isAuthenticated, getCurrentUserData } from "../auth/storage.js"; // Imported authorization check
 
-const PROTECTED = ["/", "/post/:id", "/profile", "/profile/:name", "/create"]; // Protected routes
+// Protected routes
+const PROTECTED = ["/", "/post/:id", "/profile", "/profile/:name", "/create"];
 
+// Define route patterns and their corresponding views
 const pathToRegex = (path) =>
   new RegExp("^" + path.replace(/\//g, "\\/").replace(/:\w+/g, "(.+)") + "$");
 
@@ -73,10 +75,10 @@ export const router = async () => {
   // Authorization check
   if (PROTECTED.includes(match.route.path) && !isAuthenticated()) {
     navigateTo("/login");
-    return; // Stop execution
+    return;
   }
 
-  // ✅ Special handling for /profile (without username)
+  // Handling for /profile (without username)
   if (match.route.path === "/profile") {
     const currentUser = getCurrentUserData();
     if (currentUser && currentUser.name) {

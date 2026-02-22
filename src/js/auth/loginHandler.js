@@ -63,16 +63,16 @@ async function handleLoginSubmit(event) {
   loadingSpinner.style.display = "block";
 
   try {
-    // Step 1: Login
+    // Login
     const user = await login(credentials);
 
-    // Step 2: Save auth data
+    // Save auth data
     saveAuth(user);
 
-    // Step 3: Create API key (if doesn't exist)
+    // Create API key (if doesn't exist)
     const apiKey = await createApiKey(user.accessToken);
 
-    // Step 4: Save API key
+    // Save API key
     saveApiKey(apiKey);
 
     // Update auth link: Login - Logout

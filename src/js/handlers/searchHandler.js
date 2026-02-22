@@ -49,7 +49,6 @@ export function updateSearchInfo() {
 
 /* Clear search results */
 function clearSearch() {
-  // Clear query
   setQuery("");
 
   // Clear input field

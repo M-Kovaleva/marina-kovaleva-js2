@@ -77,7 +77,6 @@ function createActionButtons(postId, onEdit, onDelete) {
 
 /**
  * Create PostCard component
- *
  * @param {Object} post - Post data
  * @param {Object} options - Configuration options
  * @param {string} options.variant - 'feed' or 'profile'
@@ -94,8 +93,8 @@ export function createPostCard(post, options = {}) {
     showAuthor = variant === "feed",
     showActions = false,
     bodyPreviewLength = variant === "feed"
-    ? BODY_PREVIEW_LENGTH.FEED   
-    : BODY_PREVIEW_LENGTH.PROFILE,
+      ? BODY_PREVIEW_LENGTH.FEED
+      : BODY_PREVIEW_LENGTH.PROFILE,
     onEdit = (id) => navigateTo(`/create?id=${id}`),
     onDelete = () => {},
   } = options;

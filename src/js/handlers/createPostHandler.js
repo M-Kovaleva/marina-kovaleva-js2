@@ -16,14 +16,17 @@ function validateTitle(title) {
     return { valid: false, message: "Title is required" };
   }
   if (title.length > MAX_TITLE_LENGTH) {
-    return { valid: false, message: `Title must be ${MAX_TITLE_LENGTH} characters or less` };
+    return {
+      valid: false,
+      message: `Title must be ${MAX_TITLE_LENGTH} characters or less`,
+    };
   }
   return { valid: true, message: "" };
 }
 
 function validateMediaUrl(url) {
   if (!url || url.trim() === "") {
-    return { valid: true, message: "" }; 
+    return { valid: true, message: "" };
   }
 
   try {
@@ -198,7 +201,6 @@ function buildForm() {
   );
 }
 
-/* DOM - loading spinner */
 /**
  * Load post data for editing
  * @param {string} postId
