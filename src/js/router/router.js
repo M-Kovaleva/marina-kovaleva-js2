@@ -12,7 +12,7 @@ import { setupSearch } from "../handlers/searchHandler.js";
 import { setupPost } from "../handlers/postHandler.js";
 import { setupCreatePost } from "../handlers/createPostHandler.js";
 import { setupProfile } from "../handlers/profileHandler.js";
-import { isAuthenticated, getCurrentUserData } from "../auth/storage.js"; // Imported authorization check
+import { isAuthenticated, getCurrentUserData } from "../auth/storage.js";
 
 // Protected routes
 const PROTECTED = ["/", "/post/:id", "/profile", "/profile/:name", "/create"];

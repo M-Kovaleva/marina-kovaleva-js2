@@ -11,7 +11,7 @@ const KEYS = {
 /**
  * Save authentication data to localStorage
  * @param {Object} data - Authentication data
- * @param {string} [data.accessToken] - Access token
+ * @param {string} [data.accessToken] - Access token'
  * @param {string} [data.name] - User name
  * @param {string} [data.email] - User email
  * @param {Object} [data.avatar] - Avatar object
