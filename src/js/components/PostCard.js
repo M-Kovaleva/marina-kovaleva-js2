@@ -1,21 +1,6 @@
 /* PostCard Component -  post card for Feed and Profile pages */
 import { navigateTo } from "../router/router.js";
-import { formatDate } from "../utils/ui.js";
-
-/* Create avatar - image or placeholder */
-function createAvatar(avatarUrl, name, size = "default") {
-  if (avatarUrl) {
-    const img = document.createElement("img");
-    img.src = avatarUrl;
-    img.alt = name;
-    img.className = `post-card-avatar post-card-avatar-${size}`;
-    return img;
-  }
-
-  const placeholder = document.createElement("div");
-  placeholder.className = `post-card-avatar-placeholder post-card-avatar-${size}`;
-  return placeholder; // без текста
-}
+import { formatDate, createAvatar } from "../utils/ui.js";
 
 /* Create post image */
 function createPostImage(imageUrl, title) {
@@ -37,6 +22,7 @@ function createAuthorSection(post) {
   const avatar = createAvatar(
     post.author?.avatar?.url,
     post.author?.name || "Unknown",
+    "post-card-avatar",
     "small",
   );
   section.append(avatar);

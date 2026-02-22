@@ -4,7 +4,12 @@ import { followUser, unfollowUser } from "../api/apiClient.js";
 import { getCurrentUserData } from "../auth/storage.js";
 import { createPostCard } from "../components/PostCard.js";
 import { navigateTo } from "../router/router.js";
-import { toggleLoading, confirmAction, showAlert } from "../utils/ui.js";
+import {
+  toggleLoading,
+  confirmAction,
+  showAlert,
+  createAvatar,
+} from "../utils/ui.js";
 
 /**
  * Fetch user profile with posts and followers
@@ -29,7 +34,12 @@ function createProfileHeader(profile, isOwnProfile, isFollowing) {
   header.className = "profile-header";
 
   // Avatar
-  const avatar = createAvatar(profile.avatar?.url, profile.name, "large");
+  const avatar = createAvatar(
+    profile.avatar?.url,
+    profile.name,
+    "profile-avatar",
+    "large",
+  );
   header.append(avatar);
 
   // User info
@@ -70,20 +80,6 @@ function createProfileHeader(profile, isOwnProfile, isFollowing) {
   return header;
 }
 
-/* Create avatar - image or placeholder */
-function createAvatar(avatarUrl, name, size = "large") {
-  if (avatarUrl) {
-    const img = document.createElement("img");
-    img.src = avatarUrl;
-    img.alt = name;
-    img.className = `profile-avatar profile-avatar-${size}`;
-    return img;
-  }
-
-  const placeholder = document.createElement("div");
-  placeholder.className = `profile-avatar-placeholder profile-avatar-${size}`;
-  return placeholder;
-}
 /* Create stats section: nuber of posts, followers, following */
 function createStats(profile) {
   const stats = document.createElement("div");

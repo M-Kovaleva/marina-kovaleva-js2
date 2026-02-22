@@ -21,6 +21,33 @@ export function toggleLoading(spinnerId, contentId, isLoading) {
 }
 
 /**
+ * Create avatar element (image or placeholder)
+ * @param {string} avatarUrl - Avatar image URL
+ * @param {string} name - User name (for alt text)
+ * @param {string} [baseClass='avatar'] - Base CSS class name
+ * @param {string} [size='default'] - Size variant (small, medium, large, default)
+ * @returns {HTMLElement} Avatar element (img or div)
+ */
+export function createAvatar(
+  avatarUrl,
+  name,
+  baseClass = "avatar",
+  size = "default",
+) {
+  if (avatarUrl) {
+    const img = document.createElement("img");
+    img.src = avatarUrl;
+    img.alt = name;
+    img.className = `${baseClass} ${baseClass}-${size}`;
+    return img;
+  }
+
+  const placeholder = document.createElement("div");
+  placeholder.className = `${baseClass}-placeholder ${baseClass}-${size}`;
+  return placeholder;
+}
+
+/**
  * Format date for display
  * @param {string} dateString - ISO date string
  * @param {string} format - 'short' | 'long' | 'full'

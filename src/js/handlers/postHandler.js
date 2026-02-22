@@ -1,6 +1,6 @@
 /* Post Handler - loads and displays single post */
 import { get } from "../api/apiClient.js";
-import { toggleLoading, formatDate } from "../utils/ui.js";
+import { toggleLoading, formatDate, createAvatar } from "../utils/ui.js";
 
 /**
  * Fetch single post with author and comments
@@ -32,6 +32,8 @@ function createPostHeader(post) {
   const avatar = createAvatar(
     post.author?.avatar?.url,
     post.author?.name || "Unknown",
+    "post-author-avatar",
+    "medium",
   );
   author.append(avatar);
 
@@ -54,21 +56,6 @@ function createPostHeader(post) {
   header.append(author);
 
   return header;
-}
-
-/* Create avatar - image or placeholder */
-function createAvatar(avatarUrl, name) {
-  if (avatarUrl) {
-    const img = document.createElement("img");
-    img.src = avatarUrl;
-    img.alt = name;
-    img.className = "post-author-avatar";
-    return img;
-  }
-
-  const placeholder = document.createElement("div");
-  placeholder.className = "post-author-avatar-placeholder";
-  return placeholder;
 }
 
 /* Create post image */
@@ -116,7 +103,7 @@ function createTags(tags) {
   return tagsContainer;
 }
 
-/*Create reactions and comments count */
+/* Create reactions and comments count */
 function createPostStats(post) {
   const stats = document.createElement("div");
   stats.className = "post-stats";
@@ -171,9 +158,11 @@ function createComment(comment) {
   const header = document.createElement("div");
   header.className = "comment-header";
 
-  const avatar = createCommentAvatar(
+  const avatar = createAvatar(
     comment.author?.avatar?.url,
     comment.author?.name || "Anonymous",
+    "comment-avatar",
+    "small",
   );
   header.append(avatar);
 
@@ -203,21 +192,6 @@ function createComment(comment) {
 
   commentBox.append(header, body);
   return commentBox;
-}
-
-/* Create comment avatar */
-function createCommentAvatar(avatarUrl, name) {
-  if (avatarUrl) {
-    const img = document.createElement("img");
-    img.src = avatarUrl;
-    img.alt = name;
-    img.className = "comment-avatar";
-    return img;
-  }
-
-  const placeholder = document.createElement("div");
-  placeholder.className = "comment-avatar-placeholder";
-  return placeholder;
 }
 
 /* DOM creation - error state */

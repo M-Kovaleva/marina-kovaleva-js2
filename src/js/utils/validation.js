@@ -83,14 +83,14 @@ export function validateAvatarUrl(url) {
 /* Show error message for a field */
 export function showError(fieldId, message) {
   const input = document.getElementById(fieldId);
-  
+
   // Remove all prefixes: login-, register-, post-, create-post-
   const cleanId = fieldId
     .replace("login-", "")
     .replace("register-", "")
     .replace("create-post-", "")
     .replace("post-", "");
-  
+
   const errorElement = document.getElementById(`${cleanId}-error`);
 
   if (input) {
@@ -106,14 +106,14 @@ export function showError(fieldId, message) {
 /* Clear error message for a field */
 export function clearError(fieldId) {
   const input = document.getElementById(fieldId);
-  
+
   // Remove all prefixes: login-, register-, post-, create-post-
   const cleanId = fieldId
     .replace("login-", "")
     .replace("register-", "")
     .replace("create-post-", "")
     .replace("post-", "");
-  
+
   const errorElement = document.getElementById(`${cleanId}-error`);
 
   if (input) {
