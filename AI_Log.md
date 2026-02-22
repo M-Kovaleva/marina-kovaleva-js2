@@ -23,6 +23,10 @@ Date: 17 February 2026
 Purpose: Brainstorming project structure - deciding between separate vs universal validation functions. Comparing validation approaches: specific functions 
 Outcome: Chose specific validation functions for clarity and reusability; implemented validation.js module
 
+Date: 17 February 2026
+Purpose: Brainstorming test cases. Help with the definition of test scenarios
+Outcome: Writing unit tests based on the proposed test cases
+
 Date: 18 February 2026
 Purpose: Brainstorming user flow for feed page with posts display, search, pagination. Discussing layout structure, component organization, event handler setup    
 Outcome: Created feed page HTML template with navbar, search bar, post cards, pagination controls
@@ -94,6 +98,10 @@ Outcome: Identifying that showError only removed "register-" prefix, not handlin
 Date: 22 February 2026
 Purpose: Brainstorming code quality improvements. Help with identifying magic numbers
 Outcome: Created named constants after it
+
+Date: 22 February 2026
+Purpose: Brainstorming test cases. Help with the definition of test scenarios
+Outcome: Writing unit tests based on the proposed test cases
 
 These are the videos I used to make things a little clearer for the work.
 https://www.youtube.com/playlist?list=PL0MUAHwery4qb4bilAQ9Is2NhgUsAmzkR
