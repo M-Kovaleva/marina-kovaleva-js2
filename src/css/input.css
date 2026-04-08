@@ -27,3 +27,39 @@
   /* === FONTS === */
   --font-sans: "DM Sans", system-ui, sans-serif;
 }
+/* === FORM VALIDATION (для совместимости с существующим JS) === */
+.form-error {
+  display: none;
+}
+
+.form-error.show {
+  display: block;
+}
+
+.error {
+  border-color: #dc2626 !important;
+  background-color: #fef2f2 !important;
+}
+
+.dark .error {
+  background-color: rgba(127, 29, 29, 0.2) !important;
+}
+
+/* === AUTOFILL === */
+.autofill-fix:-webkit-autofill,
+.autofill-fix:-webkit-autofill:hover,
+.autofill-fix:-webkit-autofill:focus,
+.autofill-fix:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px white inset !important;
+  -webkit-text-fill-color: #1c1917 !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+.dark .autofill-fix:-webkit-autofill,
+.dark .autofill-fix:-webkit-autofill:hover,
+.dark .autofill-fix:-webkit-autofill:focus,
+.dark .autofill-fix:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px #1c1917 inset !important;
+  -webkit-text-fill-color: white !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
