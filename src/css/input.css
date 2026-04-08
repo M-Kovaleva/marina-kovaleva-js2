@@ -27,8 +27,9 @@
   /* === FONTS === */
   --font-sans: "DM Sans", system-ui, sans-serif;
 }
-/* === FORM VALIDATION (для совместимости с существующим JS) === */
+/* === FORM VALIDATION (for compatibility with existing JS) === */
 .form-error {
+  @apply text-sm text-red-600 dark:text-red-400;
   display: none;
 }
 
@@ -365,4 +366,58 @@
   .btn-unfollow {
     @apply w-full;
   }
+}
+
+/* === CREATE POST PAGE === */
+
+/* Form Group */
+.form-group {
+  @apply flex flex-col gap-2;
+}
+
+.form-group label {
+  @apply text-sm font-semibold text-stone-700 dark:text-stone-200;
+}
+
+/* Inputs */
+.form-group input[type="text"],
+.form-group input[type="url"],
+.form-group textarea {
+  @apply w-full px-4 py-3 border-2 border-stone-200 dark:border-stone-500 rounded-lg bg-white dark:bg-stone-800 text-stone-900 dark:text-white placeholder:text-stone-400 dark:placeholder:text-stone-400 focus:border-brand-500 focus:outline-none transition-all duration-200;
+}
+
+.form-group textarea {
+  @apply resize-y min-h-32 leading-relaxed;
+}
+
+/* Help Text */
+.form-help {
+  @apply text-sm text-stone-500 dark:text-stone-400;
+}
+
+/* Submit Button */
+#create-post-submit {
+  @apply w-full py-3 mt-2 bg-stone-900 dark:bg-white text-white dark:text-stone-900 font-semibold rounded-lg cursor-pointer hover:bg-stone-700 hover:shadow-md dark:hover:bg-brand-500 dark:hover:text-white active:scale-[0.98] transition-all duration-200;
+}
+
+#create-post-submit:disabled {
+  @apply opacity-50 cursor-not-allowed;
+}
+
+/* Success Message */
+.success-message {
+  @apply bg-green-50 dark:bg-green-900/20 border border-green-300 dark:border-green-800 rounded-lg p-4 text-center;
+}
+
+.success-message p {
+  @apply text-green-700 dark:text-green-400 font-medium m-0;
+}
+
+/* Error Message */
+.error-message {
+  @apply bg-red-50 dark:bg-red-900/20 border border-red-300 dark:border-red-800 rounded-lg p-4 text-center;
+}
+
+.error-message p {
+  @apply text-red-700 dark:text-red-400 font-medium m-0;
 }
