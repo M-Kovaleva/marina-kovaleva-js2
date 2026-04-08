@@ -63,3 +63,22 @@
   -webkit-text-fill-color: white !important;
   transition: background-color 5000s ease-in-out 0s;
 }
+
+/* === SEARCH INFO STYLING (DRY with @apply - Lesson 2.4) === */
+#search-info:not(.hidden) {
+  display: flex;
+}
+
+#search-info strong {
+  @apply text-stone-900 dark:text-white font-semibold;
+}
+
+.btn-clear-search {
+  @apply bg-transparent border-none text-brand-600 dark:text-brand-400 text-sm font-semibold cursor-pointer transition-colors hover:text-stone-900 dark:hover:text-white hover:underline;
+}
+
+/* === FEED STATES === */
+.feed-empty,
+.feed-error {
+  @apply text-center py-8 text-stone-600 dark:text-stone-400;
+}
