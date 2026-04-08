@@ -82,3 +82,160 @@
 .feed-error {
   @apply text-center py-8 text-stone-600 dark:text-stone-400;
 }
+
+/* === POST DETAIL PAGE === */
+
+/* Container */
+.post-container {
+  @apply max-w-2xl mx-auto;
+}
+
+/* Back link */
+.post-back-link {
+  @apply inline-flex items-center gap-2 text-brand-600 dark:text-brand-400 font-semibold hover:text-brand-700 dark:hover:text-brand-500 mb-6 transition-colors;
+}
+
+/* Post card */
+.post-detail {
+  @apply bg-white dark:bg-stone-800 rounded-xl border border-stone-200 dark:border-stone-700 p-6;
+}
+
+/* Post Header */
+.post-header {
+  @apply mb-6 pb-4 border-b border-stone-200 dark:border-stone-700;
+}
+
+.post-author {
+  @apply flex items-center gap-3;
+}
+
+.post-author-avatar {
+  @apply w-12 h-12 rounded-full object-cover;
+}
+
+.post-author-avatar-placeholder {
+  @apply w-12 h-12 rounded-full bg-amber-100 dark:bg-stone-600 flex items-center justify-center font-bold text-lg text-stone-700 dark:text-stone-200 uppercase;
+}
+
+.post-author-info {
+  @apply flex flex-col;
+}
+
+.post-author-name {
+  @apply font-semibold text-stone-900 dark:text-white hover:text-brand-600 dark:hover:text-brand-400 transition-colors;
+}
+
+.post-date {
+  @apply text-sm text-stone-400 dark:text-stone-500;
+}
+
+/* === POST IMAGE (Post page only - always has padding) === */
+.post-image {
+  @apply w-full max-h-96 object-cover mb-6 rounded-lg;
+}
+
+@media (min-width: 768px) {
+  .post-image {
+    border-radius: 0.75rem;
+  }
+}
+/* Post Body */
+.post-body {
+  @apply mb-6;
+}
+
+.post-title {
+  @apply text-2xl font-bold text-stone-900 dark:text-white mb-3;
+}
+
+.post-text {
+  @apply text-stone-600 dark:text-stone-300 leading-relaxed whitespace-pre-wrap break-words;
+}
+
+/* Post Tags */
+.post-tags {
+  @apply flex flex-wrap gap-2 mb-6;
+}
+
+.post-tag {
+  @apply text-sm bg-amber-100 dark:bg-stone-700 text-stone-600 dark:text-stone-300 px-3 py-1 rounded-full font-medium;
+}
+
+/* Post Stats */
+.post-stats {
+  @apply flex gap-6 py-4 mb-6 border-t border-b border-stone-200 dark:border-stone-700;
+}
+
+.post-stat {
+  @apply text-sm text-stone-500 dark:text-stone-400;
+}
+
+/* Comments Section */
+.post-comments {
+  @apply mt-8;
+}
+
+.post-comments h2 {
+  @apply text-lg font-bold text-stone-900 dark:text-white mb-4;
+}
+
+.comments-empty {
+  @apply text-center text-stone-500 dark:text-stone-400 py-8 text-sm;
+}
+
+/* Single Comment */
+.comment {
+  @apply p-4 mb-3 border border-stone-200 dark:border-stone-700 rounded-lg bg-stone-50 dark:bg-stone-900;
+}
+
+.comment:last-child {
+  @apply mb-0;
+}
+
+.comment-header {
+  @apply flex items-center gap-3 mb-2;
+}
+
+.comment-avatar {
+  @apply w-8 h-8 rounded-full object-cover;
+}
+
+.comment-avatar-placeholder {
+  @apply w-8 h-8 rounded-full bg-amber-100 dark:bg-stone-600 flex items-center justify-center font-semibold text-xs text-stone-700 dark:text-stone-200 uppercase;
+}
+
+.comment-info {
+  @apply flex flex-col;
+}
+
+.comment-author {
+  @apply font-semibold text-sm text-stone-900 dark:text-white hover:text-brand-600 dark:hover:text-brand-400 transition-colors;
+}
+
+.comment-date {
+  @apply text-xs text-stone-400 dark:text-stone-500;
+}
+
+.comment-body {
+  @apply text-sm text-stone-600 dark:text-stone-300 leading-relaxed m-0;
+}
+
+/* Error State */
+.post-error {
+  @apply text-center py-16;
+}
+
+.post-error p {
+  @apply mb-6 text-stone-500 dark:text-stone-400;
+}
+
+/* Mobile */
+@media (max-width: 639px) {
+  .post-detail {
+    @apply p-4;
+  }
+
+  .post-title {
+    @apply text-xl;
+  }
+}
