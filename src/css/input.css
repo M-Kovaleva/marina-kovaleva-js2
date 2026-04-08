@@ -239,3 +239,130 @@
     @apply text-xl;
   }
 }
+
+/* === PROFILE PAGE === */
+
+/* Profile card */
+.profile-detail {
+  @apply bg-white dark:bg-stone-800 rounded-xl border border-stone-200 dark:border-stone-700 p-6;
+}
+
+/* Profile Header */
+.profile-header {
+  @apply relative mb-6 pb-6 border-b border-stone-200 dark:border-stone-700;
+}
+
+/* Avatar */
+.profile-avatar {
+  @apply rounded-full object-cover;
+}
+
+.profile-avatar-large {
+  @apply w-24 h-24 border-4 border-white dark:border-stone-700;
+}
+
+.profile-avatar-placeholder {
+  @apply rounded-full bg-amber-100 dark:bg-stone-600 flex items-center justify-center font-bold text-stone-700 dark:text-stone-200 uppercase;
+}
+
+.profile-avatar-placeholder.profile-avatar-large {
+  @apply w-24 h-24 text-4xl border-4 border-white dark:border-stone-700;
+}
+
+/* User Info */
+.profile-user-info-container {
+  @apply mt-4;
+}
+
+.profile-name {
+  @apply text-2xl font-bold text-stone-900 dark:text-white mb-1;
+}
+
+.profile-email {
+  @apply text-stone-500 dark:text-stone-400 mb-4;
+}
+
+/* Stats */
+.profile-stats {
+  @apply flex gap-8 py-4 mb-6 border-b border-stone-200 dark:border-stone-700;
+}
+
+.profile-stat {
+  @apply flex flex-col items-center gap-1;
+}
+
+.profile-stat-number {
+  @apply text-xl font-bold text-stone-900 dark:text-white;
+}
+
+.profile-stat-label {
+  @apply text-sm text-stone-500 dark:text-stone-400 uppercase tracking-wide;
+}
+
+/* Posts Section */
+.profile-posts {
+  @apply mt-8;
+}
+
+.profile-posts h2 {
+  @apply text-lg font-bold text-stone-900 dark:text-white mb-4;
+}
+
+.profile-posts-empty {
+  @apply text-center text-stone-500 dark:text-stone-400 py-8;
+}
+
+.profile-posts-list {
+  @apply flex flex-col gap-4;
+}
+
+/* Follow/Unfollow Buttons */
+.btn-follow {
+  @apply px-4 py-2 bg-brand-600 text-white font-semibold rounded-lg cursor-pointer hover:bg-brand-700 transition-all duration-200;
+}
+
+.btn-unfollow {
+  @apply px-4 py-2 bg-stone-200 dark:bg-stone-700 text-stone-700 dark:text-stone-300 font-semibold rounded-lg cursor-pointer hover:bg-stone-900 hover:text-white dark:hover:bg-stone-600 transition-all duration-200;
+}
+
+.btn-follow:disabled,
+.btn-unfollow:disabled {
+  @apply opacity-50 cursor-not-allowed;
+}
+
+/* Error State */
+.profile-error {
+  @apply text-center py-16;
+}
+
+.profile-error p {
+  @apply mb-6 text-stone-500 dark:text-stone-400;
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  .profile-detail {
+    @apply p-4;
+  }
+
+  .profile-name {
+    @apply text-xl;
+  }
+
+  .profile-stats {
+    @apply gap-4;
+  }
+
+  .profile-avatar-large {
+    @apply w-20 h-20;
+  }
+
+  .profile-avatar-placeholder.profile-avatar-large {
+    @apply w-20 h-20 text-3xl;
+  }
+
+  .btn-follow,
+  .btn-unfollow {
+    @apply w-full;
+  }
+}
