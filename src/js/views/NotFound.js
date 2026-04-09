@@ -10,7 +10,7 @@ export default class NotFound extends AbstractView {
     return `
       <div class="min-h-[calc(100vh-200px)] flex flex-col items-center justify-center text-center px-4">
         
-        <h1 class="text-6xl font-bold text-stone-900 dark:text-white mb-4">
+        <h1 class="text-3xl font-bold text-stone-900 dark:text-white mb-4">
           404
         </h1>
         

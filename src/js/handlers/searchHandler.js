@@ -53,7 +53,7 @@ function clearSearch() {
 
   // Clear input field
   const searchInput = document.querySelector(
-    '#search-form input[name="search"]',
+    '#search-form input[name="search"]'
   );
   if (searchInput) {
     searchInput.value = "";

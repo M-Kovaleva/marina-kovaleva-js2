@@ -8,7 +8,7 @@ export default class Home extends AbstractView {
 
   async getHtml() {
     return `
-      <section class="max-w-2xl mx-auto">
+      <section class="page-container">
 
         <!-- Search Form -->
         <form id="search-form" class="flex gap-3 mb-8">
@@ -16,23 +16,23 @@ export default class Home extends AbstractView {
             type="search"
             name="search"
             placeholder="Search posts..."
-            class="autofill-fix flex-1 px-4 py-3 border-2 border-stone-200 dark:border-stone-600 rounded-lg bg-white dark:bg-stone-800 text-stone-900 dark:text-white placeholder:text-stone-400 focus:border-brand-500 focus:outline-none transition-all duration-200"
+            class="autofill-fix input-field flex-1"
           />
           <button 
             type="submit" 
-            class="btn-accent px-6 py-3 bg-brand-600 text-white font-semibold rounded-lg cursor-pointer hover:bg-brand-700 hover:shadow-md active:scale-[0.98] transition-all duration-200"
+            class="px-6 py-3 bg-brand-600 text-white font-semibold rounded-lg cursor-pointer hover:bg-brand-700 hover:shadow-md active:scale-[0.98] transition-all duration-200"
           >
             Search
           </button>
         </form>
 
-        <!-- Search Info (populated by JS) -->
+        <!-- Search Info -->
         <div id="search-info" class="search-info hidden mb-6 flex items-center justify-between px-4 py-3 bg-amber-100 dark:bg-stone-800 rounded-lg text-sm text-stone-600 dark:text-stone-300"></div>
 
         <!-- Loading State -->
-        <div id="feed-loading" class="loading-spinner hidden text-center py-16">
-          <div class="spinner w-10 h-10 mx-auto border-4 border-stone-300 border-t-brand-600 rounded-full animate-spin"></div>
-          <p class="mt-4 text-stone-500 dark:text-stone-400">Loading posts...</p>
+        <div id="feed-loading" class="loading-container">
+          <div class="loading-spinner"></div>
+          <p class="loading-text">Loading posts...</p>
         </div>
 
         <!-- Empty State -->

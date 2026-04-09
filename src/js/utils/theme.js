@@ -22,13 +22,15 @@ export function initTheme() {
  * Initialize theme toggle buttons
  */
 export function initThemeToggle() {
-  document.querySelectorAll("#theme-toggle, #theme-toggle-mobile").forEach((btn) => {
-    if (!btn) return;
-    btn.addEventListener("click", () => {
-      const isDark = document.documentElement.classList.toggle("dark");
-      localStorage.setItem(THEME_KEY, isDark ? "dark" : "light");
+  document
+    .querySelectorAll("#theme-toggle, #theme-toggle-mobile")
+    .forEach((btn) => {
+      if (!btn) return;
+      btn.addEventListener("click", () => {
+        const isDark = document.documentElement.classList.toggle("dark");
+        localStorage.setItem(THEME_KEY, isDark ? "dark" : "light");
+      });
     });
-  });
 }
 
 /**

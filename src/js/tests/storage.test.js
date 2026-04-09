@@ -33,7 +33,7 @@ describe("storage.js - localStorage management", () => {
       expect(localStorage.getItem("userName")).toBe("test_user");
       expect(localStorage.getItem("userEmail")).toBe("test@stud.noroff.no");
       expect(localStorage.getItem("userAvatar")).toBe(
-        "https://example.com/avatar.jpg",
+        "https://example.com/avatar.jpg"
       );
     });
 

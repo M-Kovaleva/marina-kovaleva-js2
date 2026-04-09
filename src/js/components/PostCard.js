@@ -19,7 +19,8 @@ function createAuthorSection(post) {
     "post-card-avatar",
     "small"
   );
-  avatar.className = "w-10 h-10 rounded-full object-cover bg-amber-100 dark:bg-stone-600 flex items-center justify-center text-sm font-semibold text-stone-700 dark:text-stone-200";
+  avatar.className =
+    "w-10 h-10 rounded-full object-cover bg-amber-100 dark:bg-stone-600 flex items-center justify-center text-sm font-semibold text-stone-700 dark:text-stone-200";
   section.appendChild(avatar);
 
   // Author info
@@ -28,7 +29,8 @@ function createAuthorSection(post) {
 
   const authorLink = document.createElement("a");
   authorLink.href = `/profile/${post.author?.name}`;
-  authorLink.className = "text-sm font-semibold text-stone-900 dark:text-white hover:text-brand-600 dark:hover:text-brand-400 transition-colors";
+  authorLink.className =
+    "text-sm font-semibold text-stone-900 dark:text-white hover:text-brand-600 dark:hover:text-brand-400 transition-colors";
   authorLink.setAttribute("data-link", "");
   authorLink.textContent = post.author?.name || "Unknown";
 
@@ -55,7 +57,8 @@ function createActionButtons(postId, onEdit, onDelete) {
 
   // Edit button
   const editBtn = document.createElement("button");
-  editBtn.className = "px-3 py-1 text-xs font-semibold border-2 border-brand-600 text-brand-600 dark:border-brand-400 dark:text-brand-400 rounded-lg cursor-pointer hover:bg-brand-600 hover:text-white dark:hover:bg-brand-500 dark:hover:text-white transition-all duration-200";
+  editBtn.className =
+    "px-3 py-1 text-xs font-semibold border-2 border-brand-600 text-brand-600 dark:border-brand-400 dark:text-brand-400 rounded-lg cursor-pointer hover:bg-brand-600 hover:text-white dark:hover:bg-brand-500 dark:hover:text-white transition-all duration-200";
   editBtn.textContent = "Edit";
   editBtn.addEventListener("click", (e) => {
     e.preventDefault();
@@ -65,7 +68,8 @@ function createActionButtons(postId, onEdit, onDelete) {
 
   // Delete button
   const deleteBtn = document.createElement("button");
-  deleteBtn.className = "px-3 py-1 text-xs font-semibold border-2 border-red-500 text-red-500 dark:border-red-400 dark:text-red-400 rounded-lg cursor-pointer hover:bg-red-500 hover:text-white dark:hover:bg-red-500 dark:hover:text-white transition-all duration-200";
+  deleteBtn.className =
+    "px-3 py-1 text-xs font-semibold border-2 border-red-500 text-red-500 dark:border-red-400 dark:text-red-400 rounded-lg cursor-pointer hover:bg-red-500 hover:text-white dark:hover:bg-red-500 dark:hover:text-white transition-all duration-200";
   deleteBtn.textContent = "Delete";
   deleteBtn.addEventListener("click", (e) => {
     e.preventDefault();
@@ -96,7 +100,8 @@ export function createPostCard(post, options = {}) {
 
   // Main card with group for hover effects
   const card = document.createElement("article");
-  card.className = "group bg-white dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl overflow-hidden transition-all duration-300";
+  card.className =
+    "group bg-white dark:bg-stone-800 border border-stone-200 dark:border-stone-700 rounded-xl overflow-hidden transition-all duration-300";
 
   // Header (author + actions)
   if (showAuthor || showActions) {
@@ -118,12 +123,14 @@ export function createPostCard(post, options = {}) {
   if (post.media?.url) {
     const imageWrapper = document.createElement("div");
     // Mobile: no margin, sm: small margin, md: more margin
-    imageWrapper.className = "overflow-hidden rounded-none sm:mx-2 sm:rounded-lg md:mx-4 md:rounded-xl";
+    imageWrapper.className =
+      "overflow-hidden rounded-none sm:mx-2 sm:rounded-lg md:mx-4 md:rounded-xl";
 
     const img = document.createElement("img");
     img.src = post.media.url;
     img.alt = post.title || "Post image";
-    img.className = "w-full aspect-square object-cover md:group-hover:scale-105 transition-transform duration-300";
+    img.className =
+      "w-full aspect-square object-cover md:group-hover:scale-105 transition-transform duration-300";
 
     imageWrapper.appendChild(img);
     card.appendChild(imageWrapper);
@@ -135,14 +142,16 @@ export function createPostCard(post, options = {}) {
 
   // Title
   const title = document.createElement("h2");
-  title.className = "text-lg font-bold text-stone-900 dark:text-white line-clamp-2";
+  title.className =
+    "text-lg font-bold text-stone-900 dark:text-white line-clamp-2";
   title.textContent = post.title || "Untitled";
   content.appendChild(title);
 
   // Body preview
   if (post.body) {
     const body = document.createElement("p");
-    body.className = "text-stone-600 dark:text-stone-400 text-sm leading-relaxed line-clamp-3";
+    body.className =
+      "text-stone-600 dark:text-stone-400 text-sm leading-relaxed line-clamp-3";
     body.textContent =
       post.body.length > bodyPreviewLength
         ? post.body.slice(0, bodyPreviewLength) + "..."
@@ -161,7 +170,8 @@ export function createPostCard(post, options = {}) {
   // Read more link
   const link = document.createElement("a");
   link.href = `/post/${post.id}`;
-  link.className = "inline-flex items-center gap-1 text-sm font-semibold text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-500 transition-colors";
+  link.className =
+    "inline-flex items-center gap-1 text-sm font-semibold text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-500 transition-colors";
   link.setAttribute("data-link", "");
   link.innerHTML = `Read more <span class="md:group-hover:translate-x-1 transition-transform duration-200">→</span>`;
   content.appendChild(link);

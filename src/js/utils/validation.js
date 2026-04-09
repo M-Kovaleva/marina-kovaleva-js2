@@ -67,7 +67,7 @@ export function validateAvatarUrl(url) {
     // Check if URL ends with image extension
     const imageExtensions = [".jpg", ".jpeg", ".png", ".gif", ".webp", ".svg"];
     const hasImageExt = imageExtensions.some((ext) =>
-      url.toLowerCase().endsWith(ext),
+      url.toLowerCase().endsWith(ext)
     );
 
     if (!hasImageExt) {
@@ -134,7 +134,7 @@ export function clearError(fieldId) {
 export function clearAllErrors() {
   const errorElements = document.querySelectorAll(".form-error");
   const inputElements = document.querySelectorAll(
-    "input.error, textarea.error",
+    "input.error, textarea.error"
   );
 
   errorElements.forEach((el) => {

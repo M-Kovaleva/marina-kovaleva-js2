@@ -33,7 +33,7 @@ function createPostHeader(post) {
     post.author?.avatar?.url,
     post.author?.name || "Unknown",
     "post-author-avatar",
-    "medium",
+    "medium"
   );
   author.append(avatar);
 
@@ -161,7 +161,7 @@ function createComment(comment) {
     comment.author?.avatar?.url,
     comment.author?.name || "Anonymous",
     "comment-avatar",
-    "small",
+    "small"
   );
   header.append(avatar);
 

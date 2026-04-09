@@ -38,7 +38,7 @@ function createProfileHeader(profile, isOwnProfile, isFollowing) {
     profile.avatar?.url,
     profile.name,
     "profile-avatar",
-    "large",
+    "large"
   );
   header.append(avatar);
 
