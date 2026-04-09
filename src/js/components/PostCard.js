@@ -52,25 +52,34 @@ function createAuthorSection(post) {
  */
 function createActionButtons(postId, onEdit, onDelete) {
   const actions = document.createElement("div");
-  // Mobile-first: visible by default, hidden on md+ until hover
-  actions.className = "flex gap-2";
+  actions.className = "flex gap-3";
 
-  // Edit button
+  // Edit button (pencil icon)
   const editBtn = document.createElement("button");
   editBtn.className =
-    "px-3 py-1 text-xs font-semibold border-2 border-brand-600 text-brand-600 dark:border-brand-400 dark:text-brand-400 rounded-lg cursor-pointer hover:bg-brand-600 hover:text-white dark:hover:bg-brand-500 dark:hover:text-white transition-all duration-200";
-  editBtn.textContent = "Edit";
+    "p-2 text-stone-500 dark:text-stone-400 hover:text-brand-600 dark:hover:text-brand-400 cursor-pointer transition-colors";
+  editBtn.setAttribute("aria-label", "Edit post");
+  editBtn.innerHTML = `
+    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>
+    </svg>
+  `;
   editBtn.addEventListener("click", (e) => {
     e.preventDefault();
     e.stopPropagation();
     onEdit(postId);
   });
 
-  // Delete button
+  // Delete button (trash icon)
   const deleteBtn = document.createElement("button");
   deleteBtn.className =
-    "px-3 py-1 text-xs font-semibold border-2 border-red-500 text-red-500 dark:border-red-400 dark:text-red-400 rounded-lg cursor-pointer hover:bg-red-500 hover:text-white dark:hover:bg-red-500 dark:hover:text-white transition-all duration-200";
-  deleteBtn.textContent = "Delete";
+    "p-2 text-stone-500 dark:text-stone-400 hover:text-brand-600 dark:hover:hover:text-brand-400 cursor-pointer transition-colors";
+  deleteBtn.setAttribute("aria-label", "Delete post");
+  deleteBtn.innerHTML = `
+    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+    </svg>
+  `;
   deleteBtn.addEventListener("click", (e) => {
     e.preventDefault();
     e.stopPropagation();
