@@ -1590,16 +1590,10 @@
 }
 .profile-detail {
   border-radius: var(--radius-xl);
-  border-style: var(--tw-border-style);
-  border-width: 1px;
-  border-color: var(--color-stone-200);
-  background-color: var(--color-white);
+  background-color: var(--color-page-light);
   padding: calc(var(--spacing) * 6);
   &:where(.dark, .dark *) {
-    border-color: var(--color-stone-700);
-  }
-  &:where(.dark, .dark *) {
-    background-color: var(--color-stone-800);
+    background-color: var(--color-page-dark);
   }
 }
 .profile-header {
