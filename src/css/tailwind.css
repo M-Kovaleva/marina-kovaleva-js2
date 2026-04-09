@@ -1357,15 +1357,10 @@
 }
 .post-image {
   margin-bottom: calc(var(--spacing) * 6);
-  max-height: calc(var(--spacing) * 96);
+  aspect-ratio: 1 / 1;
   width: 100%;
   border-radius: var(--radius-lg);
   object-fit: cover;
-}
-@media (min-width: 768px) {
-  .post-image {
-    border-radius: 0.75rem;
-  }
 }
 .post-body {
   margin-bottom: calc(var(--spacing) * 6);
@@ -1572,11 +1567,24 @@
 }
 @media (max-width: 639px) {
   .post-detail {
-    padding: calc(var(--spacing) * 4);
+    padding: 0;
+  }
+  .post-header {
+    padding: 1rem 1rem 1rem 1rem;
+  }
+  .post-body, .post-tags, .post-stats, .post-comments {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .post-comments {
+    padding-bottom: 1rem;
   }
   .post-title {
     font-size: var(--text-xl);
     line-height: var(--tw-leading, var(--text-xl--line-height));
+  }
+  .post-image {
+    border-radius: 0;
   }
 }
 .profile-detail {

@@ -131,7 +131,6 @@ export function createPostCard(post, options = {}) {
     img.alt = post.title || "Post image";
     img.className =
       "w-full aspect-square object-cover md:group-hover:scale-105 transition-transform duration-300";
-
     imageWrapper.appendChild(img);
     card.appendChild(imageWrapper);
   }

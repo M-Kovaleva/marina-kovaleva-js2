@@ -192,16 +192,12 @@
   @apply text-sm text-stone-400 dark:text-stone-500;
 }
 
-/* === POST IMAGE (Post page only - always has padding) === */
+/* === POST IMAGE === */
 .post-image {
-  @apply mb-6 max-h-96 w-full rounded-lg object-cover;
+  @apply w-full aspect-square object-cover mb-6 rounded-lg;
 }
 
-@media (min-width: 768px) {
-  .post-image {
-    border-radius: 0.75rem;
-  }
-}
+
 /* Post Body */
 .post-body {
   @apply mb-6;
@@ -295,11 +291,31 @@
 /* Mobile */
 @media (max-width: 639px) {
   .post-detail {
-    @apply p-4;
+    padding: 0;
+  }
+
+  .post-header {
+    padding: 1rem 1rem 1rem 1rem;
+  }
+
+  .post-body,
+  .post-tags,
+  .post-stats,
+  .post-comments {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .post-comments {
+    padding-bottom: 1rem;
   }
 
   .post-title {
     @apply text-xl;
+  }
+
+  .post-image {
+    border-radius: 0;
   }
 }
 
