@@ -11,7 +11,7 @@ export default class Login extends AbstractView {
       <div class="min-h-[calc(100vh-120px)] flex items-center justify-center px-4">
         <div class="w-full max-w-md bg-white dark:bg-stone-700 rounded-2xl shadow-lg p-8">
           
-          <h1 class="text-3xl font-bold text-center text-stone-900 dark:text-white mb-8">
+          <h1 class="text-2xl font-bold text-center text-stone-900 dark:text-white mb-8">
             Log in to your account
           </h1>
 
