@@ -1187,7 +1187,12 @@
   transition-duration: var(--tw-duration, var(--default-transition-duration));
   &:hover {
     @media (hover: hover) {
-      color: var(--color-brand-700);
+      color: var(--color-stone-900);
+    }
+  }
+  &:hover {
+    @media (hover: hover) {
+      text-decoration-line: underline;
     }
   }
   &:where(.dark, .dark *) {
@@ -1196,7 +1201,7 @@
   &:where(.dark, .dark *) {
     &:hover {
       @media (hover: hover) {
-        color: var(--color-brand-500);
+        color: var(--color-white);
       }
     }
   }
@@ -1789,6 +1794,7 @@
 @media (max-width: 640px) {
   .profile-detail {
     padding: calc(var(--spacing) * 4);
+    border: none;
   }
   .profile-name {
     font-size: var(--text-xl);
