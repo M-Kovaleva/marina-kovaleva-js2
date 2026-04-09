@@ -101,7 +101,7 @@ export function createPostCard(post, options = {}) {
   // Main card with group for hover effects
   const card = document.createElement("article");
   card.className =
-    "group bg-white dark:bg-stone-800 dark:border-stone-700 rounded-xl overflow-hidden transition-all duration-300";
+    "group bg-white dark:bg-stone-800 border border-transparent dark:border-stone-700 rounded-xl overflow-hidden transition-all duration-300";
 
   // Header (author + actions)
   if (showAuthor || showActions) {
