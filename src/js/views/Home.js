@@ -19,11 +19,15 @@ export default class Home extends AbstractView {
             class="autofill-fix input-field flex-1"
           />
           <button 
-            type="submit" 
-            class="px-6 py-3 bg-brand-600 text-white font-semibold rounded-lg cursor-pointer hover:bg-brand-700 hover:shadow-md active:scale-[0.98] transition-all duration-200"
-          >
-            Search
-          </button>
+  type="submit" 
+  class="p-3 text-stone-500 dark:text-stone-400 hover:text-brand-600 dark:hover:text-brand-400 cursor-pointer transition-colors"
+  aria-label="Search"
+>
+  <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+    <circle cx="11" cy="11" r="8"/>
+    <path stroke-linecap="round" d="M21 21l-4.35-4.35"/>
+  </svg>
+</button>
         </form>
 
         <!-- Search Info -->
