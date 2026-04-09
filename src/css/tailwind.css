@@ -10,7 +10,6 @@
     --color-red-50: oklch(97.1% 0.013 17.38);
     --color-red-300: oklch(80.8% 0.114 19.571);
     --color-red-400: oklch(70.4% 0.191 22.216);
-    --color-red-500: oklch(63.7% 0.237 25.331);
     --color-red-600: oklch(57.7% 0.245 27.325);
     --color-red-700: oklch(50.5% 0.213 27.518);
     --color-red-800: oklch(44.4% 0.177 26.899);
@@ -670,13 +669,6 @@
       }
     }
   }
-  .hover\:text-red-500 {
-    &:hover {
-      @media (hover: hover) {
-        color: var(--color-red-500);
-      }
-    }
-  }
   .hover\:text-white {
     &:hover {
       @media (hover: hover) {
@@ -889,6 +881,19 @@
       }
     }
   }
+  .dark\:hover\:hover\:text-brand-400 {
+    &:where(.dark, .dark *) {
+      &:hover {
+        @media (hover: hover) {
+          &:hover {
+            @media (hover: hover) {
+              color: var(--color-brand-400);
+            }
+          }
+        }
+      }
+    }
+  }
   .dark\:hover\:text-brand-400 {
     &:where(.dark, .dark *) {
       &:hover {
@@ -903,15 +908,6 @@
       &:hover {
         @media (hover: hover) {
           color: var(--color-brand-500);
-        }
-      }
-    }
-  }
-  .dark\:hover\:text-red-400 {
-    &:where(.dark, .dark *) {
-      &:hover {
-        @media (hover: hover) {
-          color: var(--color-red-400);
         }
       }
     }
@@ -1570,14 +1566,8 @@
 }
 .profile-detail {
   border-radius: var(--radius-xl);
-  border-style: var(--tw-border-style);
-  border-width: 1px;
-  border-color: var(--color-stone-200);
   background-color: var(--color-page-light);
   padding: calc(var(--spacing) * 6);
-  &:where(.dark, .dark *) {
-    border-color: var(--color-stone-700);
-  }
   &:where(.dark, .dark *) {
     background-color: var(--color-page-dark);
   }
@@ -1799,7 +1789,6 @@
 @media (max-width: 640px) {
   .profile-detail {
     padding: calc(var(--spacing) * 4);
-    border: none;
   }
   .profile-name {
     font-size: var(--text-xl);

@@ -137,7 +137,7 @@
 }
 
 .btn-clear-search {
-   @apply text-brand-600 dark:text-brand-400 cursor-pointer border-none bg-transparent text-sm font-semibold transition-colors hover:text-brand-700 dark:hover:text-brand-500;
+  @apply text-brand-600 dark:text-brand-400 cursor-pointer border-none bg-transparent text-sm font-semibold transition-colors hover:text-brand-700 dark:hover:text-brand-500;
 }
 
 /* === FEED STATES === */
@@ -324,7 +324,7 @@
 
 /* Profile card */
 .profile-detail {
-  @apply rounded-xl border border-stone-200 bg-page-light p-6 dark:border-stone-700 dark:bg-page-dark;
+  @apply rounded-xl bg-page-light p-6 dark:bg-page-dark;
 }
 
 /* Profile Header */
@@ -423,7 +423,6 @@
 @media (max-width: 640px) {
   .profile-detail {
     @apply p-4;
-    border: none;
   }
 
   .profile-name {
