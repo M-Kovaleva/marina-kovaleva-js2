@@ -60,26 +60,25 @@ export default class Home extends AbstractView {
         <section id="feed" class="feed-section space-y-6"></section>
 
         <!-- Pagination -->
-        <div class="feed-pagination flex items-center justify-between mt-10 pt-6 border-t border-stone-200 dark:border-stone-700">
+        <div class="flex items-center justify-center gap-6 mt-10 pt-6 border-t border-stone-200 dark:border-stone-700">
           <button 
             id="prev-page-btn"
-            class="btn-secondary px-5 py-2 bg-white dark:bg-stone-800 text-stone-700 dark:text-stone-300 font-semibold rounded-lg border-2 border-stone-200 dark:border-stone-600 cursor-pointer hover:bg-stone-100 dark:hover:bg-stone-700 hover:border-stone-300 dark:hover:border-stone-500 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
+            class="text-2xl text-stone-400 dark:text-stone-500 hover:text-brand-600 dark:hover:text-brand-400 cursor-pointer disabled:text-stone-300 dark:disabled:text-stone-700 disabled:cursor-not-allowed transition-colors"
           >
-            Previous
+            ←
           </button>
           
-          <span id="page-info" class="feed-page-info text-sm font-medium text-stone-500 dark:text-stone-400">
+          <span id="page-info" class="text-sm font-medium text-stone-500 dark:text-stone-400">
             Page 1
           </span>
           
           <button 
             id="next-page-btn"
-            class="btn-secondary px-5 py-2 bg-white dark:bg-stone-800 text-stone-700 dark:text-stone-300 font-semibold rounded-lg border-2 border-stone-200 dark:border-stone-600 cursor-pointer hover:bg-stone-100 dark:hover:bg-stone-700 hover:border-stone-300 dark:hover:border-stone-500 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
+            class="text-2xl text-stone-400 dark:text-stone-500 hover:text-brand-600 dark:hover:text-brand-400 cursor-pointer disabled:text-stone-300 dark:disabled:text-stone-700 disabled:cursor-not-allowed transition-colors"
           >
-            Next
+            →
           </button>
         </div>
-
       </section>
     `;
   }
