@@ -461,6 +461,9 @@
   .border-stone-200 {
     border-color: var(--color-stone-200);
   }
+  .border-transparent {
+    border-color: transparent;
+  }
   .bg-amber-100 {
     background-color: var(--color-amber-100);
   }
@@ -472,9 +475,6 @@
   }
   .bg-red-50 {
     background-color: var(--color-red-50);
-  }
-  .bg-stone-100 {
-    background-color: var(--color-stone-100);
   }
   .bg-stone-200 {
     background-color: var(--color-stone-200);
@@ -1590,8 +1590,14 @@
 }
 .profile-detail {
   border-radius: var(--radius-xl);
+  border-style: var(--tw-border-style);
+  border-width: 1px;
+  border-color: var(--color-stone-200);
   background-color: var(--color-page-light);
   padding: calc(var(--spacing) * 6);
+  &:where(.dark, .dark *) {
+    border-color: var(--color-stone-700);
+  }
   &:where(.dark, .dark *) {
     background-color: var(--color-page-dark);
   }

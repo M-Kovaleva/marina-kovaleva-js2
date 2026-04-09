@@ -324,7 +324,7 @@
 
 /* Profile card */
 .profile-detail {
-  @apply rounded-xl bg-page-light p-6 dark:bg-page-dark;
+  @apply rounded-xl border border-stone-200 bg-page-light p-6 dark:border-stone-700 dark:bg-page-dark;
 }
 
 /* Profile Header */
