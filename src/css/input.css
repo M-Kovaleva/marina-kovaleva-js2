@@ -292,6 +292,7 @@
 @media (max-width: 639px) {
   .post-detail {
     padding: 0;
+    border: none;
   }
 
   .post-header {
@@ -422,6 +423,7 @@
 @media (max-width: 640px) {
   .profile-detail {
     @apply p-4;
+    border: none;
   }
 
   .profile-name {

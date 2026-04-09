@@ -1568,6 +1568,7 @@
 @media (max-width: 639px) {
   .post-detail {
     padding: 0;
+    border: none;
   }
   .post-header {
     padding: 1rem 1rem 1rem 1rem;
@@ -1818,6 +1819,7 @@
 @media (max-width: 640px) {
   .profile-detail {
     padding: calc(var(--spacing) * 4);
+    border: none;
   }
   .profile-name {
     font-size: var(--text-xl);
