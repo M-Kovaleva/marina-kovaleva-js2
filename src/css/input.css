@@ -72,7 +72,7 @@
 
 /* Primary button */
 .btn-primary {
-  @apply dark:hover:bg-brand-500 w-full cursor-pointer rounded-lg bg-stone-900 py-3 font-semibold text-white transition-all duration-200 hover:bg-stone-700 hover:shadow-md active:scale-[0.98] dark:bg-white dark:text-stone-900 dark:hover:text-white;
+  @apply dark:hover:bg-brand-500 w-full cursor-pointer rounded-lg bg-stone-900 py-3 font-semibold text-white transition-all duration-200 hover:bg-stone-700 hover:shadow-md active:scale-[0.98] dark:bg-white dark:text-stone-900 dark:hover:text-white focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 dark:focus:ring-offset-stone-800;
 }
 
 .btn-primary:disabled {
@@ -270,7 +270,7 @@ textarea.error {
 
 /* Follow/Unfollow Buttons */
 .btn-follow {
-  @apply w-full sm:w-auto bg-brand-600 hover:bg-brand-700 cursor-pointer rounded-lg px-4 py-2 font-semibold text-white transition-all duration-200;
+  @apply w-full sm:w-auto bg-brand-600 hover:bg-brand-700 dark:bg-brand-600 dark:hover:bg-brand-700 cursor-pointer rounded-lg px-4 py-2 font-semibold text-white transition-all duration-200;
 }
 
 .btn-unfollow {
