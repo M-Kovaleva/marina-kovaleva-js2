@@ -127,7 +127,7 @@ function createStats(profile) {
 /* Create posts section */
 function createPostsSection(posts, isOwnProfile) {
   const section = document.createElement("div");
-  section.className = "mt-8";
+  section.className = "profile-posts mt-8";
 
   const heading = document.createElement("h2");
   heading.textContent = "Posts";
