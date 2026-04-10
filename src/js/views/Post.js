@@ -12,7 +12,7 @@ export default class Post extends AbstractView {
       <div class="page-container">
         
         <!-- BACK BUTTON -->
-        <a href="/" data-link class="back-link">
+        <a href="/" data-link class="back-link mb-6">
           <span>←</span> Back to Home
         </a>
 
@@ -32,7 +32,7 @@ export default class Post extends AbstractView {
         </div>
 
         <!-- POST CONTENT -->
-        <article id="post-content" class="post-detail"></article>
+        <article id="post-content" class="card post-mobile"></article>
 
       </div>
     `;

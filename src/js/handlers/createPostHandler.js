@@ -54,9 +54,11 @@ function createFormGroup(config) {
   if (config.type === "textarea") {
     input = document.createElement("textarea");
     input.rows = config.rows || 8;
+    input.className = "input-field min-h-32 resize-y leading-relaxed";
   } else {
     input = document.createElement("input");
     input.type = config.type || "text";
+    input.className = "input-field";
     if (config.maxlength) input.maxLength = config.maxlength;
   }
 
@@ -135,11 +137,11 @@ function createMediaField() {
   });
 }
 
-/* Create submit button */
+// СТАЛО:
 function createSubmitButton() {
   const button = document.createElement("button");
   button.type = "submit";
-  button.className = "btn-primary";
+  button.className = "btn-primary mt-2";
   button.id = "create-post-submit";
   button.textContent = "Create Post";
   return button;

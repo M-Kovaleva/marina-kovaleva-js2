@@ -12,7 +12,7 @@ export default class Profile extends AbstractView {
       <div class="page-container">
         
         <!-- BACK BUTTON -->
-        <a href="/" data-link class="back-link">
+        <a href="/" data-link class="back-link mb-6">
           <span>←</span> Back to Home
         </a>
 

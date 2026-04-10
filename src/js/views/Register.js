@@ -118,7 +118,7 @@ export default class Register extends AbstractView {
               Already have an account? 
               <a href="/login" data-link class="text-brand-600 dark:text-brand-400 font-semibold hover:text-brand-700 dark:hover:text-brand-500 transition-colors">Log in here</a>
             </p>
-            <a href="/" data-link class="inline-block text-brand-600 dark:text-brand-400 font-semibold hover:text-brand-700 dark:hover:text-brand-500 transition-colors">← Back to Home</a>
+            <a href="/" data-link class="back-link">← Back to Home</a>
           </div>
         </div>
       </div>

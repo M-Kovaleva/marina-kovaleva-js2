@@ -29,14 +29,16 @@
 
 /* === REUSABLE COMPONENTS (DRY) === */
 
-/* Input fields */
-.input-field {
-  @apply focus:border-brand-500 w-full rounded-lg border-2 border-stone-200 bg-white px-4 py-3 text-stone-900 transition-all duration-200 placeholder:text-stone-400 focus:outline-none dark:border-stone-500 dark:bg-stone-800 dark:text-white dark:placeholder:text-stone-400;
-}
 
 /* Card container */
 .card {
   @apply rounded-xl border border-stone-200 bg-white p-6 dark:border-stone-700 dark:bg-stone-800;
+}
+
+
+/* Input fields */
+.input-field {
+  @apply focus:border-brand-500 w-full rounded-lg border-2 border-stone-200 bg-white px-4 py-3 text-stone-900 transition-all duration-200 placeholder:text-stone-400 focus:outline-none dark:border-stone-500 dark:bg-stone-800 dark:text-white dark:placeholder:text-stone-400;
 }
 
 /* Primary button (dark bg) */
@@ -50,7 +52,7 @@
 
 /* Back link */
 .back-link {
-  @apply text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-500 mb-6 inline-flex items-center gap-2 font-semibold transition-colors;
+  @apply text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-500 inline-flex items-center gap-2 font-semibold transition-colors;
 }
 
 /* Page container */
@@ -148,20 +150,12 @@
 
 /* === POST DETAIL PAGE === */
 
-/* Container */
-.post-container {
-  @apply mx-auto max-w-2xl;
+/* Mobile overrides for Post page */
+.post-mobile {
+  /* Empty on desktop, overridden on mobile */
 }
 
-/* Back link */
-.post-back-link {
-  @apply text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-500 mb-6 inline-flex items-center gap-2 font-semibold transition-colors;
-}
 
-/* Post card */
-.post-detail {
-  @apply rounded-xl border border-stone-200 bg-white p-6 dark:border-stone-700 dark:bg-stone-800;
-}
 
 /* Post Header */
 .post-header {
@@ -290,13 +284,14 @@
 
 /* Mobile */
 @media (max-width: 639px) {
-  .post-detail {
-    padding: 0;
-    border: none
+  .post-mobile {
+    padding: 0 !important;
+    border: none !important;
+    border-radius: 0 !important;
   }
 
   .post-header {
-    padding: 1rem 1rem 1rem 1rem;
+    padding: 1rem;
   }
 
   .post-body,
@@ -459,29 +454,10 @@
   @apply text-sm font-semibold text-stone-700 dark:text-stone-200;
 }
 
-/* Inputs */
-.form-group input[type="text"],
-.form-group input[type="url"],
-.form-group textarea {
-  @apply focus:border-brand-500 w-full rounded-lg border-2 border-stone-200 bg-white px-4 py-3 text-stone-900 transition-all duration-200 placeholder:text-stone-400 focus:outline-none dark:border-stone-500 dark:bg-stone-800 dark:text-white dark:placeholder:text-stone-400;
-}
-
-.form-group textarea {
-  @apply min-h-32 resize-y leading-relaxed;
-}
 
 /* Help Text */
 .form-help {
   @apply text-sm text-stone-500 dark:text-stone-400;
-}
-
-/* Submit Button */
-#create-post-submit {
-  @apply dark:hover:bg-brand-500 mt-2 w-full cursor-pointer rounded-lg bg-stone-900 py-3 font-semibold text-white transition-all duration-200 hover:bg-stone-700 hover:shadow-md active:scale-[0.98] dark:bg-white dark:text-stone-900 dark:hover:text-white;
-}
-
-#create-post-submit:disabled {
-  @apply cursor-not-allowed opacity-50;
 }
 
 /* Success Message */
