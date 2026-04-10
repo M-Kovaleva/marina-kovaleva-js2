@@ -1237,7 +1237,7 @@ input.error, textarea.error {
     border-width: 1px;
   }
   @media (width >= 40rem) {
-    border-color: var(--color-stone-200);
+    border-color: transparent;
   }
   @media (width >= 40rem) {
     padding: calc(var(--spacing) * 6);

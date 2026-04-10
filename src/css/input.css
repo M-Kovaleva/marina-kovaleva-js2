@@ -150,7 +150,7 @@ textarea.error {
 .post-detail {
   @apply bg-white dark:bg-stone-800 
          p-0 sm:p-6 
-         border-0 sm:border sm:border-stone-200 dark:sm:border-stone-700 
+         border-0 sm:border sm:border-transparent dark:sm:border-stone-700 
          rounded-none sm:rounded-xl;
 }
 /* Post Header */
