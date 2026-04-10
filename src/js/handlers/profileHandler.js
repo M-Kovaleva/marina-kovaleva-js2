@@ -139,7 +139,7 @@ function createPostsSection(posts, isOwnProfile) {
 
   if (!posts || posts.length === 0) {
     const empty = document.createElement("p");
-    empty.className = "profile-posts-empty";
+    empty.className = "empty-state";
     empty.textContent = "No posts yet.";
     postsList.append(empty);
   } else {

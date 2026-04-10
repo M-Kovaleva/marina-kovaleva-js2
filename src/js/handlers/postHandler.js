@@ -134,7 +134,7 @@ function createCommentsSection(comments) {
 
   if (!comments || comments.length === 0) {
     const empty = document.createElement("p");
-    empty.className = "comments-empty";
+    empty.className = "empty-state text-sm";
     empty.textContent = "No comments yet. Be the first to comment!";
     commentsList.append(empty);
   } else {
