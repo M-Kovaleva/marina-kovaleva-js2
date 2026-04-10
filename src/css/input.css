@@ -36,7 +36,7 @@
 
 /* Auth layout */
 .auth-container {
-  @apply flex min-h-[calc(100vh-120px)] items-center justify-center px-2 sm:px-4;
+  @apply flex min-h-[calc(100vh-7.5rem)] items-center justify-center px-2 sm:px-4;
 }
 
 .auth-card {
@@ -144,7 +144,7 @@ textarea.error {
 
 /* Post detail card */
 .post-detail {
-  @apply bg-white dark:bg-stone-800 p-0 sm:p-6 border-0 sm:border sm:border-transparent dark:sm:border-stone-700 rounded-none sm:rounded-xl;
+  @apply bg-white dark:bg-stone-800 p-0 sm:p-6 border-0 sm:border sm:border-transparent dark:sm:border-stone-700 rounded-xl;
 }
 
 /* Post Header */
