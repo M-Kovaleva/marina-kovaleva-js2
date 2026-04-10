@@ -101,13 +101,10 @@
   display: block;
 }
 
-.error {
-  border-color: #dc2626 !important;
-  background-color: #fef2f2 !important;
-}
-
-.dark .error {
-  background-color: rgba(127, 29, 29, 0.2) !important;
+/* Form validation error state */
+input.error,
+textarea.error {
+  @apply border-red-600 bg-red-50 dark:bg-red-900/20;
 }
 
 /* === AUTOFILL === */
@@ -149,17 +146,16 @@
 }
 
 /* === POST DETAIL PAGE === */
-
-/* Mobile overrides for Post page */
-.post-mobile {
-  /* Empty on desktop, overridden on mobile */
+/* Post detail card - mobile-first */
+.post-detail {
+  @apply bg-white dark:bg-stone-800 
+         p-0 sm:p-6 
+         border-0 sm:border sm:border-stone-200 dark:sm:border-stone-700 
+         rounded-none sm:rounded-xl;
 }
-
-
-
 /* Post Header */
 .post-header {
-  @apply mb-6 border-b border-stone-200 pb-4 dark:border-stone-700;
+  @apply mb-6 border-b border-stone-200 p-4 pb-4 sm:p-0 sm:pb-4 dark:border-stone-700;
 }
 
 .post-author {
@@ -188,17 +184,17 @@
 
 /* === POST IMAGE === */
 .post-image {
-  @apply w-full aspect-square object-cover mb-6 rounded-lg;
+  @apply w-full aspect-square object-cover mb-6 rounded-none sm:rounded-lg;
 }
 
 
 /* Post Body */
 .post-body {
-  @apply mb-6;
+  @apply mb-6 px-4 sm:px-0;
 }
 
 .post-title {
-  @apply mb-3 text-2xl font-bold text-stone-900 dark:text-white;
+  @apply mb-3 text-xl sm:text-2xl font-bold text-stone-900 dark:text-white;
 }
 
 .post-text {
@@ -207,7 +203,7 @@
 
 /* Post Tags */
 .post-tags {
-  @apply mb-6 flex flex-wrap gap-2;
+  @apply mb-6 flex flex-wrap gap-2 px-4 sm:px-0;
 }
 
 .post-tag {
@@ -216,7 +212,7 @@
 
 /* Post Stats */
 .post-stats {
-  @apply mb-6 flex gap-6 border-t border-b border-stone-200 py-4 dark:border-stone-700;
+  @apply mb-6 flex gap-6 border-t border-b border-stone-200 py-4 px-4 sm:px-0 dark:border-stone-700;
 }
 
 .post-stat {
@@ -225,7 +221,7 @@
 
 /* Comments Section */
 .post-comments {
-  @apply mt-8;
+  @apply mt-8 px-4 pb-4 sm:px-0 sm:pb-0;
 }
 
 .post-comments h2 {
@@ -282,44 +278,13 @@
   @apply mb-6 text-stone-500 dark:text-stone-400;
 }
 
-/* Mobile */
-@media (max-width: 639px) {
-  .post-mobile {
-    padding: 0 !important;
-    border: none !important;
-    border-radius: 0 !important;
-  }
 
-  .post-header {
-    padding: 1rem;
-  }
-
-  .post-body,
-  .post-tags,
-  .post-stats,
-  .post-comments {
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
-
-  .post-comments {
-    padding-bottom: 1rem;
-  }
-
-  .post-title {
-    @apply text-xl;
-  }
-
-  .post-image {
-    border-radius: 0;
-  }
-}
 
 /* === PROFILE PAGE === */
 
 /* Profile card */
 .profile-detail {
-  @apply rounded-xl bg-page-light p-6 dark:bg-page-dark;
+  @apply rounded-xl bg-page-light p-0 sm:p-6 dark:bg-page-dark;
 }
 
 /* Profile Header */
@@ -333,7 +298,7 @@
 }
 
 .profile-avatar-large {
-  @apply h-24 w-24 border-4 border-white dark:border-stone-700;
+  @apply h-20 w-20 sm:h-24 sm:w-24;
 }
 
 .profile-avatar-placeholder {
@@ -341,7 +306,7 @@
 }
 
 .profile-avatar-placeholder.profile-avatar-large {
-  @apply h-24 w-24 border-4 border-white text-4xl dark:border-stone-700;
+  @apply h-20 w-20 sm:h-24 sm:w-24 border-4 border-white text-3xl sm:text-4xl dark:border-stone-700;
 }
 
 /* User Info */
@@ -350,7 +315,7 @@
 }
 
 .profile-name {
-  @apply mb-1 text-2xl font-bold text-stone-900 dark:text-white;
+  @apply mb-1 text-xl sm:text-2xl font-bold text-stone-900 dark:text-white;
 }
 
 .profile-email {
@@ -359,7 +324,7 @@
 
 /* Stats */
 .profile-stats {
-  @apply mb-6 flex gap-8 border-b border-stone-200 py-4 dark:border-stone-700;
+  @apply mb-6 flex gap-4 sm:gap-8 border-b border-stone-200 py-4 dark:border-stone-700;
 }
 
 .profile-stat {
@@ -393,11 +358,11 @@
 
 /* Follow/Unfollow Buttons */
 .btn-follow {
-  @apply bg-brand-600 hover:bg-brand-700 cursor-pointer rounded-lg px-4 py-2 font-semibold text-white transition-all duration-200;
+  @apply w-full sm:w-auto bg-brand-600 hover:bg-brand-700 cursor-pointer rounded-lg px-4 py-2 font-semibold text-white transition-all duration-200;
 }
 
 .btn-unfollow {
-  @apply cursor-pointer rounded-lg bg-stone-200 px-4 py-2 font-semibold text-stone-700 transition-all duration-200 hover:bg-stone-900 hover:text-white dark:bg-stone-700 dark:text-stone-300 dark:hover:bg-stone-600;
+  @apply w-full sm:w-auto cursor-pointer rounded-lg bg-stone-200 px-4 py-2 font-semibold text-stone-700 transition-all duration-200 hover:bg-stone-900 hover:text-white dark:bg-stone-700 dark:text-stone-300 dark:hover:bg-stone-600;
 }
 
 .btn-follow:disabled,
@@ -414,34 +379,7 @@
   @apply mb-6 text-stone-500 dark:text-stone-400;
 }
 
-/* Mobile */
-@media (max-width: 640px) {
-  .profile-detail {
-    @apply p-4;
-    border: none;
-  }
 
-  .profile-name {
-    @apply text-xl;
-  }
-
-  .profile-stats {
-    @apply gap-4;
-  }
-
-  .profile-avatar-large {
-    @apply h-20 w-20;
-  }
-
-  .profile-avatar-placeholder.profile-avatar-large {
-    @apply h-20 w-20 text-3xl;
-  }
-
-  .btn-follow,
-  .btn-unfollow {
-    @apply w-full;
-  }
-}
 
 /* === CREATE POST PAGE === */
 

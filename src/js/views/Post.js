@@ -32,7 +32,7 @@ export default class Post extends AbstractView {
         </div>
 
         <!-- POST CONTENT -->
-        <article id="post-content" class="card post-mobile"></article>
+        <article id="post-content" class="post-detail"></article>
 
       </div>
     `;
