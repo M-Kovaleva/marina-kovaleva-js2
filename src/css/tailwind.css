@@ -1167,61 +1167,6 @@ input.error, textarea.error {
     }
   }
 }
-.autofill-fix:-webkit-autofill, .autofill-fix:-webkit-autofill:hover, .autofill-fix:-webkit-autofill:focus, .autofill-fix:-webkit-autofill:active {
-  -webkit-box-shadow: 0 0 0 1000px white inset !important;
-  -webkit-text-fill-color: #1c1917 !important;
-  transition: background-color 5000s ease-in-out 0s;
-}
-.dark .autofill-fix:-webkit-autofill, .dark .autofill-fix:-webkit-autofill:hover, .dark .autofill-fix:-webkit-autofill:focus, .dark .autofill-fix:-webkit-autofill:active {
-  -webkit-box-shadow: 0 0 0 1000px #1c1917 inset !important;
-  -webkit-text-fill-color: white !important;
-  transition: background-color 5000s ease-in-out 0s;
-}
-#search-info:not(.hidden) {
-  display: flex;
-}
-#search-info strong {
-  --tw-font-weight: var(--font-weight-semibold);
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-stone-900);
-  &:where(.dark, .dark *) {
-    color: var(--color-white);
-  }
-}
-.btn-clear-search {
-  cursor: pointer;
-  --tw-border-style: none;
-  border-style: none;
-  background-color: transparent;
-  font-size: var(--text-sm);
-  line-height: var(--tw-leading, var(--text-sm--line-height));
-  --tw-font-weight: var(--font-weight-semibold);
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-brand-600);
-  transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to;
-  transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
-  transition-duration: var(--tw-duration, var(--default-transition-duration));
-  &:hover {
-    @media (hover: hover) {
-      color: var(--color-stone-900);
-    }
-  }
-  &:hover {
-    @media (hover: hover) {
-      text-decoration-line: underline;
-    }
-  }
-  &:where(.dark, .dark *) {
-    color: var(--color-brand-400);
-  }
-  &:where(.dark, .dark *) {
-    &:hover {
-      @media (hover: hover) {
-        color: var(--color-white);
-      }
-    }
-  }
-}
 .post-detail {
   border-radius: 0;
   border-style: var(--tw-border-style);

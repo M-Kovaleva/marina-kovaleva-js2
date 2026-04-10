@@ -105,46 +105,11 @@ textarea.error {
   @apply border-red-600 bg-red-50 dark:bg-red-900/20;
 }
 
-/* === AUTOFILL === */
-.autofill-fix:-webkit-autofill,
-.autofill-fix:-webkit-autofill:hover,
-.autofill-fix:-webkit-autofill:focus,
-.autofill-fix:-webkit-autofill:active {
-  -webkit-box-shadow: 0 0 0 1000px white inset !important;
-  -webkit-text-fill-color: #1c1917 !important;
-  transition: background-color 5000s ease-in-out 0s;
-}
-
-.dark .autofill-fix:-webkit-autofill,
-.dark .autofill-fix:-webkit-autofill:hover,
-.dark .autofill-fix:-webkit-autofill:focus,
-.dark .autofill-fix:-webkit-autofill:active {
-  -webkit-box-shadow: 0 0 0 1000px #1c1917 inset !important;
-  -webkit-text-fill-color: white !important;
-  transition: background-color 5000s ease-in-out 0s;
-}
-
-/* === SEARCH INFO STYLING  === */
-
-#search-info:not(.hidden) {
-  display: flex;
-}
-
-#search-info strong {
-  @apply font-semibold text-stone-900 dark:text-white;
-}
-
-.btn-clear-search {
-  @apply text-brand-600 dark:text-brand-400 cursor-pointer border-none bg-transparent text-sm font-semibold transition-colors hover:text-stone-900 hover:underline dark:hover:text-white;
-}
-
 /* === POST DETAIL PAGE === */
+
 /* Post detail card - mobile-first */
 .post-detail {
-  @apply bg-white dark:bg-stone-800 
-         p-0 sm:p-6 
-         border-0 sm:border sm:border-transparent dark:sm:border-stone-700 
-         rounded-none sm:rounded-xl;
+  @apply bg-white dark:bg-stone-800 p-0 sm:p-6 border-0 sm:border sm:border-transparent dark:sm:border-stone-700 rounded-none sm:rounded-xl;
 }
 /* Post Header */
 .post-header {
@@ -175,7 +140,7 @@ textarea.error {
   @apply text-sm text-stone-400 dark:text-stone-500;
 }
 
-/* === POST IMAGE === */
+/* Post Image */
 .post-image {
   @apply w-full aspect-square object-cover mb-6 rounded-none sm:rounded-lg;
 }
@@ -257,9 +222,6 @@ textarea.error {
 .comment-body {
   @apply m-0 text-sm leading-relaxed text-stone-600 dark:text-stone-300;
 }
-
-
-
 
 /* === PROFILE PAGE === */
 

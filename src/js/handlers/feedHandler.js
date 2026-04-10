@@ -162,7 +162,7 @@ export function updateSearchInfo() {
     searchInfo.style.display = "flex";
     searchInfo.innerHTML = `
       <span>Showing results for: <strong>"${currentQuery}"</strong></span>
-      <button id="clear-search-btn" class="btn-clear-search">Clear search</button>
+      <button id="clear-search-btn" class="back-link text-sm">Clear search</button>
     `;
 
     // Attach clear search handler
