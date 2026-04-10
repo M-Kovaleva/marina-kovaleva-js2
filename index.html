@@ -30,11 +30,15 @@
       </ul>
 
       <!-- Mobile Hamburger -->
-      <button id="mobile-menu-btn" class="md:hidden p-2 text-2xl text-stone-900 dark:text-white hover:bg-stone-200 dark:hover:bg-stone-700 rounded-lg transition-colors" aria-label="Toggle menu">☰</button>
+      <button id="mobile-menu-btn" class="md:hidden flex items-center justify-center text-stone-900 dark:text-white hover:bg-stone-200 dark:hover:bg-stone-700 rounded-lg transition-colors" aria-label="Toggle menu">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
     </div>
 
     <!-- Mobile Menu Overlay -->
-    <div id="mobile-menu" class="fixed inset-x-0 top-[56px] bottom-0 bg-white dark:bg-stone-800 z-40 hidden flex-col items-center justify-start pt-16 gap-6 transition-colors duration-200">
+    <div id="mobile-menu" class="fixed inset-x-0 top-[52px] bottom-0 bg-white dark:bg-stone-800 z-40 hidden flex-col items-center justify-start pt-16 gap-6 transition-colors duration-200">
       <a href="/create" data-link class="px-4 py-2 border-2 border-brand-600 text-brand-600 dark:text-brand-400 dark:border-brand-400 rounded-lg font-semibold hover:bg-brand-600 hover:text-white dark:hover:bg-brand-500 dark:hover:text-white transition-all duration-200">New Post</a>
       <a href="/" data-link class="mobile-link text-stone-700 dark:text-stone-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Home</a>
       <a href="/profile" data-link class="mobile-link text-stone-700 dark:text-stone-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Profile</a>
