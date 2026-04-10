@@ -17,7 +17,7 @@ export default class Login extends AbstractView {
             
             <!-- Email -->
             <div class="space-y-2">
-              <label for="login-email" class="block text-sm font-semibold text-stone-700 dark:text-stone-200">
+              <label for="login-email" class="form-label">
                 Email
               </label>
               <input 
@@ -34,7 +34,7 @@ export default class Login extends AbstractView {
 
             <!-- Password -->
             <div class="space-y-2">
-              <label for="login-password" class="block text-sm font-semibold text-stone-700 dark:text-stone-200">
+              <label for="login-password" class="form-label">
                 Password
               </label>
               <input 
@@ -71,7 +71,7 @@ export default class Login extends AbstractView {
           <div class="mt-8 text-center space-y-2">
             <p class="text-stone-600 dark:text-stone-300">
               Don't have an account? 
-              <a href="/register" data-link class="text-brand-600 dark:text-brand-400 font-semibold hover:text-brand-700 dark:hover:text-brand-500 transition-colors">Create one here</a>
+              <a href="/register" data-link class="back-link">Create one here</a>
             </p>
             <a href="/" data-link class="back-link">← Back to Home</a>
           </div>

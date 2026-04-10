@@ -41,11 +41,12 @@ function validateMediaUrl(url) {
 /* Create form group: label, input, help, error */
 function createFormGroup(config) {
   const group = document.createElement("div");
-  group.className = "form-group";
+  group.className = "flex flex-col gap-2";
 
   // Label
   const label = document.createElement("label");
   label.htmlFor = config.id;
+  label.className = "text-sm font-semibold text-stone-700 dark:text-stone-200";
   label.textContent = config.label;
   group.append(label);
 
@@ -72,7 +73,7 @@ function createFormGroup(config) {
   // Help text
   if (config.helpText) {
     const help = document.createElement("small");
-    help.className = "form-help";
+    help.className = "text-sm text-stone-500 dark:text-stone-400";
     help.textContent = config.helpText;
     group.append(help);
   }

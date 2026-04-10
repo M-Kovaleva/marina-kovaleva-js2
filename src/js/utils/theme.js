@@ -1,6 +1,5 @@
 /**
  * Theme Toggle Module
- * Based on Lesson 2.4 - Dark Mode
  */
 
 const THEME_KEY = "theme";
@@ -34,7 +33,7 @@ export function initThemeToggle() {
 }
 
 /**
- * Initialize mobile menu (Lesson 2.3 - Responsive Navigation)
+ * Initialize mobile menu
  */
 export function initMobileMenu() {
   const menuBtn = document.getElementById("mobile-menu-btn");

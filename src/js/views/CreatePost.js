@@ -22,7 +22,7 @@ export default class CreatePost extends AbstractView {
         </div>
 
         <!-- FORM CARD -->
-        <div class="card sm:p-8">
+        <div class="rounded-xl border border-transparent bg-white p-6 sm:p-8 dark:border-stone-700 dark:bg-stone-800">
           <h1 class="page-title">Create New Post</h1>
           
           <!-- FORM (built by JS) -->

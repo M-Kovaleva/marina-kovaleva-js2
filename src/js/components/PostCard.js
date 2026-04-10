@@ -56,8 +56,7 @@ function createActionButtons(postId, onEdit, onDelete) {
 
   // Edit button (pencil icon)
   const editBtn = document.createElement("button");
-  editBtn.className =
-    "p-2 text-stone-500 dark:text-stone-400 hover:text-brand-600 dark:hover:text-brand-400 cursor-pointer transition-colors";
+  editBtn.className = "btn-icon";
   editBtn.setAttribute("aria-label", "Edit post");
   editBtn.innerHTML = `
     <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -72,8 +71,7 @@ function createActionButtons(postId, onEdit, onDelete) {
 
   // Delete button (trash icon)
   const deleteBtn = document.createElement("button");
-  deleteBtn.className =
-    "p-2 text-stone-500 dark:text-stone-400 hover:text-brand-600 dark:hover:text-brand-400 cursor-pointer transition-colors";
+  deleteBtn.className = "btn-icon";
   deleteBtn.setAttribute("aria-label", "Delete post");
   deleteBtn.innerHTML = `
     <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -128,7 +126,7 @@ export function createPostCard(post, options = {}) {
     card.appendChild(header);
   }
 
-  // Image with responsive padding (mobile-first: no padding, md: small, lg: more)
+  // Image with responsive padding 
   if (post.media?.url) {
     const imageWrapper = document.createElement("div");
     // Mobile: no margin, sm: small margin, md: more margin

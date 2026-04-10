@@ -20,7 +20,7 @@ export default class Home extends AbstractView {
           />
           <button 
             type="submit" 
-            class="p-3 text-stone-500 dark:text-stone-400 hover:text-brand-600 dark:hover:text-brand-400 cursor-pointer transition-colors"
+            class="btn-icon p-3"
             aria-label="Search"
           >
             <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -31,7 +31,7 @@ export default class Home extends AbstractView {
         </form>
 
         <!-- Search Info -->
-        <div id="search-info" class="hidden mb-6 flex items-center justify-between px-4 py-3 bg-amber-100 dark:bg-stone-800 rounded-lg text-sm text-stone-600 dark:text-stone-300"></div>
+        <div id="search-info" class="hidden mb-6 items-center justify-between px-4 py-3 bg-amber-100 dark:bg-stone-800 rounded-lg text-sm text-stone-600 dark:text-stone-300"></div>
 
         <!-- Loading State -->
         <div id="feed-loading" class="loading-container">
@@ -44,25 +44,12 @@ export default class Home extends AbstractView {
 
         <!-- Pagination -->
         <div class="flex items-center justify-center gap-6 mt-10 pt-6 border-t border-stone-200 dark:border-stone-700">
-          <button 
-            id="prev-page-btn"
-            class="text-2xl text-stone-500 dark:text-stone-400 hover:text-brand-600 dark:hover:text-brand-400 cursor-pointer disabled:text-stone-300 dark:disabled:text-stone-700 disabled:cursor-not-allowed transition-colors"
-          >
-            ←
-          </button>
-    
+          <button id="prev-page-btn" class="btn-pagination">←</button>
           <span id="page-info" class="text-sm font-medium text-stone-500 dark:text-stone-400">
             Page 1
           </span>
-          
-          <button 
-            id="next-page-btn"
-            class="text-2xl text-stone-500 dark:text-stone-400 hover:text-brand-600 dark:hover:text-brand-400 cursor-pointer disabled:text-stone-300 dark:disabled:text-stone-700 disabled:cursor-not-allowed transition-colors"
-          >
-            →
-          </button>
+          <button id="next-page-btn" class="btn-pagination">→</button>
         </div>
-
       </section>
     `;
   }

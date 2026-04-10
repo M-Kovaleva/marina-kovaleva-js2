@@ -17,7 +17,7 @@ export default class Register extends AbstractView {
             
             <!-- Username -->
             <div class="space-y-2">
-              <label for="register-name" class="block text-sm font-semibold text-stone-700 dark:text-stone-200">
+              <label for="register-name" class="form-label">
                 Username
               </label>
               <input 
@@ -30,13 +30,13 @@ export default class Register extends AbstractView {
                 autocomplete="username"
                 class="autofill-fix input-field"
               />
-              <p class="text-sm text-stone-500 dark:text-stone-400">Only letters, numbers, and underscores</p>
+              <p class="form-hint">Only letters, numbers, and underscores</p>
               <span class="form-error" id="name-error"></span>
             </div>
 
             <!-- Email -->
             <div class="space-y-2">
-              <label for="register-email" class="block text-sm font-semibold text-stone-700 dark:text-stone-200">
+              <label for="register-email" class="form-label">
                 Email
               </label>
               <input 
@@ -49,13 +49,13 @@ export default class Register extends AbstractView {
                 autocomplete="email"
                 class="autofill-fix input-field"
               />
-              <p class="text-sm text-stone-500 dark:text-stone-400">Must be a @stud.noroff.no email</p>
+              <p class="form-hint">Must be a @stud.noroff.no email</p>
               <span class="form-error" id="email-error"></span>
             </div>
 
             <!-- Password -->
             <div class="space-y-2">
-              <label for="register-password" class="block text-sm font-semibold text-stone-700 dark:text-stone-200">
+              <label for="register-password" class="form-label">
                 Password
               </label>
               <input 
@@ -68,13 +68,13 @@ export default class Register extends AbstractView {
                 autocomplete="new-password"
                 class="autofill-fix input-field"
               />
-              <p class="text-sm text-stone-500 dark:text-stone-400">Minimum 8 characters</p>
+              <p class="form-hint">Minimum 8 characters</p>
               <span class="form-error" id="password-error"></span>
             </div>
 
             <!-- Avatar URL (Optional) -->
             <div class="space-y-2">
-              <label for="register-avatar" class="block text-sm font-semibold text-stone-700 dark:text-stone-200">
+              <label for="register-avatar" class="form-label">
                 Avatar URL
                 <span class="font-normal text-stone-400 dark:text-stone-500">(optional)</span>
               </label>
@@ -85,7 +85,7 @@ export default class Register extends AbstractView {
                 placeholder="https://example.com/avatar.jpg"
                 class="autofill-fix input-field"
               />
-              <p class="text-sm text-stone-500 dark:text-stone-400">Direct image URL (jpg, png, gif, webp)</p>
+              <p class="form-hint">Direct image URL (jpg, png, gif, webp)</p>
               <span class="form-error" id="avatar-error"></span>
             </div>
 
@@ -116,7 +116,7 @@ export default class Register extends AbstractView {
           <div class="mt-8 text-center space-y-2">
             <p class="text-stone-600 dark:text-stone-300">
               Already have an account? 
-              <a href="/login" data-link class="text-brand-600 dark:text-brand-400 font-semibold hover:text-brand-700 dark:hover:text-brand-500 transition-colors">Log in here</a>
+              <a href="/login" data-link class="back-link">Log in here</a>
             </p>
             <a href="/" data-link class="back-link">← Back to Home</a>
           </div>
