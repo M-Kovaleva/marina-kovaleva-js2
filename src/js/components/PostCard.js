@@ -73,7 +73,7 @@ function createActionButtons(postId, onEdit, onDelete) {
   // Delete button (trash icon)
   const deleteBtn = document.createElement("button");
   deleteBtn.className =
-    "p-2 text-stone-500 dark:text-stone-400 hover:text-brand-600 dark:hover:hover:text-brand-400 cursor-pointer transition-colors";
+    "p-2 text-stone-500 dark:text-stone-400 hover:text-brand-600 dark:hover:text-brand-400 cursor-pointer transition-colors";
   deleteBtn.setAttribute("aria-label", "Delete post");
   deleteBtn.innerHTML = `
     <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -178,8 +178,7 @@ export function createPostCard(post, options = {}) {
   // Read more link
   const link = document.createElement("a");
   link.href = `/post/${post.id}`;
-  link.className =
-    "inline-flex items-center gap-1 text-sm font-semibold text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-500 transition-colors";
+  link.className = "back-link text-sm";
   link.setAttribute("data-link", "");
   link.innerHTML = `Read more <span class="md:group-hover:translate-x-1 transition-transform duration-200">→</span>`;
   content.appendChild(link);

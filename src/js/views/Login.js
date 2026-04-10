@@ -62,10 +62,9 @@ export default class Login extends AbstractView {
             </div>
 
             <!-- Error Message -->
-            <div id="login-error" class="hidden bg-red-50 dark:bg-red-900/20 border border-red-300 dark:border-red-800 rounded-lg p-4 text-center">
-              <p id="login-error-text" class="text-red-700 dark:text-red-400 font-medium m-0"></p>
+            <div id="login-error" class="error-message hidden">
+              <p id="login-error-text"></p>
             </div>
-
           </form>
 
           <!-- Links -->

@@ -31,7 +31,7 @@ export default class Home extends AbstractView {
         </form>
 
         <!-- Search Info -->
-        <div id="search-info" class="search-info hidden mb-6 flex items-center justify-between px-4 py-3 bg-amber-100 dark:bg-stone-800 rounded-lg text-sm text-stone-600 dark:text-stone-300"></div>
+        <div id="search-info" class="hidden mb-6 flex items-center justify-between px-4 py-3 bg-amber-100 dark:bg-stone-800 rounded-lg text-sm text-stone-600 dark:text-stone-300"></div>
 
         <!-- Loading State -->
         <div id="feed-loading" class="loading-container">
