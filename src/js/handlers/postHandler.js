@@ -200,7 +200,8 @@ function createErrorState() {
   error.className = "py-16 text-center";
 
   const text = document.createElement("p");
-  text.textContent = "Could not load post. It may have been deleted or you don't have permission.";
+  text.textContent =
+    "Could not load post. It may have been deleted or you don't have permission.";
 
   error.append(text);
   return error;

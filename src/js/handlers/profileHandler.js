@@ -93,7 +93,8 @@ function createStats(profile) {
   postsNumber.id = "posts-count";
   postsNumber.textContent = profile._count?.posts || 0;
   const postsLabel = document.createElement("span");
-  postsLabel.className = "text-sm tracking-wide text-stone-500 uppercase dark:text-stone-400";
+  postsLabel.className =
+    "text-sm tracking-wide text-stone-500 uppercase dark:text-stone-400";
   postsLabel.textContent = "Posts";
   postsCount.append(postsNumber, postsLabel);
 
@@ -101,11 +102,13 @@ function createStats(profile) {
   const followersCount = document.createElement("div");
   followersCount.className = "flex flex-col items-center gap-1";
   const followersNumber = document.createElement("span");
-  followersNumber.className = "text-xl font-bold text-stone-900 dark:text-white";
+  followersNumber.className =
+    "text-xl font-bold text-stone-900 dark:text-white";
   followersNumber.id = "followers-count";
   followersNumber.textContent = profile._count?.followers || 0;
   const followersLabel = document.createElement("span");
-  followersLabel.className = "text-sm tracking-wide text-stone-500 uppercase dark:text-stone-400";
+  followersLabel.className =
+    "text-sm tracking-wide text-stone-500 uppercase dark:text-stone-400";
   followersLabel.textContent = "Followers";
   followersCount.append(followersNumber, followersLabel);
 
@@ -113,10 +116,12 @@ function createStats(profile) {
   const followingCount = document.createElement("div");
   followingCount.className = "flex flex-col items-center gap-1";
   const followingNumber = document.createElement("span");
-  followingNumber.className = "text-xl font-bold text-stone-900 dark:text-white";
+  followingNumber.className =
+    "text-xl font-bold text-stone-900 dark:text-white";
   followingNumber.textContent = profile._count?.following || 0;
   const followingLabel = document.createElement("span");
-  followingLabel.className = "text-sm tracking-wide text-stone-500 uppercase dark:text-stone-400";
+  followingLabel.className =
+    "text-sm tracking-wide text-stone-500 uppercase dark:text-stone-400";
   followingLabel.textContent = "Following";
   followingCount.append(followingNumber, followingLabel);
 

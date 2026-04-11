@@ -74,11 +74,11 @@ function updateSingleAuthLink(link, authenticated, isMobile) {
 /* Handle logout click */
 function handleLogout(e, isMobile) {
   e.preventDefault();
-  
+
   if (isMobile) {
     closeMobileMenu();
   }
-  
+
   clearAuth();
   updateAuthLink();
   navigateTo("/login");

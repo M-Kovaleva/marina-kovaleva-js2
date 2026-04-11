@@ -1,12 +1,7 @@
-/**
- * Theme Toggle Module
- */
-
+// Theme Toggle Module
 const THEME_KEY = "theme";
 
-/**
- * Initialize theme on page load
- */
+// Initialize theme on page load
 export function initTheme() {
   if (
     localStorage.getItem(THEME_KEY) === "dark" ||
@@ -17,9 +12,7 @@ export function initTheme() {
   }
 }
 
-/**
- * Initialize theme toggle buttons
- */
+// Initialize theme toggle buttons
 export function initThemeToggle() {
   document
     .querySelectorAll("#theme-toggle, #theme-toggle-mobile")
@@ -32,9 +25,7 @@ export function initThemeToggle() {
     });
 }
 
-/**
- * Initialize mobile menu
- */
+//Initialize mobile menu
 export function initMobileMenu() {
   const menuBtn = document.getElementById("mobile-menu-btn");
   const mobileMenu = document.getElementById("mobile-menu");

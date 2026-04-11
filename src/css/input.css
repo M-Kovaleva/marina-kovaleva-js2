@@ -40,7 +40,7 @@
 }
 
 .auth-card {
-  @apply w-full max-w-md rounded-2xl bg-white p-4 sm:p-8 shadow-lg dark:bg-stone-700;
+  @apply w-full max-w-md rounded-2xl bg-white p-4 shadow-lg sm:p-8 dark:bg-stone-700;
 }
 
 /* Page title */
@@ -72,7 +72,7 @@
 
 /* Primary button */
 .btn-primary {
-  @apply dark:hover:bg-brand-500 w-full cursor-pointer rounded-lg bg-stone-900 py-3 font-semibold text-white transition-all duration-200 hover:bg-stone-700 hover:shadow-md active:scale-[0.98] dark:bg-white dark:text-stone-900 dark:hover:text-white focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 dark:focus:ring-offset-stone-800;
+  @apply dark:hover:bg-brand-500 focus:ring-brand-500 w-full cursor-pointer rounded-lg bg-stone-900 py-3 font-semibold text-white transition-all duration-200 hover:bg-stone-700 hover:shadow-md focus:ring-2 focus:ring-offset-2 focus:outline-none active:scale-[0.98] dark:bg-white dark:text-stone-900 dark:hover:text-white dark:focus:ring-offset-stone-800;
 }
 
 .btn-primary:disabled {
@@ -81,7 +81,7 @@
 
 /* Icon button */
 .btn-icon {
-  @apply p-2 text-stone-500 dark:text-stone-400 hover:text-brand-600 dark:hover:text-brand-400 cursor-pointer transition-colors;
+  @apply hover:text-brand-600 dark:hover:text-brand-400 cursor-pointer p-2 text-stone-500 transition-colors dark:text-stone-400;
 }
 
 /* Back Home link */
@@ -91,22 +91,22 @@
 
 /* Nav link */
 .nav-link {
-  @apply text-stone-700 dark:text-stone-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors;
+  @apply hover:text-brand-600 dark:hover:text-brand-400 text-stone-700 transition-colors dark:text-stone-300;
 }
 
 /* Outline button */
 .btn-outline {
-  @apply px-4 py-2 border-2 border-brand-600 text-brand-600 dark:text-brand-400 dark:border-brand-400 rounded-lg font-semibold hover:bg-brand-600 hover:text-white dark:hover:bg-brand-500 dark:hover:text-white transition-all duration-200;
+  @apply border-brand-600 text-brand-600 dark:text-brand-400 dark:border-brand-400 hover:bg-brand-600 dark:hover:bg-brand-500 rounded-lg border-2 px-4 py-2 font-semibold transition-all duration-200 hover:text-white dark:hover:text-white;
 }
 
 /* Theme toggle button */
 .btn-theme {
-  @apply w-9 h-9 flex items-center justify-center rounded-lg bg-stone-200 dark:bg-stone-700 hover:bg-stone-300 dark:hover:bg-stone-600 text-stone-700 dark:text-stone-200 transition-colors;
+  @apply flex h-9 w-9 items-center justify-center rounded-lg bg-stone-200 text-stone-700 transition-colors hover:bg-stone-300 dark:bg-stone-700 dark:text-stone-200 dark:hover:bg-stone-600;
 }
 
 /* Pagination button */
 .btn-pagination {
-  @apply text-2xl text-stone-500 dark:text-stone-400 hover:text-brand-600 dark:hover:text-brand-400 cursor-pointer disabled:text-stone-300 dark:disabled:text-stone-700 disabled:cursor-not-allowed transition-colors;
+  @apply hover:text-brand-600 dark:hover:text-brand-400 cursor-pointer text-2xl text-stone-500 transition-colors disabled:cursor-not-allowed disabled:text-stone-300 dark:text-stone-400 dark:disabled:text-stone-700;
 }
 
 /* Form label */
@@ -144,7 +144,7 @@ textarea.error {
 
 /* Post detail card */
 .post-detail {
-  @apply bg-white dark:bg-stone-800 p-0 sm:p-6 border-0 sm:border sm:border-transparent dark:sm:border-stone-700 rounded-xl;
+  @apply rounded-xl border-0 bg-white p-0 sm:border sm:border-transparent sm:p-6 dark:bg-stone-800 dark:sm:border-stone-700;
 }
 
 /* Post Header */
@@ -162,9 +162,8 @@ textarea.error {
 
 /* Post Image */
 .post-image {
-  @apply w-full aspect-square object-cover mb-6 rounded-none sm:rounded-lg;
+  @apply mb-6 aspect-square w-full rounded-none object-cover sm:rounded-lg;
 }
-
 
 /* Post Body */
 .post-body {
@@ -172,7 +171,7 @@ textarea.error {
 }
 
 .post-title {
-  @apply mb-3 text-xl sm:text-2xl font-bold text-stone-900 dark:text-white;
+  @apply mb-3 text-xl font-bold text-stone-900 sm:text-2xl dark:text-white;
 }
 
 .post-text {
@@ -190,7 +189,7 @@ textarea.error {
 
 /* Post Stats */
 .post-stats {
-  @apply mb-6 flex gap-6 border-t border-b border-stone-200 py-4 px-4 sm:px-0 dark:border-stone-700;
+  @apply mb-6 flex gap-6 border-t border-b border-stone-200 px-4 py-4 sm:px-0 dark:border-stone-700;
 }
 
 /* Comments Section */
@@ -227,7 +226,7 @@ textarea.error {
 
 /* Profile card */
 .profile-detail {
-  @apply rounded-xl bg-page-light p-0 sm:p-6 dark:bg-page-dark;
+  @apply bg-page-light dark:bg-page-dark rounded-xl p-0 sm:p-6;
 }
 
 /* Profile Header */
@@ -249,17 +248,17 @@ textarea.error {
 }
 
 .profile-avatar-placeholder.profile-avatar-large {
-  @apply h-20 w-20 sm:h-24 sm:w-24 border-4 border-white text-3xl sm:text-4xl dark:border-stone-700;
+  @apply h-20 w-20 border-4 border-white text-3xl sm:h-24 sm:w-24 sm:text-4xl dark:border-stone-700;
 }
 
 /* User Info */
 .profile-name {
-  @apply mb-1 text-xl sm:text-2xl font-bold text-stone-900 dark:text-white;
+  @apply mb-1 text-xl font-bold text-stone-900 sm:text-2xl dark:text-white;
 }
 
 /* Stats */
 .profile-stats {
-  @apply mb-6 flex gap-4 sm:gap-8 border-b border-stone-200 py-4 dark:border-stone-700;
+  @apply mb-6 flex gap-4 border-b border-stone-200 py-4 sm:gap-8 dark:border-stone-700;
 }
 
 /* Posts Section */
@@ -270,11 +269,11 @@ textarea.error {
 
 /* Follow/Unfollow Buttons */
 .btn-follow {
-  @apply w-full sm:w-auto bg-brand-600 hover:bg-brand-700 cursor-pointer rounded-lg px-4 py-2 font-semibold text-white transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 dark:focus:ring-offset-stone-800;
+  @apply bg-brand-600 hover:bg-brand-700 focus:ring-brand-500 w-full cursor-pointer rounded-lg px-4 py-2 font-semibold text-white transition-all duration-200 focus:ring-2 focus:ring-offset-2 focus:outline-none sm:w-auto dark:focus:ring-offset-stone-800;
 }
 
 .btn-unfollow {
-  @apply w-full sm:w-auto cursor-pointer rounded-lg bg-stone-200 px-4 py-2 font-semibold text-stone-700 transition-all duration-200 hover:bg-stone-900 hover:text-white dark:bg-stone-700 dark:text-stone-300 dark:hover:bg-stone-600;
+  @apply w-full cursor-pointer rounded-lg bg-stone-200 px-4 py-2 font-semibold text-stone-700 transition-all duration-200 hover:bg-stone-900 hover:text-white sm:w-auto dark:bg-stone-700 dark:text-stone-300 dark:hover:bg-stone-600;
 }
 
 .btn-follow:disabled,

@@ -125,7 +125,7 @@ export function createPostCard(post, options = {}) {
     card.appendChild(header);
   }
 
-  // Image with responsive padding 
+  // Image with responsive padding
   if (post.media?.url) {
     const imageWrapper = document.createElement("div");
     // Mobile: no margin, sm: small margin, md: more margin
