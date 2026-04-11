@@ -8,38 +8,48 @@ export default class Home extends AbstractView {
 
   async getHtml() {
     return `
-      <section class="feed-container">
+      <section class="page-container" aria-label="Posts feed">
 
-        <!-- SEARCH -->
-        <form id="search-form" class="feed-search-form">
+        <!-- Search Form -->
+        <form id="search-form" class="flex gap-3 mb-8">
           <input
             type="search"
             name="search"
             placeholder="Search posts..."
-            class="input-field"
+            class="input-field flex-1"
           />
-          <button type="submit" class="btn-accent">Search</button>
+          <button 
+            type="submit" 
+            class="btn-icon p-3"
+            aria-label="Search"
+          >
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <circle cx="11" cy="11" r="8"/>
+              <path stroke-linecap="round" d="M21 21l-4.35-4.35"/>
+            </svg>
+          </button>
         </form>
 
-        <!-- SEARCH INFO -->
-        <div id="search-info" class="search-info" style="display: none;"></div>
+        <!-- Search Info -->
+        <div id="search-info" class="hidden mb-6 items-center justify-between px-4 py-3 bg-amber-100 dark:bg-stone-800 rounded-lg text-sm text-stone-600 dark:text-stone-300"></div>
 
-        <!-- LOADING -->
-        <div id="feed-loading" class="loading-spinner" style="display: none;">
-          <div class="spinner"></div>
-          <p>Loading posts...</p>
+        <!-- Loading State -->
+        <div id="feed-loading" class="loading-container">
+          <div class="loading-spinner"></div>
+          <p class="loading-text">Loading posts...</p>
         </div>
 
-        <!-- POSTS -->
-        <section id="feed" class="feed-section"></section>
+        <!-- Posts Feed -->
+        <section id="feed" class="feed-section space-y-6"></section>
 
-        <!-- PAGINATION -->
-        <div class="feed-pagination">
-          <button class="btn-secondary" id="prev-page-btn">Previous</button>
-          <span id="page-info" class="feed-page-info">Page 1</span>
-          <button class="btn-secondary" id="next-page-btn">Next</button>
+        <!-- Pagination -->
+        <div class="flex items-center justify-center gap-6 mt-10 pt-6 border-t border-stone-200 dark:border-stone-700" aria-label="Pagination">
+          <button id="prev-page-btn" class="btn-pagination" aria-label="Previous page">←</button>
+          <span id="page-info" class="text-sm font-medium text-stone-500 dark:text-stone-400">
+            Page 1
+          </span>
+          <button id="next-page-btn" class="btn-pagination" aria-label="Next page">→</button>
         </div>
-
       </section>
     `;
   }

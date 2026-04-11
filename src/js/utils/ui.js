@@ -32,7 +32,7 @@ export function createAvatar(
   avatarUrl,
   name,
   baseClass = "avatar",
-  size = "default",
+  size = "default"
 ) {
   if (avatarUrl) {
     const img = document.createElement("img");
@@ -76,7 +76,7 @@ export function formatDate(dateString, format = "short") {
 
   return new Date(dateString).toLocaleDateString(
     "en-GB",
-    options[format] || options.short,
+    options[format] || options.short
   );
 }
 

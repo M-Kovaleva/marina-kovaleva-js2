@@ -26,20 +26,20 @@ function createPostHeader(post) {
   header.className = "post-header";
 
   const author = document.createElement("div");
-  author.className = "post-author";
+  author.className = "flex items-center gap-3";
 
   // Avatar
   const avatar = createAvatar(
     post.author?.avatar?.url,
     post.author?.name || "Unknown",
-    "post-author-avatar",
-    "medium",
+    "h-12 w-12 rounded-full object-cover",
+    "medium"
   );
   author.append(avatar);
 
   // Author info
   const authorInfo = document.createElement("div");
-  authorInfo.className = "post-author-info";
+  authorInfo.className = "flex flex-col";
 
   const authorLink = document.createElement("a");
   authorLink.href = `/profile/${post.author?.name}`;
@@ -48,7 +48,7 @@ function createPostHeader(post) {
   authorLink.textContent = post.author?.name || "Unknown";
 
   const date = document.createElement("span");
-  date.className = "post-date";
+  date.className = "text-sm text-stone-400 dark:text-stone-500";
   date.textContent = formatDate(post.created, "full");
   authorInfo.append(authorLink, date);
   author.append(authorInfo);
@@ -108,11 +108,11 @@ function createPostStats(post) {
   stats.className = "post-stats";
 
   const reactions = document.createElement("span");
-  reactions.className = "post-stat";
+  reactions.className = "text-sm text-stone-500 dark:text-stone-400";
   reactions.textContent = `♡ ${post._count?.reactions || 0} reactions`;
 
   const comments = document.createElement("span");
-  comments.className = "post-stat";
+  comments.className = "text-sm text-stone-500 dark:text-stone-400";
   comments.textContent = `${post._count?.comments || 0} comments`;
 
   stats.append(reactions, comments);
@@ -134,7 +134,7 @@ function createCommentsSection(comments) {
 
   if (!comments || comments.length === 0) {
     const empty = document.createElement("p");
-    empty.className = "comments-empty";
+    empty.className = "empty-state text-sm";
     empty.textContent = "No comments yet. Be the first to comment!";
     commentsList.append(empty);
   } else {
@@ -155,19 +155,19 @@ function createComment(comment) {
 
   // Header
   const header = document.createElement("div");
-  header.className = "comment-header";
+  header.className = "mb-2 flex items-center gap-3";
 
   const avatar = createAvatar(
     comment.author?.avatar?.url,
     comment.author?.name || "Anonymous",
-    "comment-avatar",
-    "small",
+    "h-8 w-8 rounded-full object-cover",
+    "small"
   );
   header.append(avatar);
 
   // Author info
   const info = document.createElement("div");
-  info.className = "comment-info";
+  info.className = "flex flex-col";
 
   const authorLink = document.createElement("a");
   authorLink.href = `/profile/${comment.author?.name}`;
@@ -176,7 +176,7 @@ function createComment(comment) {
   authorLink.textContent = comment.author?.name || "Anonymous";
 
   const date = document.createElement("span");
-  date.className = "comment-date";
+  date.className = "text-xs text-stone-400 dark:text-stone-500";
   date.textContent = formatDate(comment.created, "long");
 
   info.append(authorLink, date);
@@ -197,19 +197,13 @@ function createComment(comment) {
 
 function createErrorState() {
   const error = document.createElement("div");
-  error.className = "post-error";
+  error.className = "py-16 text-center";
 
   const text = document.createElement("p");
   text.textContent =
-    "Could not load post. It may have been deleted or you don't have permission to view it.";
+    "Could not load post. It may have been deleted or you don't have permission.";
 
-  const link = document.createElement("a");
-  link.href = "/";
-  link.className = "btn-secondary";
-  link.setAttribute("data-link", "");
-  link.textContent = "Back to Feed";
-
-  error.append(text, link);
+  error.append(text);
   return error;
 }
 

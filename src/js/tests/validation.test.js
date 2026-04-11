@@ -23,7 +23,7 @@ describe("validateEmail", () => {
 
     expect(result.valid).toBe(false);
     expect(result.message).toBe(
-      "Email must be a valid @stud.noroff.no address",
+      "Email must be a valid @stud.noroff.no address"
     );
   });
 
@@ -60,7 +60,7 @@ describe("validateUsername", () => {
 
     expect(result.valid).toBe(false);
     expect(result.message).toBe(
-      "Username can only contain letters, numbers, and underscores",
+      "Username can only contain letters, numbers, and underscores"
     );
   });
 
@@ -185,7 +185,7 @@ describe("validateAvatarUrl", () => {
     const result = validateAvatarUrl("https://example.com/page");
     expect(result.valid).toBe(false);
     expect(result.message).toBe(
-      "URL must be a direct link to an image (jpg, png, gif, webp, svg)",
+      "URL must be a direct link to an image (jpg, png, gif, webp, svg)"
     );
   });
 
@@ -193,7 +193,7 @@ describe("validateAvatarUrl", () => {
     const result = validateAvatarUrl("https://example.com/document.pdf");
     expect(result.valid).toBe(false);
     expect(result.message).toBe(
-      "URL must be a direct link to an image (jpg, png, gif, webp, svg)",
+      "URL must be a direct link to an image (jpg, png, gif, webp, svg)"
     );
   });
 
@@ -529,7 +529,7 @@ describe("validateFields", () => {
 
     const errorElement = document.getElementById("email-error");
     expect(errorElement.textContent).toBe(
-      "Email must be a valid @stud.noroff.no address",
+      "Email must be a valid @stud.noroff.no address"
     );
   });
 

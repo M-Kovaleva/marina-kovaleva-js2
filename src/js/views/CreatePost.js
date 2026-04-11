@@ -8,23 +8,25 @@ export default class CreatePost extends AbstractView {
 
   async getHtml() {
     return `
-       <div class="post-container">
+      <div class="page-container">
         
         <!-- BACK BUTTON -->
-        <a href="/" data-link class="post-back-link">< Back to Home</a>
+        <a href="/" data-link class="back-link mb-6">
+          <span>←</span> Back to Home
+        </a>
 
         <!-- LOADING -->
-        <div id="create-post-loading" class="loading-spinner" style="display: none;">
-          <div class="spinner"></div>
-          <p>Creating your post...</p>
+        <div id="create-post-loading" class="loading-container">
+          <div class="loading-spinner"></div>
+          <p class="loading-text">Creating your post...</p>
         </div>
 
-        <!-- FORM CARD  -->
-        <div class="post-detail">
-          <h1 class="post-title">Create New Post</h1>
+        <!-- FORM CARD -->
+        <div class="rounded-xl border border-transparent bg-white p-6 sm:p-8 dark:border-stone-700 dark:bg-stone-800">
+          <h1 class="page-title">Create New Post</h1>
           
-          <!-- FORM -->
-          <form id="create-post-form" class="create-post-form" novalidate></form>
+          <!-- FORM (built by JS) -->
+          <form id="create-post-form" class="space-y-5"></form>
         </div>
 
       </div>

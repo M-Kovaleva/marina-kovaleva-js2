@@ -38,13 +38,13 @@ function createProfileHeader(profile, isOwnProfile, isFollowing) {
     profile.avatar?.url,
     profile.name,
     "profile-avatar",
-    "large",
+    "large"
   );
   header.append(avatar);
 
   // User info
   const userInfo = document.createElement("div");
-  userInfo.className = "profile-user-info-container";
+  userInfo.className = "mt-4";
 
   // Name
   const name = document.createElement("h1");
@@ -54,7 +54,7 @@ function createProfileHeader(profile, isOwnProfile, isFollowing) {
   // Email
   if (profile.email) {
     const email = document.createElement("p");
-    email.className = "profile-email";
+    email.className = "mb-4 text-stone-500 dark:text-stone-400";
     email.textContent = profile.email;
     userInfo.append(name, email);
   } else {
@@ -62,7 +62,7 @@ function createProfileHeader(profile, isOwnProfile, isFollowing) {
   }
 
   const userInfoContainer = document.createElement("div");
-  userInfoContainer.className = "profile-user-info-container";
+  userInfoContainer.className = "mt-4";
   userInfoContainer.append(userInfo);
 
   // Follow/Unfollow button - if not own profile
@@ -87,36 +87,41 @@ function createStats(profile) {
 
   // Posts count
   const postsCount = document.createElement("div");
-  postsCount.className = "profile-stat";
+  postsCount.className = "flex flex-col items-center gap-1";
   const postsNumber = document.createElement("span");
-  postsNumber.className = "profile-stat-number";
+  postsNumber.className = "text-xl font-bold text-stone-900 dark:text-white";
   postsNumber.id = "posts-count";
   postsNumber.textContent = profile._count?.posts || 0;
   const postsLabel = document.createElement("span");
-  postsLabel.className = "profile-stat-label";
+  postsLabel.className =
+    "text-sm tracking-wide text-stone-500 uppercase dark:text-stone-400";
   postsLabel.textContent = "Posts";
   postsCount.append(postsNumber, postsLabel);
 
   // Followers count
   const followersCount = document.createElement("div");
-  followersCount.className = "profile-stat";
+  followersCount.className = "flex flex-col items-center gap-1";
   const followersNumber = document.createElement("span");
-  followersNumber.className = "profile-stat-number";
+  followersNumber.className =
+    "text-xl font-bold text-stone-900 dark:text-white";
   followersNumber.id = "followers-count";
   followersNumber.textContent = profile._count?.followers || 0;
   const followersLabel = document.createElement("span");
-  followersLabel.className = "profile-stat-label";
+  followersLabel.className =
+    "text-sm tracking-wide text-stone-500 uppercase dark:text-stone-400";
   followersLabel.textContent = "Followers";
   followersCount.append(followersNumber, followersLabel);
 
   // Following count
   const followingCount = document.createElement("div");
-  followingCount.className = "profile-stat";
+  followingCount.className = "flex flex-col items-center gap-1";
   const followingNumber = document.createElement("span");
-  followingNumber.className = "profile-stat-number";
+  followingNumber.className =
+    "text-xl font-bold text-stone-900 dark:text-white";
   followingNumber.textContent = profile._count?.following || 0;
   const followingLabel = document.createElement("span");
-  followingLabel.className = "profile-stat-label";
+  followingLabel.className =
+    "text-sm tracking-wide text-stone-500 uppercase dark:text-stone-400";
   followingLabel.textContent = "Following";
   followingCount.append(followingNumber, followingLabel);
 
@@ -127,19 +132,19 @@ function createStats(profile) {
 /* Create posts section */
 function createPostsSection(posts, isOwnProfile) {
   const section = document.createElement("div");
-  section.className = "profile-posts";
+  section.className = "profile-posts mt-8";
 
   const heading = document.createElement("h2");
   heading.textContent = "Posts";
   section.append(heading);
 
   const postsList = document.createElement("div");
-  postsList.className = "profile-posts-list";
+  postsList.className = "flex flex-col gap-4";
   postsList.id = "profile-posts-list";
 
   if (!posts || posts.length === 0) {
     const empty = document.createElement("p");
-    empty.className = "profile-posts-empty";
+    empty.className = "empty-state";
     empty.textContent = "No posts yet.";
     postsList.append(empty);
   } else {
@@ -163,18 +168,12 @@ function createPostsSection(posts, isOwnProfile) {
 /* DOM creation - error state */
 function createErrorState() {
   const error = document.createElement("div");
-  error.className = "profile-error";
+  error.className = "py-16 text-center";
 
   const text = document.createElement("p");
   text.textContent = "Could not load profile. User may not exist.";
 
-  const link = document.createElement("a");
-  link.href = "/";
-  link.className = "btn-secondary";
-  link.setAttribute("data-link", "");
-  link.textContent = "Back to Feed";
-
-  error.append(text, link);
+  error.append(text);
   return error;
 }
 

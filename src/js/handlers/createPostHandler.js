@@ -41,11 +41,12 @@ function validateMediaUrl(url) {
 /* Create form group: label, input, help, error */
 function createFormGroup(config) {
   const group = document.createElement("div");
-  group.className = "form-group";
+  group.className = "flex flex-col gap-2";
 
   // Label
   const label = document.createElement("label");
   label.htmlFor = config.id;
+  label.className = "text-sm font-semibold text-stone-700 dark:text-stone-200";
   label.textContent = config.label;
   group.append(label);
 
@@ -54,9 +55,11 @@ function createFormGroup(config) {
   if (config.type === "textarea") {
     input = document.createElement("textarea");
     input.rows = config.rows || 8;
+    input.className = "input-field min-h-32 resize-y leading-relaxed";
   } else {
     input = document.createElement("input");
     input.type = config.type || "text";
+    input.className = "input-field";
     if (config.maxlength) input.maxLength = config.maxlength;
   }
 
@@ -70,7 +73,7 @@ function createFormGroup(config) {
   // Help text
   if (config.helpText) {
     const help = document.createElement("small");
-    help.className = "form-help";
+    help.className = "text-sm text-stone-500 dark:text-stone-400";
     help.textContent = config.helpText;
     group.append(help);
   }
@@ -135,11 +138,11 @@ function createMediaField() {
   });
 }
 
-/* Create submit button */
+// СТАЛО:
 function createSubmitButton() {
   const button = document.createElement("button");
   button.type = "submit";
-  button.className = "btn-primary";
+  button.className = "btn-primary mt-2";
   button.id = "create-post-submit";
   button.textContent = "Create Post";
   return button;
@@ -197,7 +200,7 @@ function buildForm() {
     mediaField,
     submitButton,
     successMessage,
-    errorMessage,
+    errorMessage
   );
 }
 

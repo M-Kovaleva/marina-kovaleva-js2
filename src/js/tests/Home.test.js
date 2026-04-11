@@ -126,7 +126,7 @@ describe("Home.js - Feed View", () => {
 
       // Feed section should be self-closing or empty
       expect(html).toContain(
-        '<section id="feed" class="feed-section"></section>',
+        '<section id="feed" class="feed-section"></section>'
       );
     });
 

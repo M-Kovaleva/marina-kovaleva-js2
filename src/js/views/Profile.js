@@ -9,15 +9,17 @@ export default class Profile extends AbstractView {
 
   async getHtml() {
     return `
-      <div class="profile-container">
+      <div class="page-container">
         
         <!-- BACK BUTTON -->
-        <a href="/" data-link class="profile-back-link">< Back to Home</a>
+        <a href="/" data-link class="back-link mb-6">
+          <span>←</span> Back to Home
+        </a>
 
         <!-- LOADING -->
-        <div id="profile-loading" class="loading-spinner" style="display: none;">
-          <div class="spinner"></div>
-          <p>Loading profile...</p>
+        <div id="profile-loading" class="loading-container">
+          <div class="loading-spinner"></div>
+          <p class="loading-text">Loading profile...</p>
         </div>
 
         <!-- PROFILE CONTENT -->

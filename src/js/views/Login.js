@@ -1,4 +1,5 @@
 import AbstractView from "./AbstractView.js";
+
 export default class Login extends AbstractView {
   constructor(params) {
     super(params);
@@ -9,11 +10,16 @@ export default class Login extends AbstractView {
     return `
       <div class="auth-container">
         <div class="auth-card">
-          <h1>Log in to your account</h1>
-          <form id="login-form" class="auth-form" novalidate>     
+          
+          <h1 class="page-title-center">Log in to your account</h1>
+
+          <form id="login-form" class="space-y-6">
+            
             <!-- Email -->
-            <div class="form-group">
-              <label for="login-email">Email</label>
+            <div class="space-y-2">
+              <label for="login-email" class="form-label">
+                Email
+              </label>
               <input 
                 type="email" 
                 id="login-email" 
@@ -21,45 +27,54 @@ export default class Login extends AbstractView {
                 required
                 placeholder="your.name@stud.noroff.no"
                 autocomplete="email"
+                class="input-field"
               />
               <span class="form-error" id="email-error"></span>
             </div>
+
             <!-- Password -->
-            <div class="form-group">
-              <label for="login-password">Password</label>
+            <div class="space-y-2">
+              <label for="login-password" class="form-label">
+                Password
+              </label>
               <input 
                 type="password" 
                 id="login-password" 
                 name="password"
                 required
+                minlength="8"
                 placeholder="••••••••"
                 autocomplete="current-password"
+                class="input-field"
               />
               <span class="form-error" id="password-error"></span>
             </div>
+
             <!-- Submit Button -->
-            <button type="submit" class="btn-primary" id="login-submit">
+            <button type="submit" id="login-submit" class="btn-primary">
               Log In
             </button>
 
             <!-- Loading State -->
-            <div class="loading-spinner" id="login-loading" style="display: none;">
-              <div class="spinner"></div>
-              <p>Logging you in...</p>
+            <div id="login-loading" class="loading-container">
+              <div class="loading-spinner"></div>
+              <p class="loading-text">Logging you in...</p>
             </div>
 
             <!-- Error Message -->
-            <div class="error-message" id="login-error" style="display: none;">
+            <div id="login-error" class="error-message hidden" role="alert">
               <p id="login-error-text"></p>
             </div>
           </form>
 
-          <!-- Link to Register -->
-          <p class="auth-link">
-            Don't have an account? 
-            <a href="/register" data-link>Create one here</a>
-          </p>
-          <p class="auth-link"><a href="/" data-link>< Back to Home</a></p>
+          <!-- Links -->
+          <div class="mt-8 text-center space-y-2">
+            <p class="text-stone-600 dark:text-stone-300">
+              Don't have an account? 
+              <a href="/register" data-link class="back-link">Create one here</a>
+            </p>
+            <a href="/" data-link class="back-link">← Back to Home</a>
+          </div>
         </div>
       </div>
     `;

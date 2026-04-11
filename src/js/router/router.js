@@ -24,13 +24,13 @@ const pathToRegex = (path) =>
 const getParams = (match) => {
   const values = match.result.slice(1);
   const keys = Array.from(match.route.path.matchAll(/:(\w+)/g)).map(
-    (result) => result[1],
+    (result) => result[1]
   );
 
   return Object.fromEntries(
     keys.map((key, i) => {
       return [key, values[i]];
-    }),
+    })
   );
 };
 
@@ -61,7 +61,7 @@ export const router = async () => {
 
   // Find the first matching route
   let match = potentialMatches.find(
-    (potentialMatch) => potentialMatch.result !== null,
+    (potentialMatch) => potentialMatch.result !== null
   );
 
   // If no match found, show 404 page
