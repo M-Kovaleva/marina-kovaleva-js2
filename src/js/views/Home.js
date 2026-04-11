@@ -16,7 +16,7 @@ export default class Home extends AbstractView {
             type="search"
             name="search"
             placeholder="Search posts..."
-            class="autofill-fix input-field flex-1"
+            class="input-field flex-1"
           />
           <button 
             type="submit" 

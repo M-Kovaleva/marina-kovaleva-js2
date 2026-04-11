@@ -27,7 +27,7 @@ export default class Login extends AbstractView {
                 required
                 placeholder="your.name@stud.noroff.no"
                 autocomplete="email"
-                class="autofill-fix input-field"
+                class="input-field"
               />
               <span class="form-error" id="email-error"></span>
             </div>
@@ -45,7 +45,7 @@ export default class Login extends AbstractView {
                 minlength="8"
                 placeholder="••••••••"
                 autocomplete="current-password"
-                class="autofill-fix input-field"
+                class="input-field"
               />
               <span class="form-error" id="password-error"></span>
             </div>

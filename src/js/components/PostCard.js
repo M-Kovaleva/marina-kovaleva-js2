@@ -29,8 +29,7 @@ function createAuthorSection(post) {
 
   const authorLink = document.createElement("a");
   authorLink.href = `/profile/${post.author?.name}`;
-  authorLink.className =
-    "text-sm font-semibold text-stone-900 dark:text-white hover:text-brand-600 dark:hover:text-brand-400 transition-colors";
+  authorLink.className = "post-author-name text-sm";
   authorLink.setAttribute("data-link", "");
   authorLink.textContent = post.author?.name || "Unknown";
 

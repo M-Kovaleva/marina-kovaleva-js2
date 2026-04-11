@@ -28,7 +28,7 @@ export default class Register extends AbstractView {
                 pattern="^[a-zA-Z0-9_]+$"
                 placeholder="your username"
                 autocomplete="username"
-                class="autofill-fix input-field"
+                class="input-field"
               />
               <p class="form-hint">Only letters, numbers, and underscores</p>
               <span class="form-error" id="name-error"></span>
@@ -47,7 +47,7 @@ export default class Register extends AbstractView {
                 pattern="^[a-zA-Z0-9._%+-]+@stud\\.noroff\\.no$"
                 placeholder="your.name@stud.noroff.no"
                 autocomplete="email"
-                class="autofill-fix input-field"
+                class="input-field"
               />
               <p class="form-hint">Must be a @stud.noroff.no email</p>
               <span class="form-error" id="email-error"></span>
@@ -66,7 +66,7 @@ export default class Register extends AbstractView {
                 minlength="8"
                 placeholder="••••••••"
                 autocomplete="new-password"
-                class="autofill-fix input-field"
+                class="input-field"
               />
               <p class="form-hint">Minimum 8 characters</p>
               <span class="form-error" id="password-error"></span>
@@ -83,7 +83,7 @@ export default class Register extends AbstractView {
                 id="register-avatar" 
                 name="avatarUrl"
                 placeholder="https://example.com/avatar.jpg"
-                class="autofill-fix input-field"
+                class="input-field"
               />
               <p class="form-hint">Direct image URL (jpg, png, gif, webp)</p>
               <span class="form-error" id="avatar-error"></span>
