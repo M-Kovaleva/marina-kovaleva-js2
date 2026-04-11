@@ -270,7 +270,7 @@ textarea.error {
 
 /* Follow/Unfollow Buttons */
 .btn-follow {
-  @apply w-full sm:w-auto bg-brand-600 hover:bg-brand-700 dark:bg-brand-600 dark:hover:bg-brand-700 cursor-pointer rounded-lg px-4 py-2 font-semibold text-white transition-all duration-200;
+  @apply w-full sm:w-auto bg-brand-600 hover:bg-brand-700 cursor-pointer rounded-lg px-4 py-2 font-semibold text-white transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 dark:focus:ring-offset-stone-800;
 }
 
 .btn-unfollow {

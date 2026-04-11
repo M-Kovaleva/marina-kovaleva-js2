@@ -29,17 +29,19 @@
         </li>
       </ul>
 
-      <!-- Mobile Hamburger -->
-      <button id="mobile-menu-btn" class="md:hidden flex items-center justify-center text-stone-900 dark:text-white hover:bg-stone-200 dark:hover:bg-stone-700 rounded-lg transition-colors" aria-label="Toggle menu">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-          <path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/>
-        </svg>
-      </button>
+      <!-- Mobile Actions: humburger menu and New Post button -->
+      <div class="md:hidden flex items-center gap-3">
+        <a href="/create" data-link class="btn-outline text-sm py-1.5 px-3">New Post</a>
+        <button id="mobile-menu-btn" class="flex items-center justify-center text-stone-900 dark:text-white hover:bg-stone-200 dark:hover:bg-stone-700 rounded-lg transition-colors" aria-label="Toggle menu">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+      </div>
     </div>
 
     <!-- Mobile Menu Overlay -->
     <div id="mobile-menu" class="md:hidden fixed inset-x-0 top-13 bottom-0 bg-white dark:bg-stone-800 z-40 hidden flex-col items-center justify-start pt-16 gap-6 transition-colors duration-200">
-      <a href="/create" data-link class="mobile-link btn-outline">New Post</a>
       <a href="/" data-link class="mobile-link nav-link">Home</a>
       <a href="/profile" data-link class="mobile-link nav-link">Profile</a>
       <a href="/login" data-link id="auth-link-mobile" class="mobile-link nav-link">Login</a>
