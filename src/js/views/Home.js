@@ -8,7 +8,7 @@ export default class Home extends AbstractView {
 
   async getHtml() {
     return `
-      <section class="page-container">
+      <section class="page-container" aria-label="Posts feed">
 
         <!-- Search Form -->
         <form id="search-form" class="flex gap-3 mb-8">
@@ -43,12 +43,12 @@ export default class Home extends AbstractView {
         <section id="feed" class="feed-section space-y-6"></section>
 
         <!-- Pagination -->
-        <div class="flex items-center justify-center gap-6 mt-10 pt-6 border-t border-stone-200 dark:border-stone-700">
-          <button id="prev-page-btn" class="btn-pagination">←</button>
+        <div class="flex items-center justify-center gap-6 mt-10 pt-6 border-t border-stone-200 dark:border-stone-700" aria-label="Pagination">
+          <button id="prev-page-btn" class="btn-pagination" aria-label="Previous page">←</button>
           <span id="page-info" class="text-sm font-medium text-stone-500 dark:text-stone-400">
             Page 1
           </span>
-          <button id="next-page-btn" class="btn-pagination">→</button>
+          <button id="next-page-btn" class="btn-pagination" aria-label="Next page">→</button>
         </div>
       </section>
     `;

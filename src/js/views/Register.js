@@ -101,13 +101,13 @@ export default class Register extends AbstractView {
             </div>
 
             <!-- Success Message -->
-            <div id="register-success" class="success-message hidden">
+            <div id="register-success" class="success-message hidden" role="alert">
               <p> Account created successfully!</p>
               <p>Redirecting to Home...</p>
             </div>
 
             <!-- Error Message -->
-            <div id="register-error" class="error-message hidden">
+            <div id="register-error" class="error-message hidden" role="alert">
               <p id="register-error-text"></p>
             </div>
 

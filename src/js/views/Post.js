@@ -23,7 +23,7 @@ export default class Post extends AbstractView {
         </div>
 
         <!-- ERROR STATE -->
-        <div id="post-error" class="hidden text-center py-16">
+        <div id="post-error" class="hidden text-center py-16" role="alert">
           <div class="text-5xl mb-4"></div>
           <p class="text-red-600 dark:text-red-400 font-medium mb-4">Failed to load post</p>
         </div>

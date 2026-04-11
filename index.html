@@ -9,18 +9,18 @@
 <body class="min-h-screen flex flex-col bg-page-light dark:bg-page-dark font-sans text-stone-900 dark:text-stone-100 transition-colors duration-200">
   
   <!-- NAVBAR -->
-  <nav class="sticky top-0 z-50 bg-white dark:bg-stone-800 border-b border-transparent dark:border-stone-700 transition-colors duration-200">
+  <nav aria-label="Main navigation" class="sticky top-0 z-50 bg-white dark:bg-stone-800 border-b border-transparent dark:border-stone-700 transition-colors duration-200">
     <div class="max-w-5xl mx-auto px-4 py-3 flex justify-between items-center">
       
       <!-- Logo -->
-      <a href="/" data-link class="text-xl font-bold text-stone-900 dark:text-white hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Social App</a>
+      <a href="/" data-link aria-label="Social App - Home" class="text-xl font-bold text-stone-900 dark:text-white hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Social App</a>
 
       <!-- Desktop Menu -->
-      <ul class="hidden md:flex items-center gap-6">
-        <li><a href="/" data-link class="nav-link">Home</a></li>
-        <li><a href="/profile" data-link class="nav-link">Profile</a></li>
-        <li><a href="/login" data-link id="auth-link" class="nav-link">Login</a></li>
-        <li><a href="/create" data-link class="btn-outline">New Post</a></li>
+      <ul class="hidden md:flex items-center gap-6" role="menubar">
+        <li><a href="/" data-link role="menuitem" class="nav-link">Home</a></li>
+        <li><a href="/profile" data-link role="menuitem" class="nav-link">Profile</a></li>
+        <li><a href="/login" data-link role="menuitem" id="auth-link" class="nav-link">Login</a></li>
+        <li><a href="/create" data-link role="menuitem" class="btn-outline">New Post</a></li>
         <li>
           <button id="theme-toggle" class="btn-theme" aria-label="Toggle dark mode">
             <span class="hidden dark:inline">☀</span>
@@ -41,10 +41,10 @@
     </div>
 
     <!-- Mobile Menu Overlay -->
-    <div id="mobile-menu" class="md:hidden fixed inset-x-0 top-13 bottom-0 bg-white dark:bg-stone-800 z-40 hidden flex-col items-center justify-start pt-16 gap-6 transition-colors duration-200">
-      <a href="/" data-link class="mobile-link nav-link">Home</a>
-      <a href="/profile" data-link class="mobile-link nav-link">Profile</a>
-      <a href="/login" data-link id="auth-link-mobile" class="mobile-link nav-link">Login</a>
+    <div role="menu" id="mobile-menu" class="md:hidden fixed inset-x-0 top-13 bottom-0 bg-white dark:bg-stone-800 z-40 hidden flex-col items-center justify-start pt-16 gap-6 transition-colors duration-200">
+      <a href="/" data-link role="menuitem" class="mobile-link nav-link">Home</a>
+      <a href="/profile" data-link role="menuitem" class="mobile-link nav-link">Profile</a>
+      <a href="/login" data-link role="menuitem" id="auth-link-mobile" class="mobile-link nav-link">Login</a>
       <button id="theme-toggle-mobile" class="btn-theme" aria-label="Toggle dark mode">
         <span class="hidden dark:inline">☀</span>
         <span class="inline dark:hidden">☾</span>

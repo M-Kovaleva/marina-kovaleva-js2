@@ -62,7 +62,7 @@ export default class Login extends AbstractView {
             </div>
 
             <!-- Error Message -->
-            <div id="login-error" class="error-message hidden">
+            <div id="login-error" class="error-message hidden" role="alert">
               <p id="login-error-text"></p>
             </div>
           </form>
